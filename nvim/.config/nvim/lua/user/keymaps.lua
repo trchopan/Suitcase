@@ -1,21 +1,11 @@
 local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
-k('n', "<S-x>", ":BufferClose<CR>", opt)
 k('n', "\\q", ":q<CR>", opt)
 k('n', "\\\\", "<Cmd>NvimTreeToggle<CR>", opt)
 k('n', "`h", "<Cmd>NvimTreeFocus<CR>", opt)
 k('n', "\\r", "<Cmd>LspRestart<CR>", opt)
 k('n', "\\p", [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], opt)
-k('n', "<S-l>", ":BufferNext<CR>", opt)
-k('n', "<S-h>", ":BufferPrevious<CR>", opt)
-k('n', "<A-l>", ":BufferMoveNext<CR>", opt)
-k('n', "<A-h>", ":BufferMovePrevious<CR>", opt)
-k('n', "\\1", ":BufferGoto 1<CR>", opt)
-k('n', "\\2", ":BufferGoto 2<CR>", opt)
-k('n', "\\3", ":BufferGoto 3<CR>", opt)
-k('n', "\\4", ":BufferGoto 4<CR>", opt)
-k('n', "\\5", ":BufferGoto 5<CR>", opt)
 k('n', "<C-f>f", "<Cmd>Telescope live_grep<CR>", opt)
 k('n', "//", "<Cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opt)
 k('n', "<C-f>w", "*Nciw", opt)
