@@ -42,13 +42,13 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim' -- Useful lua functions used ny lots of plugins
   use "lewis6991/impatient.nvim"
-  -- use 'tpope/vim-fugitive'
   use 'tpope/vim-surround'
   use 'numToStr/Comment.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-lualine/lualine.nvim'
-  use "akinsho/bufferline.nvim"
+  use 'romgrk/barbar.nvim'
+
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
