@@ -12,6 +12,8 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier.with({ filetypes = { "vue", "typescript", "typescriptreact", "javascript", "json", "yaml" } }),
+		formatting.brittany.with({ filetypes = { "haskell", "cabal" } }),
+		formatting.cabal_fmt.with({ filetypes = { "cabal" } }),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		-- diagnostics.flake8

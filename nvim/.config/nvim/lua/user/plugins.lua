@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-lualine/lualine.nvim'
   use 'romgrk/barbar.nvim'
+  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
 
   -- cmp plugins
@@ -90,8 +91,6 @@ return require('packer').startup(function(use)
 			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 		end,
 	}
-
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
 	use {
 		"windwp/nvim-spectre",

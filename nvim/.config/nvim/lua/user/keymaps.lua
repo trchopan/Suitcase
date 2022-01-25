@@ -28,6 +28,9 @@ k("n", ";;", "ma$a;<Esc>`a", opt)
 
 k("n", "<C-f>w", "*Nciw", opt)
 k("v", "<C-c>c", '"*y', opt)
+k("v", "<C-f><C-f>", 'y:%s?<C-r>"??g<Left><Left>', opt)
+k("v", "p", '"_dP', opt)
+
 k("v", "//", "<Esc><Cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", opt)
 
 -- quick vim surround
