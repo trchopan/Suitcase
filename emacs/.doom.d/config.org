@@ -1,0 +1,28 @@
+#+title: Doom Emacs config file
+#+author: Chop Tr (trchopan)
+#+date: <2022-01-26 Wed>
+
+
+* Default setup
+
+Begin the journey of litertate programming
+
+bold is *bold*
+
+** First code block
+
+#+begin_src bash :tangle ~/.doom.d/test.sh
+echo alalal 223232323 another ting
+#+end_src
+
+#+RESULTS:
+: alalal 223232323 another ting
+
+** Another code block
+
+#+begin_src bash :tangle ~/.doom.d/test.sh
+echo hehehe
+#+end_src
+
+#+RESULTS:
+: hehehe
