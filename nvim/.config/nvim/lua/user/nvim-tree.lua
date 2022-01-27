@@ -132,7 +132,7 @@ nvim_tree.setup({
 	git_hl = 1,
 	disable_window_picker = 0,
 	root_folder_modifier = ":t",
-	special_files = { "README.md", "Makefile", "MAKEFILE" },
+	special_files = { "README.md", "CHANGELOG.md", "Makefile", "MAKEFILE" },
 	show_icons = {
 		git = 1,
 		folders = 1,
