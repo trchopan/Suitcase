@@ -31,7 +31,7 @@ available. You can either set `doom-theme' or manually load a theme with the
 `load-theme' function. This is the default:
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(setq doom-font (font-spec :family "MesloLGS NF" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13))
 (setq doom-theme 'doom-one)
 #+end_src
 
@@ -79,11 +79,14 @@ Automatic tangle on save
 
 Maximize the window upon startup.
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(setq initial-frame-alist '((top . 1) (left . 1) (width . 150) (height . 60)))
+(setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60)))
 ;;(add-to-list 'initial-frame-alist '(maximized))
 #+end_src
 
+
 * LSP
+
+** Format-all
 
 If you are in a buffer with lsp-mode enabled and a server that supports textDocument/formatting, it will be used instead of format-all’s formatter.
 
@@ -100,12 +103,49 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 #+end_src
 
+** Vue
+
+*** Config
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(use-package! lsp-volar)
+#+end_src
+
+*** Package
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+(package! lsp-volar :recipe (:host github :repo "jadestrong/lsp-volar"))
+#+end_src
+
+** Typescript
+
+*** Config
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+
+#+end_src
+
+*** Package
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+(package! ob-typescript)
+#+end_src
+
+
 * Treemacs
 
+** TODO Learn about workspaces and perspectives
+
+Projects are beautifully managed. Can be added with `<C-p><C-p>a` .
+
+Edit workspaces by `treemacs-edit-workspaces`
+
 ** Follow-mode
+
 `treemacs-follow-mode` is a global minor mode which allows the treemacs view to always move its focus to the currently selected file. This mode runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
 
 ** Tag-follow-mode
+
 `treemacs-tag-follow-mode` is a global minor mode which extends and effectively replaces treemacs-follow-mode. When activated it follows not just the current file, but also the current tag. This works alongside treemacs’ integration with imenu, so all file types providing an imenu implementation are compatible.
 
 This mode, like `follow-mode`, runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
@@ -116,7 +156,8 @@ Note that in order to move to a tag in treemacs the treemacs buffer’s window n
 (setq treemacs-follow-mode t)
 #+end_src
 
-* Avy
+
+* Avy - Jump mode
 
 avy is a GNU Emacs package for jumping to visible text using a char-based decision tree. See also ace-jump-mode and vim-easymotion - avy uses the same idea.
 
@@ -132,30 +173,8 @@ avy is a GNU Emacs package for jumping to visible text using a char-based decisi
 (package! avy)
 #+end_src
 
-* Vue
 
-** Config
-
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(use-package! lsp-volar)
-#+end_src
-
-** Package
-
-#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
-(package! lsp-volar :recipe (:host github :repo "jadestrong/lsp-volar"))
-#+end_src
-
-* Personal Keymaps
-
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(map! :n "X" #'kill-current-buffer)
-(map! :n "H" #'+tabs:previous-or-goto)
-(map! :n "L" #'+tabs:next-or-goto)
-(map! :n "`h" #'treemacs-find-file)
-#+end_src
-
-* Miscellaneous
+* Org mode
 
 Insert clipboard image into org
 
@@ -165,4 +184,14 @@ Insert clipboard image into org
   (shell-command (concat "pngpaste " file))
   (insert (concat "[[" file "]]"))
   (org-display-inline-images))
+#+end_src
+
+
+* Personal Keymaps
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(map! :n "X" #'kill-current-buffer)
+(map! :n "H" #'+tabs:previous-or-goto)
+(map! :n "L" #'+tabs:next-or-goto)
+(map! :n "`h" #'treemacs-find-file)
 #+end_src

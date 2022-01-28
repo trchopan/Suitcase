@@ -1,0 +1,18 @@
+#+TITLE: Today I Learned
+#+AUTHOR: Chop Tr (trchopan)
+#+DESCRIPTION: My note book of things I learned during my day
+
+I started using Emacs about a week ago <2022-01-24 Mon> . With such powerful tool I think I should begin the habbit to write things down. Hopefully it will improve my workflow and help me into a more organised mode.
+
+* Day 1 <2022-01-27 Thu>
+
+My first day of writing in org mode.
+
+Recap of what I learned during the journey of setting up Emacs:
+
+** Doom emacs is awesome
+All battery included. Tempting to do a Emacs from Scratch but it must comes later right not Doom Emacs is surficial.
+
+** Seting up Vue and conflict / old package
+Setting up Vue was a pain because the old package [[https://github.com/AdamNiederer/vue-mode][vue-mode]] <= DO NOT USE this.
+Vue has the new language server named [[https://github.com/jadestrong/lsp-volar][Volar]] . Use this instead.

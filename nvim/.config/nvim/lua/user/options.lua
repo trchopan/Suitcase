@@ -50,7 +50,14 @@ vim.api.nvim_exec(
 	false
 )
 
-vim.cmd([[colorscheme onedarker]])
+vim.cmd([[
+try
+  colorscheme onedarker
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme default
+  set background=dark
+endtry
+]])
 
 local theme = vim.fn.system("defaults read -g AppleInterfaceStyle")
 if string.find(theme, "Dark") then
