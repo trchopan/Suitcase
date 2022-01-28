@@ -5,7 +5,7 @@
 
 * Default doom setup
 
-Some functionality uses this to identify you, e.g. GPG configuration, email
+Some *functionality* uses this to identify you, e.g. GPG configuration, email
 clients, file templates and snippets.
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
@@ -31,7 +31,6 @@ available. You can either set `doom-theme' or manually load a theme with the
 `load-theme' function. This is the default:
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13))
 (setq doom-theme 'doom-one)
 #+end_src
 
@@ -77,6 +76,12 @@ Automatic tangle on save
                           :append :local)))
 #+end_src
 
+Auto break line at 80
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+#+end_src
+
 Maximize the window upon startup.
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60)))
@@ -88,16 +93,22 @@ Maximize the window upon startup.
 
 ** Format-all
 
-If you are in a buffer with lsp-mode enabled and a server that supports textDocument/formatting, it will be used instead of format-all’s formatter.
+If you are in a buffer with lsp-mode enabled and a server that supports
+textDocument/formatting, it will be used instead of format-all’s formatter.
 
 - To disable this behavior universally use: (setq +format-with-lsp nil)
-- To disable this behavior in one mode: (setq-hook! 'python-mode-hook +format-with-lsp nil)
+- To disable this behavior in one mode: (setq-hook! 'python-mode-hook
+  +format-with-lsp nil)
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq +format-with-lsp nil)
 #+end_src
 
-The command format-all-ensure-formatter will ensure that a default formatter is selected in case you don't have one set; you can customize the default formatter for each language. To ensure a formatter is set whenever you enable format-all-mode, you can use: (add-hook 'format-all-mode-hook 'format-all-ensure-formatter).
+The command format-all-ensure-formatter will ensure that a default formatter is
+selected in case you don't have one set; you can customize the default formatter
+for each language. To ensure a formatter is set whenever you enable
+format-all-mode, you can use: (add-hook 'format-all-mode-hook
+'format-all-ensure-formatter).
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
@@ -142,15 +153,27 @@ Edit workspaces by `treemacs-edit-workspaces`
 
 ** Follow-mode
 
-`treemacs-follow-mode` is a global minor mode which allows the treemacs view to always move its focus to the currently selected file. This mode runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
+`treemacs-follow-mode` is a global minor mode which allows the treemacs view to
+always move its focus to the currently selected file. This mode runs on an idle
+timer - the exact duration of inactivity (in seconds) before a move is called is
+determined by treemacs-tag-follow-delay.
 
 ** Tag-follow-mode
 
-`treemacs-tag-follow-mode` is a global minor mode which extends and effectively replaces treemacs-follow-mode. When activated it follows not just the current file, but also the current tag. This works alongside treemacs’ integration with imenu, so all file types providing an imenu implementation are compatible.
+`treemacs-tag-follow-mode` is a global minor mode which extends and effectively
+replaces treemacs-follow-mode. When activated it follows not just the current
+file, but also the current tag. This works alongside treemacs’ integration with
+imenu, so all file types providing an imenu implementation are compatible.
 
-This mode, like `follow-mode`, runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
+This mode, like `follow-mode`, runs on an idle timer - the exact duration of
+inactivity (in seconds) before a move is called is determined by
+treemacs-tag-follow-delay.
 
-Note that in order to move to a tag in treemacs the treemacs buffer’s window needs to be temporarily selected, which will reset `blink-cursor-mode`’s timer if it is enabled. This will result in the cursor blinking seemingly pausing for a short time and giving the appearance of the tag follow action lasting much longer than it really does.
+Note that in order to move to a tag in treemacs the treemacs buffer’s window
+needs to be temporarily selected, which will reset `blink-cursor-mode`’s timer
+if it is enabled. This will result in the cursor blinking seemingly pausing for
+a short time and giving the appearance of the tag follow action lasting much
+longer than it really does.
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq treemacs-follow-mode t)
@@ -159,7 +182,9 @@ Note that in order to move to a tag in treemacs the treemacs buffer’s window n
 
 * Avy - Jump mode
 
-avy is a GNU Emacs package for jumping to visible text using a char-based decision tree. See also ace-jump-mode and vim-easymotion - avy uses the same idea.
+avy is a GNU Emacs package for jumping to visible text using a char-based
+decision tree. See also ace-jump-mode and vim-easymotion - avy uses the same
+idea.
 
 ** Config
 
@@ -194,4 +219,44 @@ Insert clipboard image into org
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
+#+end_src
+
+* Font display
+
+** Font face
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13))
+#+end_src
+
+
+** Org pretty mode
+
+Hide emhasis marker and toggles pretty entities.
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(add-hook 'org-mode-hook #'+org-pretty-mode)
+#+end_src
+
+
+** Bigger heading
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(custom-set-faces!
+  '(org-document-title :height 1.2))
+(custom-set-faces!
+  '(outline-1 :weight extra-bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  '(outline-8 :weight semi-bold)
+  '(outline-9 :weight semi-bold))
+#+end_src
+
+** Italic quote block
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(setq org-fontify-quote-and-verse-blocks t)
 #+end_src
