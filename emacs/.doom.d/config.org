@@ -128,6 +128,7 @@ format-all-mode, you can use: (add-hook 'format-all-mode-hook
 (package! lsp-volar :recipe (:host github :repo "jadestrong/lsp-volar"))
 #+end_src
 
+
 ** Typescript
 
 *** Config
@@ -220,6 +221,7 @@ Insert clipboard image into org
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
 #+end_src
+
 
 * Font display
 

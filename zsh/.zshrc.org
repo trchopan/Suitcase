@@ -1,6 +1,0 @@
-#+TITLE: Zshrc config
-
-
-#+begin_src shell :tangle ~/.zshrc_
-thing
-#+end_src
