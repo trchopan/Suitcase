@@ -8,7 +8,7 @@
 
 Some *functionality* uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Chop Tr (trchopan)"
       user-mail-address "logan1011001@gmail.com")
 #+end_src
@@ -24,19 +24,19 @@ They all accept either a font-spec, font string ("Input Mono-12"), or xlfd font 
 
 There are two ways to load a theme. Both assume the theme is installed and available. You can either set ~doom-theme~ or manually load a theme with the ~load-theme~ function. This is the default:
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq doom-theme 'doom-one)
 #+end_src
 
 If you use ~org~ and don't want your org files in the default location below, change ~org-directory~. It must be set before org loads!
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 #+end_src
 
 This determines the style of line numbers in effect. If set to ~nil~, line numbers are disabled. For relative line numbers, set this to ~relative~.
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq display-line-numbers-type t)
 #+end_src
 
@@ -59,7 +59,7 @@ You can also try ~gd~ (or ~C-c c d~) to jump to their definition and see how the
 
 Automatic tangle on save
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook
           (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local))
           ;; (setq-default line-spacing 6)
@@ -68,7 +68,7 @@ Automatic tangle on save
 
 Maximize the window upon startup. (May need to edit below depends on the monitor size)
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60)))
 #+end_src
 
@@ -82,13 +82,13 @@ If you are in a buffer with lsp-mode enabled and a server that supports textDocu
 - To disable this behavior universally use: (setq +format-with-lsp nil)
 - To disable this behavior in one mode: (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq +format-with-lsp nil)
 #+end_src
 
 The command format-all-ensure-formatter will ensure that a default formatter is selected in case you don't have one set; you can customize the default formatter for each language. To ensure a formatter is set whenever you enable format-all-mode, you can use: (add-hook format-all-mode-hook 'format-all-ensure-formatter).
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 #+end_src
 
@@ -96,14 +96,14 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 
 *** Package
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+#+begin_src emacs-lisp :tangle ./packages.el
 (package! lsp-volar :recipe (:host github :repo "jadestrong/lsp-volar"))
 #+end_src
 
 
 *** Config
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (use-package! lsp-volar)
 #+end_src
 
@@ -111,7 +111,7 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 
 *** Package
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+#+begin_src emacs-lisp :tangle ./packages.el
 (package! ob-typescript)
 #+end_src
 
@@ -136,14 +136,14 @@ This mode, like ~follow-mode~, runs on an idle timer - the exact duration of ina
 
 Note that in order to move to a tag in treemacs the treemacs buffer’s window needs to be temporarily selected, which will reset ~blink-cursor-mode~’s timer if it is enabled. This will result in the cursor blinking seemingly pausing for a short time and giving the appearance of the tag follow action lasting much longer than it really does.
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq treemacs-follow-mode t)
 #+end_src
 
 
 ** Additional keymaps
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle ./config.el
 (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split)
 #+end_src
 
@@ -154,14 +154,14 @@ avy is a GNU Emacs package for jumping to visible text using a char-based decisi
 
 ** Package
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+#+begin_src emacs-lisp :tangle ./packages.el
 (package! avy)
 #+end_src
 
 
 ** Keymaps
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
 #+end_src
 
@@ -172,7 +172,7 @@ avy is a GNU Emacs package for jumping to visible text using a char-based decisi
 
 The list of the default decision chars.
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq avy-keys '(?q ?t ?e ?r ?y ?u ?o ?p
                     ?a ?s ?d ?w ?b ?n ?v
                     ?k ?l ?z ?x ?c ?j ?g
@@ -196,7 +196,7 @@ Six styles are currently available:
 
 At first it seems that pre and post are advantageous over at and at-full, since you can still see the original text with them. However, they make the text shift a bit. If you don’t like that, use either at or at-full.
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq avy-style 'pre)
 #+end_src
 
@@ -205,7 +205,7 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 
 Insert clipboard image into org
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
   (shell-command (concat "pngpaste " file))
@@ -216,7 +216,7 @@ Insert clipboard image into org
 
 * Personal Keymaps
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (map! :n "X" #'kill-current-buffer)
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
@@ -227,14 +227,14 @@ Insert clipboard image into org
 
 Search current work > Jump back to it > Change it. After that you can redo the change by pressing ~n.~
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")
 #+end_src
 
 Change or subtitute should not replace the registers
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (evil-define-operator evil-change-without-register (beg end type _ yank-handler)
   (interactive "<R><y>")
   (evil-change beg end type ?_ yank-handler))
@@ -307,7 +307,7 @@ Change or subtitute should not replace the registers
 
 ** Font face
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
       doom-variable-pitch-font (font-spec :family "Source Serif 4" :size 13))
 #+end_src
@@ -317,14 +317,14 @@ Change or subtitute should not replace the registers
 
 Hide emhasis marker and toggles pretty entities.
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 #+end_src
 
 
 ** Bigger heading
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (custom-set-faces!
   '(org-document-title :height 1.2)
   '(outline-1 :weight extra-bold :height 1.25)
@@ -340,7 +340,7 @@ Hide emhasis marker and toggles pretty entities.
 
 ** Italic quote block
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
 
@@ -350,7 +350,7 @@ Hide emhasis marker and toggles pretty entities.
 
 Reduce zen mode zoom
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+#+begin_src emacs-lisp :tangle ./config.el
 (setq +zen-text-scale 1.396)
 #+end_src
 
@@ -359,6 +359,6 @@ Reduce zen mode zoom
 
 Not really a fan of this jump method
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+#+begin_src emacs-lisp :tangle ./packages.el
 (package! evil-snipe :disable t)
 #+end_src
