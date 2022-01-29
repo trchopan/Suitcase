@@ -1,0 +1,45 @@
+#+TITLE: My TODO List
+#+AUTHOR: Chop Tr (trchopan)
+
+* WORK
+
+** TODO Move my new configs and setup from PERSONAL to WORK
+SCHEDULED: <2022-01-31 Mon>
+
+** TODO Cardano Commands path to Metadata Json file bug
+
+~cardano-commands~ should able to find pool-metadata json. Currently it looks into the ~cold-keys~ folder.
+
+
+* PERSONAL
+
+** DONE Sync config files using stow [3/3]
+SCHEDULED: <2022-01-27 Thu>
+
+- [X] emacs / doom emacs
+- [X] nvim
+- [X] zshrc
+
+Note:
+- For ~zshrc~ I decided to have only the alias synced up. Each machine should have it's own
+  zshrc
+
+** TODO Learn magit [0/3]
+SCHEDULED: <2022-01-30 Thu>
+
+- [ ] git log-graph
+- [ ] git branch -b
+- [ ] git commit -m
+
+
+** TODO Rewrite my website to include my org files
+SCHEDULED: <2022-01-30 Sun>
+
+May be a rework. Replace nuxt with vite.
+
+** TODO Scheduled Blocks project rewrite in Haskell
+SCHEDULED: <2022-01-30 Sun> DEADLINE: <2022-02-05 Sat>
+
+Schedule blocks is a project written in python. It is used to calculate the slot
+leader (blocks) of the Cardano blockchain given a VRF key of the pool.
+I'm learning Haskell so this is a good practice with features like API calls and using dynamic library.

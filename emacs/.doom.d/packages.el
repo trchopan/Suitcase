@@ -3,3 +3,5 @@
 (package! ob-typescript)
 
 (package! avy)
+
+(package! evil-snipe :disable t)

@@ -6,7 +6,7 @@ I started using Emacs about a week ago <2022-01-24 Mon> . With such powerful too
 
 * Day 1 <2022-01-27 Thu>
 
-My first day of writing in org mode.
+My first day of writing in org mode
 
 Recap of what I learned during the journey of setting up Emacs:
 
@@ -16,3 +16,9 @@ All battery included. Tempting to do a Emacs from Scratch but it must comes late
 ** Seting up Vue and conflict / old package
 Setting up Vue was a pain because the old package [[https://github.com/AdamNiederer/vue-mode][vue-mode]] <= DO NOT USE this.
 Vue has the new language server named [[https://github.com/jadestrong/lsp-volar][Volar]] . Use this instead.
+
+* Day 2 <2022-01-29 Sat>
+
+Mostly I config the emacs follow my neovim today.
+
+Nvim - treesitter cannot be install on my Raspberry Pi due to arch64 is not supported. Wierd that they can be install with npm on my Macbook Air M1. I need to investigate more on this matter.

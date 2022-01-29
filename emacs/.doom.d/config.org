@@ -1,48 +1,40 @@
-#+title: Doom Emacs config file
-#+author: Chop Tr (trchopan)
-#+date: <2022-01-26 Wed>
+#+TITLE: Doom Emacs config file
+#+AUTHOR: Chop Tr (trchopan)
+#+DATE: <2022-01-26 Wed>
+#+OPTIONS: toc:2
 
 
 * Default doom setup
 
-Some *functionality* uses this to identify you, e.g. GPG configuration, email
-clients, file templates and snippets.
+Some *functionality* uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq user-full-name "Chop Tr (trchopan)"
       user-mail-address "logan1011001@gmail.com")
 #+end_src
 
-Doom exposes five (optional) variables for controlling fonts in Doom. Here
-are the three important ones:
+Doom exposes five (optional) variables for controlling fonts in Doom. Here are the three important ones:
 
-+ `doom-font'
-+ `doom-variable-pitch-font'
-+ `doom-big-font' -- used for `doom-big-font-mode'; use this for
++ ~doom-font~
++ ~doom-variable-pitch-font~
++ ~doom-big-font~ -- used for ~doom-big-font-mode~; use this for
   presentations or streaming.
 
-They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd font string. You generally only need these two: (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light) doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-There are two ways to load a theme. Both assume the theme is installed and
-available. You can either set `doom-theme' or manually load a theme with the
-`load-theme' function. This is the default:
+There are two ways to load a theme. Both assume the theme is installed and available. You can either set ~doom-theme~ or manually load a theme with the ~load-theme~ function. This is the default:
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq doom-theme 'doom-one)
 #+end_src
 
-If youyou use `org' and don't want your org files in the default location below,
-change `org-directory'. It must be set before org loads!
+If you use ~org~ and don't want your org files in the default location below, change ~org-directory~. It must be set before org loads!
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq org-directory "~/org/")
 #+end_src
 
-This determines the style of line numbers in effect. If set to `nil', line
-numbers are disabled. For relative line numbers, set this to `relative'.
+This determines the style of line numbers in effect. If set to ~nil~, line numbers are disabled. For relative line numbers, set this to ~relative~.
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq display-line-numbers-type t)
@@ -50,20 +42,17 @@ numbers are disabled. For relative line numbers, set this to `relative'.
 
 Here are some additional functions/macros that could help you configure Doom:
 
-- `load!' for loading external *.el files relative to this one
-- `use-package!' for configuring packages
-- `after!' for running code after a package has loaded
-- `add-load-path!' for adding directories to the `load-path', relative to
-  this file. Emacs searches the `load-path' when you load packages with
-  `require' or `use-package'.
-- `map!' for binding new keys
+- ~load!~ for loading external *.el files relative to this one
+- ~use-package!~ for configuring packages
+- ~after!~ for running code after a package has loaded
+- ~add-load-path!~ for adding directories to the ~load-path~, relative to
+  this file. Emacs searches the ~load-path~ when you load packages with
+  ~require~ or ~use-package~.
+- ~map!~ for binding new keys
 
-To get information about any of these functions/macros, move the cursor over
-the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-This will open documentation for it, including demos of how they are used.
+To get information about any of these functions/macros, move the cursor over the highlighted symbol at press ~K~ (non-evil users must press ~C-c c k~). This will open documentation for it, including demos of how they are used.
 
-You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-they are implemented.
+You can also try ~gd~ (or ~C-c c d~) to jump to their definition and see how they are implemented.
 
 
 * Automations
@@ -72,20 +61,15 @@ Automatic tangle on save
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (add-hook 'org-mode-hook
-          (lambda () (add-hook 'after-save-hook #'org-babel-tangle
-                          :append :local)))
+          (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local))
+          ;; (setq-default line-spacing 6)
+          )
 #+end_src
 
-Auto break line at 80
+Maximize the window upon startup. (May need to edit below depends on the monitor size)
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-#+end_src
-
-Maximize the window upon startup.
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60)))
-;;(add-to-list 'initial-frame-alist '(maximized))
 #+end_src
 
 
@@ -93,34 +77,22 @@ Maximize the window upon startup.
 
 ** Format-all
 
-If you are in a buffer with lsp-mode enabled and a server that supports
-textDocument/formatting, it will be used instead of format-all’s formatter.
+If you are in a buffer with lsp-mode enabled and a server that supports textDocument/formatting, it will be used instead of format-all’s formatter.
 
 - To disable this behavior universally use: (setq +format-with-lsp nil)
-- To disable this behavior in one mode: (setq-hook! 'python-mode-hook
-  +format-with-lsp nil)
+- To disable this behavior in one mode: (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq +format-with-lsp nil)
 #+end_src
 
-The command format-all-ensure-formatter will ensure that a default formatter is
-selected in case you don't have one set; you can customize the default formatter
-for each language. To ensure a formatter is set whenever you enable
-format-all-mode, you can use: (add-hook 'format-all-mode-hook
-'format-all-ensure-formatter).
+The command format-all-ensure-formatter will ensure that a default formatter is selected in case you don't have one set; you can customize the default formatter for each language. To ensure a formatter is set whenever you enable format-all-mode, you can use: (add-hook format-all-mode-hook 'format-all-ensure-formatter).
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 #+end_src
 
 ** Vue
-
-*** Config
-
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(use-package! lsp-volar)
-#+end_src
 
 *** Package
 
@@ -129,13 +101,13 @@ format-all-mode, you can use: (add-hook 'format-all-mode-hook
 #+end_src
 
 
-** Typescript
-
 *** Config
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-
+(use-package! lsp-volar)
 #+end_src
+
+** Typescript
 
 *** Package
 
@@ -146,57 +118,86 @@ format-all-mode, you can use: (add-hook 'format-all-mode-hook
 
 * Treemacs
 
-** TODO Learn about workspaces and perspectives
+** About workspaces and perspectives
 
-Projects are beautifully managed. Can be added with `<C-p><C-p>a` .
+Projects are beautifully managed. Can be added with =<C-p><C-p>a=.
 
-Edit workspaces by `treemacs-edit-workspaces`
+Edit workspaces by ~treemacs-edit-workspaces~
 
 ** Follow-mode
 
-`treemacs-follow-mode` is a global minor mode which allows the treemacs view to
-always move its focus to the currently selected file. This mode runs on an idle
-timer - the exact duration of inactivity (in seconds) before a move is called is
-determined by treemacs-tag-follow-delay.
+~treemacs-follow-mode~ is a global minor mode which allows the treemacs view to always move its focus to the currently selected file. This mode runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
 
 ** Tag-follow-mode
 
-`treemacs-tag-follow-mode` is a global minor mode which extends and effectively
-replaces treemacs-follow-mode. When activated it follows not just the current
-file, but also the current tag. This works alongside treemacs’ integration with
-imenu, so all file types providing an imenu implementation are compatible.
+~treemacs-tag-follow-mode~ is a global minor mode which extends and effectively replaces treemacs-follow-mode. When activated it follows not just the current file, but also the current tag. This works alongside treemacs’ integration with imenu, so all file types providing an imenu implementation are compatible.
 
-This mode, like `follow-mode`, runs on an idle timer - the exact duration of
-inactivity (in seconds) before a move is called is determined by
-treemacs-tag-follow-delay.
+This mode, like ~follow-mode~, runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
 
-Note that in order to move to a tag in treemacs the treemacs buffer’s window
-needs to be temporarily selected, which will reset `blink-cursor-mode`’s timer
-if it is enabled. This will result in the cursor blinking seemingly pausing for
-a short time and giving the appearance of the tag follow action lasting much
-longer than it really does.
+Note that in order to move to a tag in treemacs the treemacs buffer’s window needs to be temporarily selected, which will reset ~blink-cursor-mode~’s timer if it is enabled. This will result in the cursor blinking seemingly pausing for a short time and giving the appearance of the tag follow action lasting much longer than it really does.
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq treemacs-follow-mode t)
 #+end_src
 
 
+** Additional keymaps
+
+#+begin_src emacs-lisp
+(define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split)
+#+end_src
+
+
 * Avy - Jump mode
 
-avy is a GNU Emacs package for jumping to visible text using a char-based
-decision tree. See also ace-jump-mode and vim-easymotion - avy uses the same
-idea.
-
-** Config
-
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(map! :n "<SPC>" #'evil-avy-goto-word-0)
-#+end_src
+avy is a GNU Emacs package for jumping to visible text using a char-based decision tree. See also ace-jump-mode and vim-easymotion - avy uses the same idea.
 
 ** Package
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
 (package! avy)
+#+end_src
+
+
+** Keymaps
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(map! :n "<SPC>" #'evil-avy-goto-word-0)
+#+end_src
+
+
+** Config
+
+*** avy-keys
+
+The list of the default decision chars.
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(setq avy-keys '(?q ?t ?e ?r ?y ?u ?o ?p
+                    ?a ?s ?d ?w ?b ?n ?v
+                    ?k ?l ?z ?x ?c ?j ?g
+                    ?h ?f ?i ))
+#+end_src
+
+*** avy-style
+
+The default overlay display style.
+
+This setting will be used for all commands, unless overridden in =avy-styles-alist=.
+
+Six styles are currently available:
+
+1. ~pre~: - full path before target, leaving all original text.
+2. ~at~: - single character path on target, obscuring the target.
+3. ~at-full~: full path on target, obscuring the target and the text behind it.
+4. ~post~: full path after target, leaving all original text.
+5. ~de-bruijn~: like at-full but the path is in a De Bruijn sequence.
+6. ~words~: like at-full, but the path consists of words as defined by =avy-words=.
+
+At first it seems that pre and post are advantageous over at and at-full, since you can still see the original text with them. However, they make the text shift a bit. If you don’t like that, use either at or at-full.
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(setq avy-style 'pre)
 #+end_src
 
 
@@ -220,6 +221,85 @@ Insert clipboard image into org
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
+(define-key evil-motion-state-map "s" 'evil-substitute)
+(define-key evil-motion-state-map "S" 'evil-change-whole-line)
+#+end_src
+
+Search current work > Jump back to it > Change it. After that you can redo the change by pressing ~n.~
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(define-key evil-motion-state-map "C-f" nil)
+(map! :n "C-f w" "*Nciw")
+#+end_src
+
+Change or subtitute should not replace the registers
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(evil-define-operator evil-change-without-register (beg end type _ yank-handler)
+  (interactive "<R><y>")
+  (evil-change beg end type ?_ yank-handler))
+(define-key evil-motion-state-map "s" 'evil-change-without-register)
+
+(evil-define-operator evil-delete-without-register (beg end type _ _2)
+  (interactive "<R><y>")
+  (evil-delete beg end type ?_))
+
+(evil-define-command evil-visual-paste-without-register (count &optional register)
+  "Paste over Visual selection."
+  :suppress-operator t
+  (interactive "P<x>")
+  ;; evil-visual-paste is typically called from evil-paste-before or
+  ;; evil-paste-after, but we have to mark that the paste was from
+  ;; visual state
+  (setq this-command 'evil-visual-paste)
+  (let* ((text (if register
+                   (evil-get-register register)
+                 (current-kill 0)))
+         (yank-handler (car-safe (get-text-property
+                                  0 'yank-handler text)))
+         new-kill
+         paste-eob)
+    (evil-with-undo
+      (let* ((kill-ring (list (current-kill 0)))
+             (kill-ring-yank-pointer kill-ring))
+        (when (evil-visual-state-p)
+          (evil-visual-rotate 'upper-left)
+          ;; if we replace the last buffer line that does not end in a
+          ;; newline, we use ~evil-paste-after~ because ~evil-delete~
+          ;; will move point to the line above
+          (when (and (= evil-visual-end (point-max))
+                     (/= (char-before (point-max)) ?\n))
+            (setq paste-eob t))
+          (evil-delete-without-register evil-visual-beginning evil-visual-end
+                                        (evil-visual-type))
+          (when (and (eq yank-handler #'evil-yank-line-handler)
+                     (not (eq (evil-visual-type) 'line))
+                     (not (= evil-visual-end (point-max))))
+            (insert "\n"))
+          (evil-normal-state)
+          (setq new-kill (current-kill 0))
+          (current-kill 1))
+        (if paste-eob
+            (evil-paste-after count register)
+          (evil-paste-before count register)))
+      (kill-new new-kill)
+      ;; mark the last paste as visual-paste
+      (setq evil-last-paste
+            (list (nth 0 evil-last-paste)
+                  (nth 1 evil-last-paste)
+                  (nth 2 evil-last-paste)
+                  (nth 3 evil-last-paste)
+                  (nth 4 evil-last-paste)
+                  t)))))
+
+(evil-define-command evil-paste-after-without-register (count &optional register yank-handler)
+  "evil paste before without yanking"
+  :suppress-operator t
+  (interactive "P<x>")
+  (if (evil-visual-state-p)
+      (evil-visual-paste-without-register count register)
+    (evil-paste-after count register yank-handler)))
+(define-key evil-motion-state-map "p" 'evil-paste-after-without-register)
 #+end_src
 
 
@@ -228,7 +308,8 @@ Insert clipboard image into org
 ** Font face
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
+      doom-variable-pitch-font (font-spec :family "Source Serif 4" :size 13))
 #+end_src
 
 
@@ -245,8 +326,7 @@ Hide emhasis marker and toggles pretty entities.
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (custom-set-faces!
-  '(org-document-title :height 1.2))
-(custom-set-faces!
+  '(org-document-title :height 1.2)
   '(outline-1 :weight extra-bold :height 1.25)
   '(outline-2 :weight bold :height 1.15)
   '(outline-3 :weight bold :height 1.12)
@@ -257,8 +337,28 @@ Hide emhasis marker and toggles pretty entities.
   '(outline-9 :weight semi-bold))
 #+end_src
 
+
 ** Italic quote block
 
 #+begin_src emacs-lisp :tangle ~/.doom.d/config.el
 (setq org-fontify-quote-and-verse-blocks t)
+#+end_src
+
+
+
+* Zen mode
+
+Reduce zen mode zoom
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
+(setq +zen-text-scale 1.396)
+#+end_src
+
+
+* Disable packages
+
+Not really a fan of this jump method
+
+#+begin_src emacs-lisp :tangle ~/.doom.d/packages.el
+(package! evil-snipe :disable t)
 #+end_src
