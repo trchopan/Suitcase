@@ -17,8 +17,19 @@ All battery included. Tempting to do a Emacs from Scratch but it must comes late
 Setting up Vue was a pain because the old package [[https://github.com/AdamNiederer/vue-mode][vue-mode]] <= DO NOT USE this.
 Vue has the new language server named [[https://github.com/jadestrong/lsp-volar][Volar]] . Use this instead.
 
+
 * Day 2 <2022-01-29 Sat>
 
-Mostly I config the emacs follow my neovim today.
+** Overall
+Mostly I config emacs doom follow my neovim today.
 
+** What I working on
 Nvim - treesitter cannot be install on my Raspberry Pi due to arch64 is not supported. Wierd that they can be install with npm on my Macbook Air M1. I need to investigate more on this matter.
+
+I'm setting up the Cardano test net on my Raspberry Pi to test out the pool setup script that I wrote very long time ago. It now does not work with Alonzo Tx format. I suspect that TK using the address to receive many meme coin, that mess up the Tx calculation.
+
+** Emacs
+
+~Zen-mode~ is good. Give me focus on writing. Also the serif font face helps a bit.
+
+Remember to =zz= to center the screen when writing. Otherwise the word suggestion will go crazy.
