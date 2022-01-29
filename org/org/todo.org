@@ -40,6 +40,4 @@ May be a rework. Replace nuxt with vite.
 ** TODO Scheduled Blocks project rewrite in Haskell
 SCHEDULED: <2022-01-30 Sun> DEADLINE: <2022-02-05 Sat>
 
-Schedule blocks is a project written in python. It is used to calculate the slot
-leader (blocks) of the Cardano blockchain given a VRF key of the pool.
-I'm learning Haskell so this is a good practice with features like API calls and using dynamic library.
+Schedule blocks is a project written in python. It is used to calculate the slot leader (blocks) of the Cardano blockchain given a VRF key of the pool. I'm learning Haskell so this is a good practice with features like API calls and using dynamic library.
