@@ -22,6 +22,8 @@
 
 (setq treemacs-follow-mode t)
 
+(define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split)
+
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
 
 (setq avy-keys '(?q ?t ?e ?r ?y ?u ?o ?p
