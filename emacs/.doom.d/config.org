@@ -144,8 +144,11 @@ Note that in order to move to a tag in treemacs the treemacs buffer’s window n
 ** Additional keymaps
 
 #+begin_src emacs-lisp :tangle ./config.el
-(define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split)
+(with-eval-after-load 'treemacs
+  (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
 #+end_src
+
+#+RESULTS:
 
 
 * Avy - Jump mode
