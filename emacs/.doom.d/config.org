@@ -228,14 +228,16 @@ Insert clipboard image into org
 (define-key evil-motion-state-map "S" 'evil-change-whole-line)
 #+end_src
 
-Search current work > Jump back to it > Change it. After that you can redo the change by pressing ~n.~
+** Combo key =n.=
 
+Search current work > Jump back to it > Change it. After that you can redo the change by pressing =n.=
 #+begin_src emacs-lisp :tangle ./config.el
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")
 #+end_src
 
-Change or subtitute should not replace the registers
+
+** Change or subtitute should not replace the registers
 
 #+begin_src emacs-lisp :tangle ./config.el
 (evil-define-operator evil-change-without-register (beg end type _ yank-handler)
