@@ -1,12 +1,16 @@
+#+hugo_base_dir: ~/Documents/chop-ink/
+#+hugo_section: posts/doom.d
+#+hugo_tags: doom emacs config
+
 #+TITLE: Doom Emacs config file
-#+AUTHOR: Chop Tr (trchopan)
+#+AUTHOR: Chop Tr (chop.ink)
 #+DATE: <2022-01-26 Wed>
-#+OPTIONS: toc:2
+#+OPTIONS: toc:1
 
 
 * Default doom setup
 
-Some *functionality* uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
+Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
 
 #+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Chop Tr (chop.ink)"
@@ -118,7 +122,7 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 
 * Treemacs
 
-** About workspaces and perspectives
+** Workspaces and perspectives
 
 Projects are beautifully managed. Can be added with =<C-p><C-p>a=.
 
@@ -219,16 +223,26 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 
 * Personal Keymaps
 
+** Tab moving and reordering
+
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :n "X" #'kill-current-buffer)
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
-(define-key evil-motion-state-map "s" 'evil-substitute)
-(define-key evil-motion-state-map "S" 'evil-change-whole-line)
 #+end_src
 
-** Combo key =n.=
+For centaur tabs
+
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :n "C-f h" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "C-f l" #'centaur-tabs-move-current-tab-to-right)
+#+end_src
+
+#+RESULTS:
+
+
+*** Combo key =n.=
 
 Search current work > Jump back to it > Change it. After that you can redo the change by pressing =n.=
 #+begin_src emacs-lisp :tangle ./config.el
@@ -237,7 +251,7 @@ Search current work > Jump back to it > Change it. After that you can redo the c
 #+end_src
 
 
-** Change or subtitute should not replace the registers
+*** Change or subtitute should not replace the registers
 
 #+begin_src emacs-lisp :tangle ./config.el
 (evil-define-operator evil-change-without-register (beg end type _ yank-handler)
@@ -306,7 +320,6 @@ Search current work > Jump back to it > Change it. After that you can redo the c
 (define-key evil-motion-state-map "p" 'evil-paste-after-without-register)
 (define-key evil-motion-state-map "s" 'evil-change-without-register)
 (define-key evil-motion-state-map "c" 'evil-change-without-register)
-(define-key evil-motion-state-map "d" 'evil-delete-without-register)
 #+end_src
 
 Here I overwrite the built-in ~evil-change~ . Therefore, need to update when the official implement change (should not be too often).
@@ -343,6 +356,13 @@ of the block."
       (setq evil-this-register nil))))
 #+end_src
 
+
+*** Map the =s= key to change
+
+#+begin_src emacs-lisp :tangle ./config.el
+(define-key evil-motion-state-map "s" 'evil-substitute)
+(define-key evil-motion-state-map "S" 'evil-change-whole-line)
+#+end_src
 
 * Font display
 

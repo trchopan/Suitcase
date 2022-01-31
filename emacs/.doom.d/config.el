@@ -44,8 +44,9 @@
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
-(define-key evil-motion-state-map "s" 'evil-substitute)
-(define-key evil-motion-state-map "S" 'evil-change-whole-line)
+
+(map! :n "C-f h" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "C-f l" #'centaur-tabs-move-current-tab-to-right)
 
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")
@@ -116,7 +117,6 @@
 (define-key evil-motion-state-map "p" 'evil-paste-after-without-register)
 (define-key evil-motion-state-map "s" 'evil-change-without-register)
 (define-key evil-motion-state-map "c" 'evil-change-without-register)
-(define-key evil-motion-state-map "d" 'evil-delete-without-register)
 
 (with-eval-after-load 'evil
   (evil-define-operator evil-change
@@ -147,6 +147,9 @@ of the block."
        (t
         (evil-insert 1)))
       (setq evil-this-register nil))))
+
+(define-key evil-motion-state-map "s" 'evil-substitute)
+(define-key evil-motion-state-map "S" 'evil-change-whole-line)
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
       doom-variable-pitch-font (font-spec :family "Source Serif 4" :size 13))
