@@ -1,5 +1,5 @@
-(setq user-full-name "Chop Tr (trchopan)"
-      user-mail-address "logan1011001@gmail.com")
+(setq user-full-name "Chop Tr (chop.ink)"
+      user-mail-address "chop@chop.ink")
 
 (setq doom-theme 'doom-one)
 
@@ -32,7 +32,7 @@
                     ?k ?l ?z ?x ?c ?j ?g
                     ?h ?f ?i ))
 
-(setq avy-style 'pre)
+(setq avy-style 'at-full)
 
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
@@ -53,7 +53,6 @@
 (evil-define-operator evil-change-without-register (beg end type _ yank-handler)
   (interactive "<R><y>")
   (evil-change beg end type ?_ yank-handler))
-(define-key evil-motion-state-map "s" 'evil-change-without-register)
 
 (evil-define-operator evil-delete-without-register (beg end type _ _2)
   (interactive "<R><y>")
@@ -115,6 +114,39 @@
       (evil-visual-paste-without-register count register)
     (evil-paste-after count register yank-handler)))
 (define-key evil-motion-state-map "p" 'evil-paste-after-without-register)
+(define-key evil-motion-state-map "s" 'evil-change-without-register)
+(define-key evil-motion-state-map "c" 'evil-change-without-register)
+(define-key evil-motion-state-map "d" 'evil-delete-without-register)
+
+(with-eval-after-load 'evil
+  (evil-define-operator evil-change
+    (beg end type register yank-handler delete-func)
+    "Change text from BEG to END with TYPE.
+Save in REGISTER or the kill-ring with YANK-HANDLER.
+DELETE-FUNC is a function for deleting text, default `evil-delete'.
+If TYPE is `line', insertion starts on an empty line.
+If TYPE is `block', the inserted text in inserted at each line
+of the block."
+    (interactive "<R><x><y>")
+    (let ((delete-func (or delete-func #'evil-delete-without-register))
+          (nlines (1+ (evil-count-lines beg end)))
+          (opoint (save-excursion
+                    (goto-char beg)
+                    (line-beginning-position))))
+      (unless (eq evil-want-fine-undo t)
+        (evil-start-undo-step))
+      (funcall delete-func beg end type register yank-handler)
+      (cond
+       ((eq type 'line)
+        (setq this-command 'evil-change-whole-line) ; for evil-maybe-remove-spaces
+        (if (= opoint (point))
+            (evil-open-above 1)
+          (evil-open-below 1)))
+       ((eq type 'block)
+        (evil-insert 1 nlines))
+       (t
+        (evil-insert 1)))
+      (setq evil-this-register nil))))
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
       doom-variable-pitch-font (font-spec :family "Source Serif 4" :size 13))
