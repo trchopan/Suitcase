@@ -38,7 +38,7 @@ Recap of what I learned during the journey of setting up Emacs:
 All battery included. Tempting to do a Emacs from Scratch but it must comes later right not Doom Emacs is surficial.
 
 
-** Seting up Vue - conflict ad old package
+** Seting up Vue - conflict and old package
 
 Setting up Vue was a pain because the old package [[https://github.com/AdamNiederer/vue-mode][vue-mode]] <= DO NOT USE this.
 
