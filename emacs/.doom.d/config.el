@@ -40,7 +40,6 @@
   (insert (concat "[[" file "]]"))
   (org-display-inline-images))
 
-(map! :n "X" #'kill-current-buffer)
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
