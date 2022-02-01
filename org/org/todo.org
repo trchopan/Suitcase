@@ -1,5 +1,8 @@
+#+hugo_base_dir: ~/Documents/chop-ink/
+
 #+TITLE: My TODO List
 #+AUTHOR: Chop Tr (trchopan)
+#+DESCRIPTION: I should keep this short and clean it often
 
 * WORK
 

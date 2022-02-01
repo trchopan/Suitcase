@@ -32,13 +32,18 @@
                     ?k ?l ?z ?x ?c ?j ?g
                     ?h ?f ?i ))
 
-(setq avy-style 'at-full)
+(setq avy-style 'de-bruijn)
 
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
-  (shell-command (concat "pngpaste " file))
-  (insert (concat "[[" file "]]"))
+  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png") )
+  (shell-command (concat "pngpaste " filename))
+  (insert "#+attr_html: :width 720px\n")
+  (insert (concat "[[" filename "]]"))
   (org-display-inline-images))
+
+(with-eval-after-load 'centaur-tabs
+  (centaur-tabs-group-by-projectile-project))
 
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
