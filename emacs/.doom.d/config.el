@@ -20,7 +20,8 @@
 
 (use-package! lsp-volar)
 
-(setq treemacs-follow-mode t)
+(with-eval-after-load 'treemacs
+  (treemacs-follow-mode))
 
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))

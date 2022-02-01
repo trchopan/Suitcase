@@ -343,7 +343,8 @@ This mode, like ~follow-mode~, runs on an idle timer - the exact duration of ina
 Note that in order to move to a tag in treemacs the treemacs buffer’s window needs to be temporarily selected, which will reset ~blink-cursor-mode~’s timer if it is enabled. This will result in the cursor blinking seemingly pausing for a short time and giving the appearance of the tag follow action lasting much longer than it really does.
 
 #+begin_src emacs-lisp :tangle ./config.el
-(setq treemacs-follow-mode t)
+(with-eval-after-load 'treemacs
+  (treemacs-follow-mode))
 #+end_src
 
 
@@ -353,8 +354,6 @@ Note that in order to move to a tag in treemacs the treemacs buffer’s window n
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
 #+end_src
-
-#+RESULTS:
 
 
 * Avy - Jump mode
