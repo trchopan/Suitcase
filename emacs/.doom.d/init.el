@@ -1,4 +1,3 @@
-;; .doom.d/init.el
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 (setq doom-leader-key "\\"
       doom-leader-alt-key "M-\\"

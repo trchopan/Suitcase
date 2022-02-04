@@ -21,9 +21,6 @@
 (use-package! lsp-volar)
 
 (with-eval-after-load 'treemacs
-  (treemacs-follow-mode))
-
-(with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
 
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
@@ -39,7 +36,7 @@
   (interactive "F")
   (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png") )
   (shell-command (concat "pngpaste " filename))
-  (insert "#+attr_html: :width 720px\n")
+  (insert "#+attr_html: :width 720\n")
   (insert (concat "[[" filename "]]"))
   (org-display-inline-images))
 

@@ -1,17 +1,13 @@
 #+hugo_base_dir: ~/Documents/chop-ink/
 #+hugo_section: posts/doom.d
 #+hugo_tags: doom emacs config
+#+hugo_custom_front_matter: :cover /ox-hugo/demo-doom_20220131_154814.png
 
-#+TITLE: Doom Emacs config file
+#+TITLE: Doom Emacs configuration
 #+AUTHOR: Chop Tr (chop.ink)
 #+DATE: <2022-01-26 Wed>
 #+DESCRIPTION: My config and note during the awesome journey of getting to know Emacs and Doom Emacs
 #+OPTIONS: toc:1
-
-* Screenshot
-
-#+attr_html: :width 720px
-[[~/Suitcase/emacs/.doom.d/images/demo-doom_20220131_154814.png]]
 
 
 * Init.el
@@ -20,11 +16,13 @@
 
 This is kinda personal preference but it will effect the whole setup. I used to be a vim typer. I use =\= as keyleader instead of =Space=.
 
-#+attr_html: :class center :width 720px
+#+attr_html: :width 300
 [[~/Suitcase/emacs/.doom.d/images/leader-key_20220131_213628.png]]
 
+
+** .doom.d/init.el
+
 #+begin_src emacs-lisp :tangle ~/.doom.d/init.el
-;; .doom.d/init.el
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 (setq doom-leader-key "\\"
       doom-leader-alt-key "M-\\"
@@ -210,6 +208,14 @@ This is kinda personal preference but it will effect the whole setup. I used to 
 #+end_src
 
 
+
+
+
+* The configuration
+
+Everything from this point on is either in =~/.doom.d/config.el= for configuration and in =~/.doom.d/packages.el= for package installation.
+
+
 * Default doom setup
 
 Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
@@ -318,7 +324,7 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 *** Package
 
 #+begin_src emacs-lisp :tangle ./packages.el
-(package! ob-typescript)
+(package! ob-ts-node :recipe (:host github :repo "tmythicator/ob-ts-node"))
 #+end_src
 
 
@@ -329,23 +335,6 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 Projects are beautifully managed. Can be added with =<C-p><C-p>a=.
 
 Edit workspaces by ~treemacs-edit-workspaces~
-
-** Follow-mode
-
-~treemacs-follow-mode~ is a global minor mode which allows the treemacs view to always move its focus to the currently selected file. This mode runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
-
-** Tag-follow-mode
-
-~treemacs-tag-follow-mode~ is a global minor mode which extends and effectively replaces treemacs-follow-mode. When activated it follows not just the current file, but also the current tag. This works alongside treemacs’ integration with imenu, so all file types providing an imenu implementation are compatible.
-
-This mode, like ~follow-mode~, runs on an idle timer - the exact duration of inactivity (in seconds) before a move is called is determined by treemacs-tag-follow-delay.
-
-Note that in order to move to a tag in treemacs the treemacs buffer’s window needs to be temporarily selected, which will reset ~blink-cursor-mode~’s timer if it is enabled. This will result in the cursor blinking seemingly pausing for a short time and giving the appearance of the tag follow action lasting much longer than it really does.
-
-#+begin_src emacs-lisp :tangle ./config.el
-(with-eval-after-load 'treemacs
-  (treemacs-follow-mode))
-#+end_src
 
 
 ** Additional keymaps
@@ -421,7 +410,7 @@ At first it seems that pre and post are advantageous over at and at-full, since 
   (interactive "F")
   (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png") )
   (shell-command (concat "pngpaste " filename))
-  (insert "#+attr_html: :width 720px\n")
+  (insert "#+attr_html: :width 720\n")
   (insert (concat "[[" filename "]]"))
   (org-display-inline-images))
 #+end_src
