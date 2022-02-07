@@ -49,8 +49,9 @@
 (map! :n "L" #'+tabs:next-or-goto)
 (map! :n "`h" #'treemacs-find-file)
 
-(map! :n "C-f h" #'centaur-tabs-move-current-tab-to-left)
-(map! :n "C-f l" #'centaur-tabs-move-current-tab-to-right)
+(map! :leader :prefix "b"
+      :desc "Move tab to the left" "h" #'centaur-tabs-move-current-tab-to-left
+      :desc "Move tab to the right" "l" #'centaur-tabs-move-current-tab-to-right)
 
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")

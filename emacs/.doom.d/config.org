@@ -442,8 +442,9 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 For centaur tabs
 
 #+begin_src emacs-lisp :tangle ./config.el
-(map! :n "C-f h" #'centaur-tabs-move-current-tab-to-left)
-(map! :n "C-f l" #'centaur-tabs-move-current-tab-to-right)
+(map! :leader :prefix "b"
+      :desc "Move tab to the left" "h" #'centaur-tabs-move-current-tab-to-left
+      :desc "Move tab to the right" "l" #'centaur-tabs-move-current-tab-to-right)
 #+end_src
 
 #+RESULTS:
