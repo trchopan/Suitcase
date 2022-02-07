@@ -2,6 +2,7 @@
 #+hugo_section: posts/doom.d
 #+hugo_tags: doom emacs config
 #+hugo_custom_front_matter: :cover /ox-hugo/demo-doom_20220131_154814.png
+#+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
 
 #+TITLE: Doom Emacs configuration
 #+AUTHOR: Chop Tr (chop.ink)
@@ -22,7 +23,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
 
 ** .doom.d/init.el
 
-#+begin_src emacs-lisp :tangle ~/.doom.d/init.el
+#+begin_src emacs-lisp :tangle ./init.el
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 (setq doom-leader-key "\\"
       doom-leader-alt-key "M-\\"
@@ -78,7 +79,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
-       ;;word-wrap         ; soft wrapping with language-aware indent
+       word-wrap         ; soft wrapping with language-aware indent
        format
 
        :emacs
@@ -120,7 +121,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       upload            ; map local to remote projects via ssh/ftp
+       ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
@@ -208,9 +209,6 @@ This is kinda personal preference but it will effect the whole setup. I used to 
 #+end_src
 
 
-
-
-
 * The configuration
 
 Everything from this point on is either in =~/.doom.d/config.el= for configuration and in =~/.doom.d/packages.el= for package installation.
@@ -267,6 +265,15 @@ To get information about any of these functions/macros, move the cursor over the
 You can also try ~gd~ (or ~C-c c d~) to jump to their definition and see how they are implemented.
 
 
+** Indentation
+
+My screen is small. I Prefer 2 space indentation:
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq standard-indent 2)
+#+end_src
+
+
 * Automations
 
 Automatic tangle on save
@@ -277,6 +284,7 @@ Automatic tangle on save
           ;; (setq-default line-spacing 6)
           )
 #+end_src
+
 
 Maximize the window upon startup. (May need to edit below depends on the monitor size)
 
@@ -397,9 +405,6 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 (setq avy-style 'de-bruijn)
 #+end_src
 
-#+RESULTS:
-: de-bruijn
-
 
 * Org mode
 
@@ -414,9 +419,6 @@ At first it seems that pre and post are advantageous over at and at-full, since 
   (insert (concat "[[" filename "]]"))
   (org-display-inline-images))
 #+end_src
-
-#+RESULTS:
-: org-insert-clipboard-image
 
 
 * Centaur tab

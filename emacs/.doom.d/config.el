@@ -7,6 +7,8 @@
 
 (setq display-line-numbers-type t)
 
+(setq standard-indent 2)
+
 (add-hook 'org-mode-hook
           (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local))
           ;; (setq-default line-spacing 6)
