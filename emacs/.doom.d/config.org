@@ -429,14 +429,37 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 
 ** Insert clipboard image into org
 
+Require: ~vips~, ~vipsthumbnail~, ~pngpaste~
+
+#+begin_src bash
+#!/bin/bash
+
+# Location: ~/bin/webppaste
+# Put it in PATH
+
+function help() {
+  echo "$0 <size> <output_file>"
+}
+
+if [[ -z $2 ]]; then
+  help
+  exit 1
+fi
+
+pngpaste "/tmp/pngpaste.png"
+vipsthumbnail -s "$1x$1>" -o "%s.webp[Q=85]" "/tmp/pngpaste.png"
+rm /tmp/pngpaste.png
+mv /tmp/pngpaste.webp $2
+#+end_src
+
 #+begin_src emacs-lisp :tangle ./config.el
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
-  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png") )
-  (shell-command (concat "pngpaste " filename))
+  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".webp"))
+  (shell-command (concat "webppaste 1280 " filename))
   (insert "#+attr_html: :width 720\n")
   (insert (concat "[[" filename "]]"))
-  (org-display-inline-images))
+  )
 #+end_src
 
 

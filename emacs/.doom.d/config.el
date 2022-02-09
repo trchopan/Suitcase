@@ -46,26 +46,20 @@
 
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
-  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png") )
-  (shell-command (concat "pngpaste " filename))
+  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".webp"))
+  (shell-command (concat "webppaste 1280 " filename))
   (insert "#+attr_html: :width 720\n")
   (insert (concat "[[" filename "]]"))
-  (org-display-inline-images))
+  )
 
 (with-eval-after-load 'centaur-tabs
   (centaur-tabs-group-by-projectile-project))
 
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
-(map! :n "C-M-h" #'centaur-tabs-move-current-tab-to-left)
-(map! :n "C-M-l" #'centaur-tabs-move-current-tab-to-right)
+(map! :n "M-s-{" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "M-s-}" #'centaur-tabs-move-current-tab-to-right)
 (map! :n "X" #'kill-current-buffer)
-
-(map! :leader :prefix "b"
-      :desc "Move tab to the left" "h"
-      #'centaur-tabs-move-current-tab-to-left
-      :desc "Move tab to the right" "l"
-      #'centaur-tabs-move-current-tab-to-right)
 
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")
