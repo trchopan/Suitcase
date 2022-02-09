@@ -4,8 +4,25 @@
 * Healthcare Liff
 SCHEDULED: <2022-02-07 Mon>
 
-- Remove the hospital search components
-- Add the new question 2 flow
+** TODO Remove the hospital search components
+SCHEDULED: <2022-02-07 Mon>
+
+- [X] Removed code
+- [X] Deploy beta and monitor
+
+** Add the new question 2 flow
+SCHEDULED: <2022-02-09 Wed>
+
+https://wiki.linecorp.com/display/lhc/%5Bheart+failure%5DImproved+flow+after+adding+heart-failure-OA
+
+*** [ ] https://wiki.linecorp.com/display/lhc/1.liff+questions+section
+
+
+*** [ ] https://wiki.linecorp.com/display/lhc/2.create+group+section
+
+
+*** [ ] https://wiki.linecorp.com/display/lhc/3.question+bot+section
+
 
 
 * Cardano Commands path to Metadata Json file bug
