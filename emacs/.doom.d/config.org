@@ -7,7 +7,7 @@
 #+TITLE: Doom Emacs configuration
 #+AUTHOR: Chop Tr (chop.ink)
 #+DATE: <2022-01-26 Wed>
-#+DESCRIPTION: My config and note during the awesome journey of getting to know Emacs and Doom Emacs
+#+DESCRIPTION: My configuration and note during the awesome journey of getting to know Emacs and Doom Emacs
 #+OPTIONS: toc:1
 
 
@@ -97,8 +97,8 @@ This is kinda personal preference but it will effect the whole setup. I used to 
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       (spell +flyspell) ; tasing you for misspelling mispelling
-       grammar           ; tasing grammar mistake every you make
+       ;(spell +flyspell) ; tasing you for misspelling mispelling
+       ;grammar           ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
@@ -280,9 +280,7 @@ Automatic tangle on save
 
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook
-          (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local))
-          ;; (setq-default line-spacing 6)
-          )
+          (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local)))
 #+end_src
 
 
@@ -312,6 +310,7 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 #+end_src
 
+
 ** Vue
 
 *** Package
@@ -327,12 +326,25 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 (use-package! lsp-volar)
 #+end_src
 
+
 ** Typescript
 
 *** Package
 
 #+begin_src emacs-lisp :tangle ./packages.el
 (package! ob-ts-node :recipe (:host github :repo "tmythicator/ob-ts-node"))
+#+end_src
+
+
+** Per language part-of-word
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq-default evil-symbol-word-search t)
+
+;; For all programming modes
+(add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+;; For all modes
+(add-hook 'after-change-major-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 #+end_src
 
 
@@ -350,7 +362,14 @@ Edit workspaces by ~treemacs-edit-workspaces~
 #+begin_src emacs-lisp :tangle ./config.el
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
+(defun treemacs-find-and-goto-treemacs ()
+  (interactive)
+  (treemacs-find-file)
+  (treemacs-select-window))
+(map! :n "`h" #'treemacs-find-and-goto-treemacs)
 #+end_src
+
+#+RESULTS:
 
 
 * Avy - Jump mode
@@ -436,21 +455,23 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
-(map! :n "`h" #'treemacs-find-file)
+(map! :n "C-M-h" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "C-M-l" #'centaur-tabs-move-current-tab-to-right)
+(map! :n "X" #'kill-current-buffer)
 #+end_src
 
 For centaur tabs
 
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader :prefix "b"
-      :desc "Move tab to the left" "h" #'centaur-tabs-move-current-tab-to-left
-      :desc "Move tab to the right" "l" #'centaur-tabs-move-current-tab-to-right)
+      :desc "Move tab to the left" "h"
+      #'centaur-tabs-move-current-tab-to-left
+      :desc "Move tab to the right" "l"
+      #'centaur-tabs-move-current-tab-to-right)
 #+end_src
 
-#+RESULTS:
 
-
-*** Combo key =n.=
+*** Combo search replace with =n.=
 
 Search current work > Jump back to it > Change it. After that you can redo the change by pressing =n.=
 #+begin_src emacs-lisp :tangle ./config.el

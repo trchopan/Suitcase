@@ -10,9 +10,7 @@
 (setq standard-indent 2)
 
 (add-hook 'org-mode-hook
-          (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local))
-          ;; (setq-default line-spacing 6)
-          )
+          (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local)))
 
 (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60)))
 
@@ -22,8 +20,20 @@
 
 (use-package! lsp-volar)
 
+(setq-default evil-symbol-word-search t)
+
+;; For all programming modes
+(add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+;; For all modes
+(add-hook 'after-change-major-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
+(defun treemacs-find-and-goto-treemacs ()
+  (interactive)
+  (treemacs-find-file)
+  (treemacs-select-window))
+(map! :n "`h" #'treemacs-find-and-goto-treemacs)
 
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
 
@@ -47,11 +57,15 @@
 
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
-(map! :n "`h" #'treemacs-find-file)
+(map! :n "C-M-h" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "C-M-l" #'centaur-tabs-move-current-tab-to-right)
+(map! :n "X" #'kill-current-buffer)
 
 (map! :leader :prefix "b"
-      :desc "Move tab to the left" "h" #'centaur-tabs-move-current-tab-to-left
-      :desc "Move tab to the right" "l" #'centaur-tabs-move-current-tab-to-right)
+      :desc "Move tab to the left" "h"
+      #'centaur-tabs-move-current-tab-to-left
+      :desc "Move tab to the right" "l"
+      #'centaur-tabs-move-current-tab-to-right)
 
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")
