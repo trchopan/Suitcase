@@ -369,8 +369,6 @@ Edit workspaces by ~treemacs-edit-workspaces~
 (map! :n "`h" #'treemacs-find-and-goto-treemacs)
 #+end_src
 
-#+RESULTS:
-
 
 * Avy - Jump mode
 
@@ -427,18 +425,20 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 
 * Org mode
 
-** Insert clipboard image into org
+** Insert clipboard image into org file
 
 Require: ~vips~, ~vipsthumbnail~, ~pngpaste~
 
 #+begin_src bash
 #!/bin/bash
 
-# Location: ~/bin/webppaste
-# Put it in PATH
+# Location: ~/bin/clipboard-image-paste
+# Should be avaiable in PATH
 
 function help() {
-  echo "$0 <size> <output_file>"
+  echo "$0 <size> <output_file> <format>"
+  echo "Example: $0 1280 example.png \"png[Q=85]\""
+  echo "Note: The last argument need to have double quote"
 }
 
 if [[ -z $2 ]]; then
@@ -446,20 +446,30 @@ if [[ -z $2 ]]; then
   exit 1
 fi
 
+if [[ -z $3 ]]; then
+  format="png[Q=85]"
+else
+  format=$3
+fi
+
 pngpaste "/tmp/pngpaste.png"
-vipsthumbnail -s "$1x$1>" -o "%s.webp[Q=85]" "/tmp/pngpaste.png"
+
+# Resize the image if greater than $1 with given $format
+output=$(echo "out_pngpaste.$format"| sed -E 's/(out_.*\.)(png|jpg|jpeg|webp).*/\1\2/g')
+vipsthumbnail -s "$1x$1>" -o "out_%s.$format" "/tmp/pngpaste.png"
+
 rm /tmp/pngpaste.png
-mv /tmp/pngpaste.webp $2
+mv "/tmp/$output" $2
+
 #+end_src
 
 #+begin_src emacs-lisp :tangle ./config.el
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
-  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".webp"))
-  (shell-command (concat "webppaste 1280 " filename))
+  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png"))
+  (shell-command (concat "clipboard-image-paste 1280 " filename " \"png[Q=85]\""))
   (insert "#+attr_html: :width 720\n")
-  (insert (concat "[[" filename "]]"))
-  )
+  (insert (concat "[[" filename "]]")))
 #+end_src
 
 

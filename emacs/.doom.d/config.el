@@ -46,11 +46,10 @@
 
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")
-  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".webp"))
-  (shell-command (concat "webppaste 1280 " filename))
+  (setq filename (concat file (format-time-string "_%Y%m%d_%H%M%S") ".png"))
+  (shell-command (concat "clipboard-image-paste 1280 " filename " \"png[Q=85]\""))
   (insert "#+attr_html: :width 720\n")
-  (insert (concat "[[" filename "]]"))
-  )
+  (insert (concat "[[" filename "]]")))
 
 (with-eval-after-load 'centaur-tabs
   (centaur-tabs-group-by-projectile-project))
