@@ -381,7 +381,19 @@ Edit workspaces by ~treemacs-edit-workspaces~
 (map! :n "`h" #'treemacs-find-and-goto-treemacs)
 #+end_src
 
-#+RESULTS:
+
+* Projectile
+
+Trick:
+
++ Use ~projectile-invalidate-cache~ to cleanup trash files in current project. I have typescript project that builded =js= files next to the source by accident and didn't know how to clean it up from the =find file= list. Took me good 30 minutes to find this command 🤦
+
+
+* Gitgutter
+
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :leader :n "g p" #'git-gutter:popup-hunk)
+#+end_src
 
 
 * Avy - Jump mode
@@ -414,6 +426,7 @@ The list of the default decision chars.
                     ?k ?l ?z ?x ?c ?j ?g
                     ?h ?f ?i ))
 #+end_src
+
 
 *** avy-style
 
@@ -495,8 +508,6 @@ mv "/tmp/$output" $2
 #+end_src
 
 
-* Personal Keymaps
-
 ** Tab moving and reordering
 
 Note: In Doom emacs =s= key is =cmd= key, aka =⌘,= on macOS.
@@ -510,7 +521,9 @@ Note: In Doom emacs =s= key is =cmd= key, aka =⌘,= on macOS.
 #+end_src
 
 
-*** Combo search replace with =n.=
+* Personal Keymaps
+
+** Combo search replace with =n.=
 
 Search current work > Jump back to it > Change it. After that you can redo the change by pressing =n.=
 #+begin_src emacs-lisp :tangle ./config.el
@@ -519,7 +532,7 @@ Search current work > Jump back to it > Change it. After that you can redo the c
 #+end_src
 
 
-*** Change or subtitute should not replace the registers
+** Change or subtitute should not replace the registers
 
 #+begin_src emacs-lisp :tangle ./config.el
 (evil-define-operator evil-change-without-register (beg end type _ yank-handler)
@@ -625,7 +638,7 @@ of the block."
 #+end_src
 
 
-*** Map the =s= key to change
+** Map the =s= key to change
 
 #+begin_src emacs-lisp :tangle ./config.el
 (define-key evil-motion-state-map "s" 'evil-substitute)

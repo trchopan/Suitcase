@@ -46,6 +46,8 @@
   (treemacs-select-window))
 (map! :n "`h" #'treemacs-find-and-goto-treemacs)
 
+(map! :leader :n "g p" #'git-gutter:popup-hunk)
+
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
 
 (setq avy-keys '(?q ?t ?e ?r ?y ?u ?o ?p
