@@ -1,7 +1,18 @@
 #+TITLE: WORK TODO
 #+AUTHOR: Chop Tr (trchopan)
 
-* Healthcare Liff
+
+* Healthcare Liff QA
+
+** TODO Sanity Test
+SCHEDULED: <2022-02-14 Mon>
+
+
+** TODO QA Test
+SCHEDULED: <2022-02-16 Wed>
+
+
+* DONE Healthcare Liff
 SCHEDULED: <2022-02-07 Mon>
 
 ** DONE Remove the hospital search components
@@ -10,7 +21,7 @@ SCHEDULED: <2022-02-07 Mon>
 - [X] Removed code
 - [X] Deploy beta and monitor
 
-** TODO Add the new question 2 flow
+** DONE Add the new question 2 flow
 SCHEDULED: <2022-02-09 Wed>
 
 https://wiki.linecorp.com/display/lhc/%5Bheart+failure%5DImproved+flow+after+adding+heart-failure-OA
@@ -18,17 +29,24 @@ https://wiki.linecorp.com/display/lhc/%5Bheart+failure%5DImproved+flow+after+add
 *** [X] https://wiki.linecorp.com/display/lhc/1.liff+questions+section
 
 
-*** [ ] https://wiki.linecorp.com/display/lhc/2.create+group+section
+*** [X] https://wiki.linecorp.com/display/lhc/2.create+group+section
 
 
-*** [ ] https://wiki.linecorp.com/display/lhc/3.question+bot+section
+*** [X] https://wiki.linecorp.com/display/lhc/3.question+bot+section
 
 
 
-* Cardano Commands path to Metadata Json file bug
+* TODO Cardano Commands path to Metadata Json file bug
 SCHEDULED: <2022-02-12 Sat>
 
-** TODO Correct chdir for all commands
+** TODO Rewrite the cardano-commands scripts into a more robust project
+
+Purpose is to facilitate the design of Secret <-> Core interaction.
+
+Use 2 main library for this task: [[https://github.com/SBoudrias/Inquirer.js][Inquirer]] and [[https://github.com/Berry-Pool/cardanocli-js][CardanocliJS]]
+
+
+** DONE Correct chdir for all commands
 
 ~cardano-commands~ should able to find pool-metadata json. Currently it looks into the ~cold-keys~ folder.
 
@@ -39,5 +57,5 @@ Looks like I have to do a lot of rewrite to stream like the steps. Currently TK 
 Choosing to have a step-by-step command line interface using Typescript + [[https://github.com/SBoudrias/Inquirer.js][Inquirer]] library.
 
 
-* Move my new configs and setup from PERSONAL to WORK
+* DONE Move my new configs and setup from PERSONAL to WORK
 SCHEDULED: <2022-01-31 Mon>
