@@ -31,6 +31,15 @@
 
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
+
+(with-eval-after-load 'treemacs
+  (define-key evil-treemacs-state-map (kbd "<SPC>") #'avy-goto-line))
+
+(with-eval-after-load 'treemacs
+  (define-key evil-treemacs-state-map (kbd "\\\\") #'+treemacs/toggle))
+
+(map! :n "\\\\" #'+treemacs/toggle)
+
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)

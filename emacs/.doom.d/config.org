@@ -365,12 +365,23 @@ Edit workspaces by ~treemacs-edit-workspaces~
 #+begin_src emacs-lisp :tangle ./config.el
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
+
+(with-eval-after-load 'treemacs
+  (define-key evil-treemacs-state-map (kbd "<SPC>") #'avy-goto-line))
+
+(with-eval-after-load 'treemacs
+  (define-key evil-treemacs-state-map (kbd "\\\\") #'+treemacs/toggle))
+
+(map! :n "\\\\" #'+treemacs/toggle)
+
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)
   (treemacs-select-window))
 (map! :n "`h" #'treemacs-find-and-goto-treemacs)
 #+end_src
+
+#+RESULTS:
 
 
 * Avy - Jump mode
