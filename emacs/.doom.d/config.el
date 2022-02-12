@@ -29,6 +29,12 @@
 ;; For all modes
 (add-hook 'after-change-major-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
+(defun treemacs-find-and-goto-treemacs ()
+  (interactive)
+  (treemacs-find-file)
+  (treemacs-select-window))
+(map! :n "`h" #'treemacs-find-and-goto-treemacs)
+
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
 
@@ -38,13 +44,7 @@
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map (kbd "\\\\") #'+treemacs/toggle))
 
-(map! :n "\\\\" #'+treemacs/toggle)
-
-(defun treemacs-find-and-goto-treemacs ()
-  (interactive)
-  (treemacs-find-file)
-  (treemacs-select-window))
-(map! :n "`h" #'treemacs-find-and-goto-treemacs)
+(map! :n "\\\\" #'treemacs-find-and-goto-treemacs)
 
 (map! :leader :n "g p" #'git-gutter:popup-hunk)
 
@@ -72,6 +72,14 @@
 (map! :n "M-s-{" #'centaur-tabs-move-current-tab-to-left)
 (map! :n "M-s-}" #'centaur-tabs-move-current-tab-to-right)
 (map! :n "X" #'kill-current-buffer)
+
+(map! :desc "Goto Tab 1" :n "s-1" (cmd! (+tabs:next-or-goto 1))
+      :desc "Goto Tab 2" :n "s-2" (cmd! (+tabs:next-or-goto 2))
+      :desc "Goto Tab 3" :n "s-3" (cmd! (+tabs:next-or-goto 3))
+      :desc "Goto Tab 4" :n "s-4" (cmd! (+tabs:next-or-goto 4))
+      :desc "Goto Tab 5" :n "s-5" (cmd! (+tabs:next-or-goto 5))
+      :desc "Goto Tab 6" :n "s-6" (cmd! (+tabs:next-or-goto 6))
+      )
 
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")

@@ -90,7 +90,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       ;;eshell            ; the elisp shell that works everywhere
+       eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
@@ -363,6 +363,12 @@ Edit workspaces by ~treemacs-edit-workspaces~
 ** Additional keymaps
 
 #+begin_src emacs-lisp :tangle ./config.el
+(defun treemacs-find-and-goto-treemacs ()
+  (interactive)
+  (treemacs-find-file)
+  (treemacs-select-window))
+(map! :n "`h" #'treemacs-find-and-goto-treemacs)
+
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map "s" 'treemacs-visit-node-horizontal-split))
 
@@ -372,14 +378,10 @@ Edit workspaces by ~treemacs-edit-workspaces~
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map (kbd "\\\\") #'+treemacs/toggle))
 
-(map! :n "\\\\" #'+treemacs/toggle)
-
-(defun treemacs-find-and-goto-treemacs ()
-  (interactive)
-  (treemacs-find-file)
-  (treemacs-select-window))
-(map! :n "`h" #'treemacs-find-and-goto-treemacs)
+(map! :n "\\\\" #'treemacs-find-and-goto-treemacs)
 #+end_src
+
+#+RESULTS:
 
 
 * Projectile
@@ -403,7 +405,7 @@ avy is a GNU Emacs package for jumping to visible text using a char-based decisi
 ** Package
 
 #+begin_src emacs-lisp :tangle ./packages.el
-(package! avy)
+;; (package! avy)
 #+end_src
 
 
@@ -502,6 +504,8 @@ mv "/tmp/$output" $2
 
 * Centaur tab
 
+** Turn on the tabs by projects instead of file type
+
 #+begin_src emacs-lisp :tangle ./config.el
 (with-eval-after-load 'centaur-tabs
   (centaur-tabs-group-by-projectile-project))
@@ -510,7 +514,7 @@ mv "/tmp/$output" $2
 
 ** Tab moving and reordering
 
-Note: In Doom emacs =s= key is =cmd= key, aka =⌘,= on macOS.
+Note: In Doom emacs =s= key is =super key=, aka =⌘= on MacOS, =Windows= key on Windows.
 
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :n "H" #'+tabs:previous-or-goto)
@@ -519,6 +523,21 @@ Note: In Doom emacs =s= key is =cmd= key, aka =⌘,= on macOS.
 (map! :n "M-s-}" #'centaur-tabs-move-current-tab-to-right)
 (map! :n "X" #'kill-current-buffer)
 #+end_src
+
+
+** Tab numbers
+
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :desc "Goto Tab 1" :n "s-1" (cmd! (+tabs:next-or-goto 1))
+      :desc "Goto Tab 2" :n "s-2" (cmd! (+tabs:next-or-goto 2))
+      :desc "Goto Tab 3" :n "s-3" (cmd! (+tabs:next-or-goto 3))
+      :desc "Goto Tab 4" :n "s-4" (cmd! (+tabs:next-or-goto 4))
+      :desc "Goto Tab 5" :n "s-5" (cmd! (+tabs:next-or-goto 5))
+      :desc "Goto Tab 6" :n "s-6" (cmd! (+tabs:next-or-goto 6))
+      )
+#+end_src
+
+#+RESULTS:
 
 
 * Personal Keymaps
