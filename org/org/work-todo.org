@@ -46,6 +46,11 @@ Purpose is to facilitate the design of Secret <-> Core interaction.
 Use 2 main library for this task: [[https://github.com/SBoudrias/Inquirer.js][Inquirer]] and [[https://github.com/Berry-Pool/cardanocli-js][CardanocliJS]]
 
 
+** DONE Relay config missing Connected Peer metrics
+
+Missing ~TraceBlockFetchDecisions = true~ in the Cardano config.json making the node not tracing connected_peer metric.
+
+
 ** DONE Correct chdir for all commands
 
 ~cardano-commands~ should able to find pool-metadata json. Currently it looks into the ~cold-keys~ folder.
