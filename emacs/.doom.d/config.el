@@ -44,7 +44,7 @@
 (with-eval-after-load 'treemacs
   (define-key evil-treemacs-state-map (kbd "\\\\") #'+treemacs/toggle))
 
-(map! :n "\\\\" #'treemacs-find-and-goto-treemacs)
+(map! :n "\\\\" #'+treemacs/toggle)
 
 (map! :leader :n "g p" #'git-gutter:popup-hunk)
 
