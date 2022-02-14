@@ -3,8 +3,8 @@
 
 * Note:
 
-+ npm install from repo https://stackoverflow.com/questions/40528053/npm-install-and-build-of-forked-github-repo
-+ Keychron K2 V2 https://techzones.vn/keychron-k2-v2-led-rgb-gateron-brown-hotswap-phien-ban-nhom
++ Keychron K2 V2
+   https://techzones.vn/keychron-k2-v2-led-rgb-gateron-brown-hotswap-phien-ban-nhom
 
 
 * Checkout NewsAPI
