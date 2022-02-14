@@ -1,6 +1,12 @@
 #+TITLE: WORK TODO
 #+AUTHOR: Chop Tr (trchopan)
 
+* [HR] Health check up registration
+DEADLINE: <2022-02-18 Fri>
+
+#+attr_html: :width 720
+[[~/Suitcase/org/org/images/health-checkup_20220214_141139.png]]
+
 
 * Healthcare Liff QA
 
