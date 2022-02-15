@@ -6,6 +6,12 @@
 + Keychron K2 V2 https://techzones.vn/keychron-k2-v2-led-rgb-gateron-brown-hotswap-phien-ban-nhom
 
 
+* TODO Send letter for my wife
+SCHEDULED: <2022-02-15 Tue>
+
+Viettel Post
+
+
 * Checkout NewsAPI
 
 Looks like a good source of information
