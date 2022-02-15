@@ -1,4 +1,4 @@
-#+hugo_base_dir: ~/Documents/chop-ink/
+#+hugo_base_dir: ~/Sync/chop-ink/
 #+hugo_section: posts/doom.d
 #+hugo_tags: doom emacs config
 #+hugo_custom_front_matter: :cover /ox-hugo/demo-doom_20220131_154814.png
