@@ -3,7 +3,7 @@
 
 (setq doom-theme 'doom-one)
 
-(setq org-directory "~/org/")
+(setq org-directory "~/Sync/org/")
 
 (setq display-line-numbers-type t)
 
