@@ -1,0 +1,64 @@
+.DS_Store
+node_modules
+
+// Haskell
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
+
+// Javscript + Typescript
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.log
+
+.firebase
+firebase-debug.log
+src/infrastructure/firebase.config.ts
+
+// Ignore Editor config
+.vscode
+
+// Hugo
+.idea
+*.log
+tmp/
+
+// ## Hugo ###
+// Generated files by hugo
+/public/
+/resources/_gen/
+
+// Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+// ### Code ###
+.vscode/*
+
+// Emacs
+.dir-locals.el
