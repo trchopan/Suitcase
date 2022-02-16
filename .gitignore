@@ -1,4 +1,2 @@
 .DS_Store
-org/org/.packages
-org/org/public
 nvim/.config/nvim/plugin/packer_compiled.lua
