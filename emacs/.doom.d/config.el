@@ -1,9 +1,9 @@
 (setq user-full-name "Chop Tr (chop.ink)"
       user-mail-address "chop@chop.ink")
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tokyo-night)
 
-(setq org-directory "~/Sync/org/")
+(setq org-directory "~/Sync/org")
 
 (setq display-line-numbers-type t)
 
