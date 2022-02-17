@@ -416,8 +416,6 @@ Edit workspaces by ~treemacs-edit-workspaces~
 (map! :n "\\\\" #'+treemacs/toggle)
 #+end_src
 
-#+RESULTS:
-
 
 * Projectile
 
@@ -436,13 +434,6 @@ Trick:
 * Avy - Jump mode
 
 avy is a GNU Emacs package for jumping to visible text using a char-based decision tree. See also ace-jump-mode and vim-easymotion - avy uses the same idea.
-
-** Package
-
-#+begin_src emacs-lisp :tangle ./packages.el
-;; (package! avy)
-#+end_src
-
 
 ** Keymaps
 

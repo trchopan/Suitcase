@@ -2,6 +2,4 @@
 
 (package! ob-ts-node :recipe (:host github :repo "tmythicator/ob-ts-node"))
 
-;; (package! avy)
-
 (package! evil-snipe :disable t)
