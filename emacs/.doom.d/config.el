@@ -1,7 +1,7 @@
 (setq user-full-name "Chop Tr (chop.ink)"
       user-mail-address "chop@chop.ink")
 
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'doom-vibrant)
 
 (setq org-directory "~/Sync/org")
 
@@ -72,6 +72,10 @@
 
 (map! :n "\\\\" #'+treemacs/toggle)
 
+(after! doom-themes
+  (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config))
+
 (map! :leader :n "g p" #'git-gutter:popup-hunk)
 
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
@@ -82,6 +86,8 @@
                     ?h ?f ?i ))
 
 (setq avy-style 'de-bruijn)
+
+(setq org-ellipsis " [+]")
 
 (defun org-insert-clipboard-image (&optional file)
   (interactive "F")

@@ -235,7 +235,7 @@ They all accept either a font-spec, font string ("Input Mono-12"), or xlfd font 
 There are two ways to load a theme. Both assume the theme is installed and available. You can either set ~doom-theme~ or manually load a theme with the ~load-theme~ function. This is the default:
 
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'doom-vibrant)
 #+end_src
 
 If you use ~org~ and don't want your org files in the default location below, change ~org-directory~. It must be set before org loads!
@@ -416,6 +416,12 @@ Edit workspaces by ~treemacs-edit-workspaces~
 (map! :n "\\\\" #'+treemacs/toggle)
 #+end_src
 
+#+begin_src emacs-lisp :tangle ./config.el
+(after! doom-themes
+  (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config))
+#+end_src
+
 
 * Projectile
 
@@ -479,6 +485,13 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 
 
 * Org mode
+
+** Change the ellipsis
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-ellipsis " [+]")
+#+end_src
+
 
 ** Insert clipboard image into org file
 
@@ -562,8 +575,6 @@ Note: In Doom emacs =s= key is =super key=, aka =⌘= on MacOS, =Windows= key on
       :desc "Goto Tab 6" :n "s-6" (cmd! (+tabs:next-or-goto 6))
       )
 #+end_src
-
-#+RESULTS:
 
 
 * Personal Keymaps
