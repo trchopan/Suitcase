@@ -3,7 +3,7 @@
 
 (setq doom-theme 'doom-vibrant)
 
-(setq org-directory "~/Sync/org")
+(setq org-directory "~/org")
 
 (setq display-line-numbers-type t)
 
@@ -110,8 +110,7 @@
       :desc "Goto Tab 3" :n "s-3" (cmd! (+tabs:next-or-goto 3))
       :desc "Goto Tab 4" :n "s-4" (cmd! (+tabs:next-or-goto 4))
       :desc "Goto Tab 5" :n "s-5" (cmd! (+tabs:next-or-goto 5))
-      :desc "Goto Tab 6" :n "s-6" (cmd! (+tabs:next-or-goto 6))
-      )
+      :desc "Goto Tab 6" :n "s-6" (cmd! (+tabs:next-or-goto 6)))
 
 (define-key evil-motion-state-map "C-f" nil)
 (map! :n "C-f w" "*Nciw")
