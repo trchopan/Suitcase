@@ -217,9 +217,9 @@ of the block."
 
 (if (string= (getenv "USER") "lw70868")
     (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 14)
-          doom-variable-pitch-font (font-spec :family "Source Serif 4" :size 14))
+          doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 14))
   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
-        doom-variable-pitch-font (font-spec :family "Source Serif 4" :size 13)))
+        doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 13)))
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
