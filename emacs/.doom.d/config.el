@@ -48,13 +48,6 @@
 
 (use-package! lsp-volar)
 
-(setq-default evil-symbol-word-search t)
-
-;; For all programming modes
-(add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-;; For all modes
-(add-hook 'after-change-major-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)
@@ -192,6 +185,7 @@ If TYPE is `line', insertion starts on an empty line.
 If TYPE is `block', the inserted text in inserted at each line
 of the block."
     (interactive "<R><x><y>")
+    ;; (let ((delete-func (or delete-func #'evil-delete))
     (let ((delete-func (or delete-func #'evil-delete-without-register))
           (nlines (1+ (evil-count-lines beg end)))
           (opoint (save-excursion
@@ -214,6 +208,11 @@ of the block."
 
 (define-key evil-motion-state-map "s" 'evil-substitute)
 (define-key evil-motion-state-map "S" 'evil-change-whole-line)
+
+(with-eval-after-load 'evil
+    (defalias #'forward-evil-word #'forward-evil-symbol)
+    ;; make evil-search-word look for symbol rather than word boundaries
+    (setq-default evil-symbol-word-search t))
 
 (if (string= (getenv "USER") "lw70868")
     (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 14)
