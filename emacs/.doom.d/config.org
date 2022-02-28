@@ -304,10 +304,6 @@ My screen is small. I Prefer 2 space indentation:
 (setq +doom-dashboard-ascii-banner-fn #'doom-dashboard-draw-ascii-emacs-banner-fn)
 #+end_src
 
-#+RESULTS:
-: doom-dashboard-draw-ascii-emacs-banner-fn
-
-
 
 * Automations
 
@@ -547,8 +543,8 @@ Note: In Doom emacs =s= key is =super key=, aka =⌘= on MacOS, =Windows= key on
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
-(map! :n "M-s-{" #'centaur-tabs-move-current-tab-to-left)
-(map! :n "M-s-}" #'centaur-tabs-move-current-tab-to-right)
+(map! :n "C-M-{" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "C-M-}" #'centaur-tabs-move-current-tab-to-right)
 (map! :n "X" #'kill-current-buffer)
 #+end_src
 

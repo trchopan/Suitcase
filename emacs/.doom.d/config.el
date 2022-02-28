@@ -94,8 +94,8 @@
 
 (map! :n "H" #'+tabs:previous-or-goto)
 (map! :n "L" #'+tabs:next-or-goto)
-(map! :n "M-s-{" #'centaur-tabs-move-current-tab-to-left)
-(map! :n "M-s-}" #'centaur-tabs-move-current-tab-to-right)
+(map! :n "C-M-{" #'centaur-tabs-move-current-tab-to-left)
+(map! :n "C-M-}" #'centaur-tabs-move-current-tab-to-right)
 (map! :n "X" #'kill-current-buffer)
 
 (map! :desc "Goto Tab 1" :n "s-1" (cmd! (+tabs:next-or-goto 1))
