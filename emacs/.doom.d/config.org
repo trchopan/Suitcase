@@ -318,9 +318,8 @@ Automatic tangle on save
 Maximize the window upon startup. (May need to edit below depends on the monitor size)
 
 #+begin_src emacs-lisp :tangle ./config.el
-
 (if (string= (getenv "USER") "lw70868")
-    (setq initial-frame-alist '((top . 1) (left . 1) (width . 185) (height . 68)))
+    (setq initial-frame-alist '((top . 1) (left . 1) (width . 190) (height . 68)))
   (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60))))
 #+end_src
 

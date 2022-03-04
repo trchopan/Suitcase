@@ -39,7 +39,7 @@
           (lambda () (add-hook 'after-save-hook #'org-babel-tangle :append :local)))
 
 (if (string= (getenv "USER") "lw70868")
-    (setq initial-frame-alist '((top . 1) (left . 1) (width . 185) (height . 68)))
+    (setq initial-frame-alist '((top . 1) (left . 1) (width . 190) (height . 68)))
   (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60))))
 
 (setq +format-with-lsp nil)
