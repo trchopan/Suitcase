@@ -1,6 +1,5 @@
+// MacOS
 .DS_Store
-node_modules
-package-lock.json
 
 // Haskell
 dist
@@ -28,9 +27,7 @@ cabal.project.local~
 .ghc.environment.*
 
 // Javscript + Typescript
-
 node_modules
-.DS_Store
 dist
 dist-ssr
 *.local
