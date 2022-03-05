@@ -697,6 +697,14 @@ of the block."
 #+end_src
 
 
+** Move parentheses
+
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :ni "C-)" #'sp-forward-slurp-sexp)
+(map! :ni "C-(" #'sp-backward-slurp-sexp)
+#+end_src
+
+
 * Font display
 
 ** Font face

@@ -214,6 +214,9 @@ of the block."
     ;; make evil-search-word look for symbol rather than word boundaries
     (setq-default evil-symbol-word-search t))
 
+(map! :ni "C-)" #'sp-forward-slurp-sexp)
+(map! :ni "C-(" #'sp-backward-slurp-sexp)
+
 (if (string= (getenv "USER") "lw70868")
     (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 14)
           doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 14))
