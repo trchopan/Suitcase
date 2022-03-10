@@ -32,6 +32,8 @@ dist
 dist-ssr
 *.local
 .log
+package-lock.json
+yarn.lock
 
 .firebase
 firebase-debug.log
