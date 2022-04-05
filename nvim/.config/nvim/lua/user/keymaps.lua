@@ -56,7 +56,7 @@ k("n", "\\r", "<Cmd>LspRestart<CR>", opt)
 k("n", "\\p", [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], opt)
 k("n", "<C-f>r", "<Cmd>lua require('spectre').open()<CR>", opt)
 k("n", "<C-f>f", "<Cmd>Telescope live_grep<CR>", opt)
-k("n", "<C-p>", "<Cmd>Telescope find_files<CR>", opt)
+k("n", "<leader><Space>", "<Cmd>Telescope find_files<CR>", opt)
 k("n", "//", "<Cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opt)
 k("n", "<Space>", ":HopWord<CR>", opt)
 
