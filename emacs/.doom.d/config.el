@@ -48,6 +48,9 @@
 
 (use-package! lsp-volar)
 
+(map! :n "K" 'lsp-ui-doc-show)
+(map! :n "C-K" '+lookup/documentation)
+
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)
