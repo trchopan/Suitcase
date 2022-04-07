@@ -21,15 +21,17 @@ This is kinda personal preference but it will effect the whole setup. I used to 
 [[~/Suitcase/emacs/.doom.d/images/leader-key_20220131_213628.png]]
 
 
-** .doom.d/init.el
-
 #+begin_src emacs-lisp :tangle ./init.el
-(add-hook 'org-mode-hook #'+org-pretty-mode)
 (setq doom-leader-key "\\"
       doom-leader-alt-key "M-\\"
       doom-localleader-key "M-,"
       doom-localleader-alt-key "M-,")
+#+end_src
 
+
+** .doom.d/init.el
+
+#+begin_src emacs-lisp :tangle ./init.el
 (doom! :input
        ;;chinese
        ;;japanese
@@ -477,6 +479,13 @@ At first it seems that pre and post are advantageous over at and at-full, since 
 
 
 * Org mode
+
+** Pretty-mode
+
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'org-mode-hook #'+org-pretty-mode)
+#+end_src
+
 
 ** Change the ellipsis
 

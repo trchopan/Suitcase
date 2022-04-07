@@ -83,6 +83,8 @@
 
 (setq avy-style 'de-bruijn)
 
+(add-hook 'org-mode-hook #'+org-pretty-mode)
+
 (setq org-ellipsis " [+]")
 
 (defun org-insert-clipboard-image (&optional file)
