@@ -51,6 +51,8 @@
 (map! :n "K" 'lsp-ui-doc-show)
 (map! :n "C-K" '+lookup/documentation)
 
+(setq lsp-signature-auto-activate nil)
+
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)

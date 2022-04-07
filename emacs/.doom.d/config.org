@@ -380,6 +380,12 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
+** Signature auto-activate
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-signature-auto-activate nil)
+#+end_src
+
 * Treemacs
 
 ** Workspaces and perspectives
