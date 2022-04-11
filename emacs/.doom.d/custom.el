@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("353ffc8e6b53a91ac87b7e86bebc6796877a0b76ddfc15793e4d7880976132ae" default))
  '(doom-themes-treemacs-enable-variable-pitch nil)
- '(package-selected-packages '(lsp-haskell format-all))
+ '(package-selected-packages '(haskell-mode command-log-mode))
  '(warning-suppress-types '((lsp-mode) (lsp-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
