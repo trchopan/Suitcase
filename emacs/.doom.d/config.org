@@ -2,7 +2,7 @@
 #+hugo_section: posts/doom.d
 #+hugo_tags: doom emacs config
 #+hugo_custom_front_matter: :cover /ox-hugo/demo-doom_20220131_154814.png
-#+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
+ #+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
 
 #+TITLE: Doom Emacs configuration
 #+AUTHOR: Chop Tr (chop.ink)
@@ -321,7 +321,7 @@ Maximize the window upon startup. (May need to edit below depends on the monitor
 
 #+begin_src emacs-lisp :tangle ./config.el
 (if (string= (getenv "USER") "lw70868")
-    (setq initial-frame-alist '((top . 1) (left . 1) (width . 190) (height . 68)))
+    (setq initial-frame-alist '((top . 1) (left . 1) (width . 190) (height . 65)))
   (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60))))
 #+end_src
 
