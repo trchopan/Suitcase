@@ -40,7 +40,7 @@
 
 (if (string= (getenv "USER") "lw70868")
     (setq initial-frame-alist '((top . 1) (left . 1) (width . 190) (height . 65)))
-  (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 60))))
+  (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 55))))
 
 (setq +format-with-lsp nil)
 
