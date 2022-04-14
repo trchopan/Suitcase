@@ -142,34 +142,6 @@
                   }
                 ],
                 "type": "basic"
-              },
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "right_shift",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "set_notification_message": {
-                      "id": "org.pqrs.notificaion_message_example",
-                      "text": "Hello World!"
-                    }
-                  },
-                  {
-                    "key_code": "right_shift"
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "set_notification_message": {
-                      "id": "org.pqrs.notificaion_message_example",
-                      "text": ""
-                    }
-                  }
-                ]
               }
             ]
           },
