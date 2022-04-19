@@ -597,6 +597,13 @@ Note: In Doom emacs =s= key is =super key=, aka =⌘= on MacOS, =Windows= key on
 #+end_src
 
 
+#+begin_src emacs-lisp :tangle ./config.el
+;; Need to unbind this for org-mode
+(with-eval-after-load 'evil-org
+  (define-key evil-org-mode-map (kbd "<normal-state> X") nil))
+#+end_src
+
+
 ** Tab numbers
 
 #+begin_src emacs-lisp :tangle ./config.el

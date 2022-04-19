@@ -115,6 +115,10 @@
 (map! :n "C-M-}" #'centaur-tabs-move-current-tab-to-right)
 (map! :n "X" #'kill-current-buffer)
 
+;; Need to unbind this for org-mode
+(with-eval-after-load 'evil-org
+  (define-key evil-org-mode-map (kbd "<normal-state> X") nil))
+
 (map! :desc "Goto Tab 1" :n "s-1" (cmd! (+tabs:next-or-goto 1))
       :desc "Goto Tab 2" :n "s-2" (cmd! (+tabs:next-or-goto 2))
       :desc "Goto Tab 3" :n "s-3" (cmd! (+tabs:next-or-goto 3))
