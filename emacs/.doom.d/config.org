@@ -387,9 +387,9 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
-** Tree-sitter
+* Tree-sitter
 
-*** Package
+** Package
 
 #+begin_src emacs-lisp :tangle ./packages.el
 (package! tree-sitter)
@@ -397,7 +397,7 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
-*** Config
+** Config
 
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! tree-sitter
@@ -409,6 +409,27 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
           '(scss-mode . css))
   (pushnew! tree-sitter-major-mode-language-alist
           '(haskell-mode . haskell)))
+#+end_src
+
+
+* Company
+
+** Disable auto suggestion
+
+It disturb the typing as it auto-select the first hint
+
+#+begin_src emacs-lisp :tangle ./config.el
+(after! company
+  (+company/toggle-auto-completion))
+#+end_src
+
+
+** Additional keymaps
+
+#+begin_src emacs-lisp :tangle ./config.el
+;; (map! :i "<C-n>" #'+company-complete)
+(map! (:when (featurep! :completion company) ; Conditional loading
+       :i "C-n" #'+company/complete))
 #+end_src
 
 
