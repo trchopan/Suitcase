@@ -414,17 +414,17 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 
 * Company
 
-** Disable auto suggestion
+** Disable yasnipet global mode
 
 It disturb the typing as it auto-select the first hint
 
 #+begin_src emacs-lisp :tangle ./config.el
-(after! company
-  (+company/toggle-auto-completion))
+(after! yasnippet
+  (yas-global-mode -1))
 #+end_src
 
 
-** Additional keymaps
+** Use <C-n> during insert mode to invoke company
 
 #+begin_src emacs-lisp :tangle ./config.el
 ;; (map! :i "<C-n>" #'+company-complete)

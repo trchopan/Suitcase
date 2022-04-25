@@ -63,8 +63,8 @@
   (pushnew! tree-sitter-major-mode-language-alist
           '(haskell-mode . haskell)))
 
-(after! company
-  (+company/toggle-auto-completion))
+(after! yasnippet
+  (yas-global-mode -1))
 
 ;; (map! :i "<C-n>" #'+company-complete)
 (map! (:when (featurep! :completion company) ; Conditional loading
