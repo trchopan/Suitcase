@@ -91,6 +91,9 @@
   (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
   (doom-themes-treemacs-config))
 
+(after! lsp-treemacs
+  (load-library "doom-themes-ext-treemacs"))
+
 (map! :leader :n "g p" #'git-gutter:popup-hunk)
 
 (map! :n "<SPC>" #'evil-avy-goto-word-0)
