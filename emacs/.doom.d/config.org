@@ -452,6 +452,13 @@ Edit workspaces by ~treemacs-edit-workspaces~
   (doom-themes-treemacs-config))
 #+end_src
 
+** Doom theme
+
+#+begin_src emacs-lisp :tangle ./config.el
+(after! lsp-treemacs
+  (load-library "doom-themes-ext-treemacs"))
+#+end_src
+
 
 * Projectile
 
