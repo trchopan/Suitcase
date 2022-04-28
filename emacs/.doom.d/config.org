@@ -2,7 +2,7 @@
 #+hugo_section: posts/doom.d
 #+hugo_tags: doom emacs config
 #+hugo_custom_front_matter: :cover /ox-hugo/demo-doom_20220131_154814.png
- #+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
+#+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
 
 #+TITLE: Doom Emacs configuration
 #+AUTHOR: Chop Tr (chop.ink)
@@ -344,23 +344,6 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 #+end_src
-
-
-** Vue
-
-*** Package
-
-#+begin_src emacs-lisp :tangle ./packages.el
-(package! lsp-volar :recipe (:host github :repo "jadestrong/lsp-volar"))
-#+end_src
-
-
-*** Config
-
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! lsp-volar)
-#+end_src
-
 
 
 ** Typescript

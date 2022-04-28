@@ -46,8 +46,6 @@
 
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 
-(use-package! lsp-volar)
-
 (map! :n "K" 'lsp-ui-doc-show)
 (map! :n "C-K" '+lookup/documentation)
 
