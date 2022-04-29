@@ -346,23 +346,6 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
-** Vue
-
-*** Package
-
-#+begin_src emacs-lisp :tangle ./packages.el
-(package! lsp-volar :recipe (:host github :repo "jadestrong/lsp-volar"))
-#+end_src
-
-
-*** Config
-
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! lsp-volar)
-#+end_src
-
-
-
 ** Typescript
 
 *** Package
