@@ -35,9 +35,12 @@ dist-ssr
 package-lock.json
 yarn.lock
 
+// Rust
+Cargo.lock
+
+// Firebase
 .firebase
 firebase-debug.log
-src/infrastructure/firebase.config.ts
 
 // Ignore Editor config
 .vscode

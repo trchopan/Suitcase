@@ -2,7 +2,7 @@
 #+hugo_section: posts/doom.d
 #+hugo_tags: doom emacs config
 #+hugo_custom_front_matter: :cover /ox-hugo/demo-doom_20220131_154814.png
- #+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
+#+hugo_custom_front_matter: :images /ox-hugo/demo-doom_20220131_154814.png
 
 #+TITLE: Doom Emacs configuration
 #+AUTHOR: Chop Tr (chop.ink)
