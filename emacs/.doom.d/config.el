@@ -65,8 +65,8 @@
   (yas-global-mode -1))
 
 ;; (map! :i "<C-n>" #'+company-complete)
-(map! (:when (featurep! :completion company) ; Conditional loading
-       :i "C-n" #'+company/complete))
+;; (map! (:when (featurep! :completion company) ; Conditional loading
+;;        :i "C-n" #'+company/complete))
 
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)

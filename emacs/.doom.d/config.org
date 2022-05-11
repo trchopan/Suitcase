@@ -411,8 +411,8 @@ It disturb the typing as it auto-select the first hint
 
 #+begin_src emacs-lisp :tangle ./config.el
 ;; (map! :i "<C-n>" #'+company-complete)
-(map! (:when (featurep! :completion company) ; Conditional loading
-       :i "C-n" #'+company/complete))
+;; (map! (:when (featurep! :completion company) ; Conditional loading
+;;        :i "C-n" #'+company/complete))
 #+end_src
 
 
