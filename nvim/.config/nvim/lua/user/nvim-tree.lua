@@ -72,10 +72,6 @@ nvim_tree.setup({
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = true,
-	update_to_buf_dir = {
-		enable = true,
-		auto_open = true,
-	},
 	diagnostics = {
 		enable = true,
 		icons = {
@@ -108,7 +104,10 @@ nvim_tree.setup({
 		height = 30,
 		hide_root_folder = false,
 		side = "left",
-		auto_resize = true,
+    preserve_window_proportions = true,
+		number = false,
+		relativenumber = false,
+    signcolumn = "yes",
 		mappings = {
 			custom_only = false,
 			list = {
@@ -120,23 +119,9 @@ nvim_tree.setup({
 				{ key = "P", cb = tree_cb("paste") },
 			},
 		},
-		number = false,
-		relativenumber = false,
 	},
 	trash = {
 		cmd = "trash",
 		require_confirm = true,
-	},
-	quit_on_open = 0,
-	git_hl = 1,
-	disable_window_picker = 0,
-	root_folder_modifier = ":t",
-	special_files = { "README.md", "CHANGELOG.md", "Makefile", "MAKEFILE" },
-	show_icons = {
-		git = 1,
-		folders = 1,
-		files = 1,
-		folder_arrows = 1,
-		tree_width = 30,
 	},
 })
