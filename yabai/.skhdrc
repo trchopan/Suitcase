@@ -1,13 +1,13 @@
 # https://github.com/koekeishiya/skhd
 # focus window
 shift + alt - j : if [[ $(yabai -m query --windows --window next | jq '.id') ]]; \
-                    then yabai -m window --focus next; \
-                    else yabai -m window --focus first; \
-                  fi;
+                         then yabai -m window --focus next; \
+                         else yabai -m window --focus first; \
+                     fi;
 shift + alt - k : if [[ $(yabai -m query --windows --window prev | jq '.id') ]]; \
-                    then yabai -m window --focus prev; \
-                    else yabai -m window --focus last; \
-                  fi;
+                         then yabai -m window --focus prev; \
+                         else yabai -m window --focus last; \
+                     fi;
 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
@@ -25,13 +25,19 @@ shift + alt + ctrl - j : yabai -m window --swap next
 shift + alt + ctrl - k : yabai -m window --swap prev
 
 # increase window size
-shift + alt - h : yabai -m window --resize bottom_right:-50:0
-shift + alt - l : yabai -m window --resize bottom_right:50:0
-ctrl + shift + alt - h : yabai -m window --resize bottom_right:0:-50
-ctrl + shift + alt - l : yabai -m window --resize bottom_right:0:50
+shift + alt - 0x1B : yabai -m window --resize bottom_right:-50:0
+shift + alt - 0x18 : yabai -m window --resize bottom_right:50:0
+ctrl + shift + alt - 0x1B : yabai -m window --resize bottom_right:0:-50
+ctrl + shift + alt - 0x18 : yabai -m window --resize bottom_right:0:50
 
 # restart yabai
 shift + alt + ctrl - d : if [[ -z $(brew services list | grep yabai | grep none) ]]; \
                             then brew services stop yabai; \
                             else brew services start yabai; \
                          fi;
+
+# focus specific app
+shift + alt + ctrl - s : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Slack")) | .id')
+shift + alt + ctrl - t : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Telegram")) | .id')
+shift + alt + ctrl - b : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Brave")) | .id')
+shift + alt + ctrl - x : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("iTerm2")) | .id')
