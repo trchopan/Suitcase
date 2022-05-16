@@ -1,13 +1,13 @@
 # https://github.com/koekeishiya/skhd
 # focus window
 shift + alt - j : if [[ $(yabai -m query --windows --window next | jq '.id') ]]; \
-                         then yabai -m window --focus next; \
-                         else yabai -m window --focus first; \
-                     fi;
+                      then yabai -m window --focus next; \
+                      else yabai -m window --focus first; \
+                  fi;
 shift + alt - k : if [[ $(yabai -m query --windows --window prev | jq '.id') ]]; \
-                         then yabai -m window --focus prev; \
-                         else yabai -m window --focus last; \
-                     fi;
+                      then yabai -m window --focus prev; \
+                      else yabai -m window --focus last; \
+                  fi;
 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
