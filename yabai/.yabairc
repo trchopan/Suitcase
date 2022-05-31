@@ -42,15 +42,18 @@ yabai -m config right_padding                8
 yabai -m config window_gap                   8
 
 # rules
-yabai -m rule --add app="^System Preferences$" manage=off
-yabai -m rule --add app="^Calendar$"           manage=off
-yabai -m rule --add app="^Stats$"              manage=off border=off
-yabai -m rule --add app="^Spotify$"            manage=off
-yabai -m rule --add app="^Finder$"             manage=off
-yabai -m rule --add app="^LINE$"               manage=off
-yabai -m rule --add app="^zoom.us$"            manage=off
-yabai -m rule --add app="^MySQLWorkbench$"     manage=off
-yabai -m rule --add app="^Preview$"            manage=off
-yabai -m rule --add app="^Sqlgatewayclient$"   manage=off
+yabai -m rule --add app="^System Preferences$"         manage=off
+yabai -m rule --add app="^Calendar$"                   manage=off
+yabai -m rule --add app="^Stats$"                      manage=off border=off
+yabai -m rule --add app="^Spotify$"                    manage=off
+yabai -m rule --add app="^Finder$"                     manage=off
+yabai -m rule --add app="^LINE$"                       manage=off
+yabai -m rule --add app="^zoom.us$"                    manage=off
+yabai -m rule --add app="^MySQLWorkbench$"             manage=off
+yabai -m rule --add app="^Preview$"                    manage=off
+yabai -m rule --add app="^Sqlgatewayclient$"           manage=off
+yabai -m rule --add app="^SQL Gateway Client (2.0)$"   manage=off
+yabai -m rule --add app="^Simulator$"                  manage=off
+yabai -m rule --add app="^QuickTime Player$"           manage=off
 
 echo "yabai configuration loaded.."
