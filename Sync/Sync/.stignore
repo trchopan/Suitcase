@@ -37,6 +37,7 @@ yarn.lock
 
 // Rust
 Cargo.lock
+target
 
 // Firebase
 .firebase
