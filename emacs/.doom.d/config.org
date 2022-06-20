@@ -346,15 +346,6 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
-** Typescript
-
-*** Package
-
-#+begin_src emacs-lisp :tangle ./packages.el
-(package! ob-ts-node :recipe (:host github :repo "tmythicator/ob-ts-node"))
-#+end_src
-
-
 ** Peek definition
 
 #+begin_src emacs-lisp :tangle ./config.el
@@ -367,6 +358,15 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 
 #+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-signature-auto-activate nil)
+#+end_src
+
+
+** Typescript
+
+*** Package
+
+#+begin_src emacs-lisp :tangle ./packages.el
+(package! ob-ts-node :recipe (:host github :repo "tmythicator/ob-ts-node"))
 #+end_src
 
 
