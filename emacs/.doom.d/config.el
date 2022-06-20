@@ -1,7 +1,7 @@
 (setq user-full-name "Chop Tr (chop.ink)"
       user-mail-address "chop@chop.ink")
 
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-tomorrow-night)
 
 (setq org-directory "~/org")
 

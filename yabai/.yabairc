@@ -58,6 +58,7 @@ yabai -m rule --add app="^Simulator$"                                manage=off
 yabai -m rule --add app="^QuickTime Player$"                         manage=off
 yabai -m rule --add app="^Karabiner-Elements$"                       manage=off
 yabai -m rule --add app="^Adobe Photoshop.*$"                        manage=off
+yabai -m rule --add app="^System Information$"                       manage=off
 
 yabai -m rule --add title="^Sign in - Google Accounts - Brave$"      manage=off
 
