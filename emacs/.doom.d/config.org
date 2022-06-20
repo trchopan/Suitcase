@@ -317,7 +317,7 @@ Automatic tangle on save
 #+end_src
 
 
-Maximize the window upon startup. (May need to edit below depends on the monitor size)
+Set the window size upon startup. (May need to edit below depends on the monitor size)
 
 #+begin_src emacs-lisp :tangle ./config.el
 (if (string= (getenv "USER") "lw70868")
@@ -451,6 +451,7 @@ Edit workspaces by ~treemacs-edit-workspaces~
   (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
   (doom-themes-treemacs-config))
 #+end_src
+
 
 ** Doom theme
 
