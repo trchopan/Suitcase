@@ -62,6 +62,7 @@ yabai -m rule --add app="^System Information$"                       manage=off
 yabai -m rule --add app="^Activity Monitor$"                         manage=off
 yabai -m rule --add app="^pgAdmin 4$"                                manage=off
 yabai -m rule --add app="^App Store$"                                manage=off
+yabai -m rule --add app="^MongoDB Compass$"                          manage=off
 
 yabai -m rule --add title="^Sign in - Google Accounts - Brave$"      manage=off
 
