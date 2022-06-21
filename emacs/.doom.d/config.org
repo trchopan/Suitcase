@@ -395,27 +395,6 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
-* Company
-
-** Disable yasnipet global mode
-
-It disturb the typing as it auto-select the first hint
-
-#+begin_src emacs-lisp :tangle ./config.el
-(after! yasnippet
-  (yas-global-mode -1))
-#+end_src
-
-
-** Use <C-n> during insert mode to invoke company
-
-#+begin_src emacs-lisp :tangle ./config.el
-;; (map! :i "<C-n>" #'+company-complete)
-;; (map! (:when (featurep! :completion company) ; Conditional loading
-;;        :i "C-n" #'+company/complete))
-#+end_src
-
-
 * Treemacs
 
 ** Workspaces and perspectives
