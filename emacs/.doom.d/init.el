@@ -70,8 +70,8 @@
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       ;(spell +flyspell) ; tasing you for misspelling mispelling
-       ;grammar           ; tasing grammar mistake every you make
+                                        ;(spell +flyspell) ; tasing you for misspelling mispelling
+                                        ;grammar           ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
@@ -113,7 +113,7 @@
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
        ;;elixir            ; erlang done right
-       elm               ; care for a cup of TEA?
+       (elm +lsp)               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics

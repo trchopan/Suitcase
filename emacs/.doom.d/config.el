@@ -46,9 +46,6 @@
 
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 
-(map! :n "K" 'lsp-ui-doc-show)
-(map! :n "C-K" '+lookup/documentation)
-
 (setq lsp-signature-auto-activate nil)
 
 (use-package! tree-sitter
