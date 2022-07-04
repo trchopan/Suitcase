@@ -279,6 +279,13 @@ My screen is small. I Prefer 2 space indentation:
 #+end_src
 
 
+** Search wrapping
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq evil-search-wrap nil)
+#+end_src
+
+
 ** Doom splash screen
 
 #+begin_src emacs-lisp :tangle ./config.el
