@@ -238,8 +238,13 @@ of the block."
 (map! :ni "C-)" #'sp-forward-slurp-sexp)
 (map! :ni "C-(" #'sp-backward-slurp-sexp)
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
-      doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 16))
+(if (string= (getenv "USER") "lw70868")
+    (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
+          doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 16)
+          doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 18))
+  (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
+        doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 15)
+        doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 

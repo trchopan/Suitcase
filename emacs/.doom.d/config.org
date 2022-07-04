@@ -758,8 +758,13 @@ of the block."
 ** Font face
 
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
-      doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 16))
+(if (string= (getenv "USER") "lw70868")
+    (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
+          doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 16)
+          doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 18))
+  (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 13)
+        doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 15)
+        doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
 #+end_src
 
 
