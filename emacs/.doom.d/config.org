@@ -282,7 +282,7 @@ My screen is small. I Prefer 2 space indentation:
 ** Search wrapping
 
 #+begin_src emacs-lisp :tangle ./config.el
-(setq evil-search-wrap nil)
+(setq evil-search-wrap t)
 #+end_src
 
 
@@ -766,6 +766,9 @@ of the block."
         doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 15)
         doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
 #+end_src
+
+#+RESULTS:
+: #<font-spec nil nil FiraCode\ Nerd\ Font\ Mono nil nil nil nil nil 18 nil nil nil nil>
 
 
 ** Org pretty mode

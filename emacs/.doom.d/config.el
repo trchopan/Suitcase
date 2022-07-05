@@ -9,7 +9,7 @@
 
 (setq standard-indent 2)
 
-(setq evil-search-wrap nil)
+(setq evil-search-wrap t)
 
 (defun doom-dashboard-draw-ascii-emacs-banner-fn ()
   (let* ((banner
