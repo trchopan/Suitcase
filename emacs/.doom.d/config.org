@@ -346,13 +346,13 @@ If you are in a buffer with lsp-mode enabled and a server that supports textDocu
 - To disable this behavior in one mode: (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
 #+begin_src emacs-lisp :tangle ./config.el
-(setq +format-with-lsp nil)
+;; (setq +format-with-lsp nil)
 #+end_src
 
 The command format-all-ensure-formatter will ensure that a default formatter is selected in case you don't have one set; you can customize the default formatter for each language. To ensure a formatter is set whenever you enable format-all-mode, you can use: (add-hook format-all-mode-hook 'format-all-ensure-formatter).
 
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
+;; (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 #+end_src
 
 
