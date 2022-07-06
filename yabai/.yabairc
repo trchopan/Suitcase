@@ -69,4 +69,7 @@ yabai -m rule --add app="^sqlectron"                                 manage=off
 
 yabai -m rule --add title="^Sign in - Google Accounts - Brave$"      manage=off
 
+# For flutter dev
+yabai -m rule --add app="^Google Chrome"                             manage=off
+
 echo "yabai configuration loaded.."
