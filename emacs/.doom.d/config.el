@@ -44,7 +44,7 @@
     (setq initial-frame-alist '((top . 1) (left . 1) (width . 190) (height . 65)))
   (setq initial-frame-alist '((top . 1) (left . 1) (width . 177) (height . 55))))
 
-;; (setq +format-with-lsp nil)
+(setq-hook! 'haskell-mode-hook +format-with-lsp nil)
 
 ;; (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 
