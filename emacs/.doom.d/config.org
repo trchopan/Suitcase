@@ -63,7 +63,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       (popup +all)   ; tame sudden yet inevitable temporary windows
        tabs              ; a tab bar for Emacs
        (treemacs +lsp)          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
@@ -768,6 +768,13 @@ of the block."
         doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
 #+end_src
 
+
+#+begin_src emacs-lisp
+; Manually switch
+;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 14)
+;;         doom-variable-pitch-font (font-spec :family "Source Serif Pro" :size 16)
+;;         doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 18))
+#+end_src
 
 ** Org pretty mode
 
