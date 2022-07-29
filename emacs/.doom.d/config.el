@@ -53,16 +53,6 @@
 
 (map! :leader :desc "Show flycheck" :n "t f" (cmd! (flycheck-list-errors)))
 
-;; (use-package! tree-sitter
-;;   :config
-;;   (require 'tree-sitter-langs)
-;;   (global-tree-sitter-mode)
-;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-;;   (pushnew! tree-sitter-major-mode-language-alist
-;;           '(scss-mode . css))
-;;   (pushnew! tree-sitter-major-mode-language-alist
-;;           '(haskell-mode . haskell)))
-
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)
