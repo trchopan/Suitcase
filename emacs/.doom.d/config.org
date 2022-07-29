@@ -373,6 +373,16 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
+* Flycheck
+
+** Keymap
+
+
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :leader :desc "Show flycheck" :n "t f" (cmd! (flycheck-list-errors)))
+#+end_src
+
+
 * Tree-sitter
 
 ** Package
@@ -451,6 +461,8 @@ Trick:
 
 
 * Gitgutter
+
+** Keymap
 
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader :n "g p" #'git-gutter:popup-hunk)
@@ -595,18 +607,6 @@ Note: In Doom emacs =s= key is =super key=, aka =⌘= on MacOS, =Windows= key on
 ;; Need to unbind this for org-mode
 (with-eval-after-load 'evil-org
   (define-key evil-org-mode-map (kbd "<normal-state> X") nil))
-#+end_src
-
-
-** Tab numbers
-
-#+begin_src emacs-lisp :tangle ./config.el
-(map! :desc "Goto Tab 1" :n "s-1" (cmd! (+tabs:next-or-goto 1))
-      :desc "Goto Tab 2" :n "s-2" (cmd! (+tabs:next-or-goto 2))
-      :desc "Goto Tab 3" :n "s-3" (cmd! (+tabs:next-or-goto 3))
-      :desc "Goto Tab 4" :n "s-4" (cmd! (+tabs:next-or-goto 4))
-      :desc "Goto Tab 5" :n "s-5" (cmd! (+tabs:next-or-goto 5))
-      :desc "Goto Tab 6" :n "s-6" (cmd! (+tabs:next-or-goto 6)))
 #+end_src
 
 
