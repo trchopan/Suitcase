@@ -127,6 +127,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
+       tree-sitter       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -143,10 +144,10 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        ;;data              ; config/data formats
-       (dart +flutter +lsp)   ; paint ui and not much else
+       ;;(dart +flutter +lsp)   ; paint ui and not much else
        ;;dhall
        ;;elixir            ; erlang done right
-       (elm +lsp)               ; care for a cup of TEA?
+       ;;(elm +lsp)               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
@@ -181,7 +182,7 @@ This is kinda personal preference but it will effect the whole setup. I used to 
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
-       rest              ; Emacs as a REST client
+       ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
@@ -388,23 +389,23 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 ** Package
 
 #+begin_src emacs-lisp :tangle ./packages.el
-(package! tree-sitter)
-(package! tree-sitter-langs)
+;; (package! tree-sitter)
+;; (package! tree-sitter-langs)
 #+end_src
 
 
 ** Config
 
 #+begin_src emacs-lisp :tangle ./config.el
-(use-package! tree-sitter
-  :config
-  (require 'tree-sitter-langs)
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  (pushnew! tree-sitter-major-mode-language-alist
-          '(scss-mode . css))
-  (pushnew! tree-sitter-major-mode-language-alist
-          '(haskell-mode . haskell)))
+;; (use-package! tree-sitter
+;;   :config
+;;   (require 'tree-sitter-langs)
+;;   (global-tree-sitter-mode)
+;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+;;   (pushnew! tree-sitter-major-mode-language-alist
+;;           '(scss-mode . css))
+;;   (pushnew! tree-sitter-major-mode-language-alist
+;;           '(haskell-mode . haskell)))
 #+end_src
 
 
