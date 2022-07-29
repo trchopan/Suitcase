@@ -365,15 +365,6 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
-** Typescript
-
-*** Package
-
-#+begin_src emacs-lisp :tangle ./packages.el
-(package! ob-ts-node :recipe (:host github :repo "tmythicator/ob-ts-node"))
-#+end_src
-
-
 * Flycheck
 
 ** Keymap
@@ -413,7 +404,7 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 
 ** Workspaces and perspectives
 
-Projects are beautifully managed. Can be added with =<C-p><C-p>a=.
+Projects are beautifully managed. Can be added with =<C-c><C-p>a=.
 
 Edit workspaces by ~treemacs-edit-workspaces~
 
