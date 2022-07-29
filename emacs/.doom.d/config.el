@@ -53,6 +53,9 @@
 
 (map! :leader :desc "Show flycheck" :n "t f" (cmd! (flycheck-list-errors)))
 
+(with-eval-after-load 'tree-sitter
+  (global-tree-sitter-mode))
+
 (defun treemacs-find-and-goto-treemacs ()
   (interactive)
   (treemacs-find-file)

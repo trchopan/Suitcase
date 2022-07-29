@@ -375,6 +375,14 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
+* Tree-sitter
+
+#+begin_src emacs-lisp :tangle ./config.el
+(with-eval-after-load 'tree-sitter
+  (global-tree-sitter-mode))
+#+end_src
+
+
 * Treemacs
 
 ** Workspaces and perspectives
