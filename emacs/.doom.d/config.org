@@ -365,6 +365,13 @@ The command format-all-ensure-formatter will ensure that a default formatter is 
 #+end_src
 
 
+** Disable deno-ls
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq! lsp-disabled-clients '(deno-ls))
+#+end_src
+
+
 * Flycheck
 
 ** Keymap
