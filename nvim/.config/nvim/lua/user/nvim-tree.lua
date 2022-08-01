@@ -40,7 +40,7 @@ nvim_tree.setup({
         default = "",
         symlink = "",
         git = {
-          unstaged = "",
+          unstaged = "",
           staged = "ﰷ",
           unmerged = "",
           renamed = "➜",
@@ -49,6 +49,8 @@ nvim_tree.setup({
           ignored = "◌",
         },
         folder = {
+          arrow_closed = "",
+          arrow_open = "",
           default = "",
           open = "",
           empty = "",
