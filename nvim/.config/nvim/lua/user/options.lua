@@ -34,11 +34,10 @@ vim.o.smartcase = true
 -- vim.o.updatetime = 300
 vim.o.signcolumn = "yes"
 vim.o.termguicolors = true
-vim.g.onedark_terminal_italics = 2
 vim.o.background = "dark"
 
 vim.api.nvim_exec(
-	[[
+  [[
   set whichwrap+=<,>,[,],h,l"
   set iskeyword+=-
 
@@ -47,23 +46,5 @@ vim.api.nvim_exec(
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
   ]],
-	false
+  false
 )
-
-vim.cmd([[
-try
-  colorscheme onedarker
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]])
-
-local theme = vim.fn.system("defaults read -g AppleInterfaceStyle")
-if string.find(theme, "Dark") then
-	vim.o.background = "dark"
-	vim.cmd([[colorscheme onedarker]])
-else
-	vim.o.background = "light"
-	vim.cmd([[colorscheme morning]])
-end

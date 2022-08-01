@@ -94,3 +94,10 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
   },
 }
+
+local opt = { noremap = true, silent = true }
+local k = vim.api.nvim_set_keymap
+
+k("n", "<C-f>f", "<Cmd>Telescope live_grep<CR>", opt)
+k("n", "<leader><Space>", "<Cmd>Telescope find_files<CR>", opt)
+
