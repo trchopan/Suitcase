@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "simrat39/symbols-outline.nvim" -- a tree like view for symbols 
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- LuaSnip
   use "L3MON4D3/LuaSnip" --snippet engine

@@ -14,5 +14,6 @@ require('user.treesitter')
 require('user.comment')
 
 require('user.cmp')
-require('user.lsp')
 require('user.gitsigns')
+require('user.lsp')
+require('user.lsp.null-ls')

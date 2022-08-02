@@ -79,8 +79,6 @@ local function lsp_keymaps(bufnr)
 
   k(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   k(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-
-  k(bufnr, "n", "<leader>cf", "<cmd>LspRestart<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
