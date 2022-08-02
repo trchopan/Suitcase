@@ -6,26 +6,11 @@ vim.g.gruvbox_baby_function_style = "NONE"
 vim.g.gruvbox_baby_keyword_style = "italic"
 vim.g.gruvbox_baby_background_color = "dark"
 
-local colors = require("gruvbox-baby.colors").config()
-vim.g.gruvbox_baby_highlights = {
-  Comment = { fg = colors.orange },
-  SpecialComment = { fg = colors.orange },
+require('onedark').setup {
+    style = 'darker'
 }
-
-require("onedarkpro").setup({
-  theme = "onedark_dark",
-})
-
--- local config = require("gruvbox-baby.config")
--- local colors = require("gruvbox-baby.colors")
--- local c = colors.config(config)
--- vim.g.gruvbox_baby_highlights = {
---   Normal = { fg = "#c2bbb5", bg = c.background, style = config.comment_style },
---   Comment = { fg = "#c2bbb5", bg = c.background, style = config.comment_style },
---   SpecialComment ={ fg = "#c2bbb5", bg = c.background,  style = config.comment_style },
--- }
-
+require('onedark').load()
 
 -- Load the colorscheme
--- vim.cmd[[colorscheme onedarkpro]]
-vim.cmd [[colorscheme gruvbox-baby]]
+vim.cmd[[colorscheme onedark]]
+-- vim.cmd [[colorscheme gruvbox]]

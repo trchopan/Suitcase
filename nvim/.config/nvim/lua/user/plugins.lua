@@ -11,13 +11,6 @@ return require('packer').startup(function(use)
 
   use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
-  use 'luisiacc/gruvbox-baby'
-  use({
-    "olimorris/onedarkpro.nvim",
-    config = function()
-      require("onedarkpro").setup()
-    end
-  })
 
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
