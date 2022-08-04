@@ -12,5 +12,5 @@ require('onedark').setup {
 require('onedark').load()
 
 -- Load the colorscheme
-vim.cmd[[colorscheme onedark]]
--- vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd[[colorscheme onedark]]
+vim.cmd [[colorscheme gruvbox]]
