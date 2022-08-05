@@ -769,6 +769,9 @@ key_bindings:
   - { key: Key8,       mods: Command,                    chars: "\x02\x38"      }
   - { key: T,          mods: Command,                    chars: "\x02\x63"      }
   - { key: D,          mods: Command,                    chars: "\x02\x25"      }
+  # Move cursor by <Option + Arrow Keys>
+  - { key: Right,      mods: Alt,                        chars: "\x1BF"         }
+  - { key: Left,       mods: Alt,                        chars: "\x1BB"         }
 
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
