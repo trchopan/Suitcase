@@ -1,8 +1,6 @@
 local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
-k("n", "\\q", ":q<CR>", opt)
-
 k("n", "<Esc><Esc>", ":noh<CR>", opt)
 
 -- Brackets

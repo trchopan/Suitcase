@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
   use 'romgrk/barbar.nvim'
   use 'nvim-lualine/lualine.nvim'
 
-  use 'nvim-lua/plenary.nvim' -- Useful lua functions used ny lots of plugins
+  use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
   use "lewis6991/impatient.nvim" -- Speed up loading Lua modules in Neovim to improve startup time.
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
@@ -62,6 +62,7 @@ return require('packer').startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "simrat39/symbols-outline.nvim" -- a tree like view for symbols 
+  use "jose-elias-alvarez/null-ls.nvim" -- inject LSP diagnostics, code actions, and more
 
   -- LuaSnip
   use "L3MON4D3/LuaSnip" --snippet engine
