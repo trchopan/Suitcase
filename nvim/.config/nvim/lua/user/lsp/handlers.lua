@@ -82,7 +82,14 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  client.resolved_capabilities.document_formatting = false
+  -- Disable format for some servers
+  local servers = { "tsserver", "hls" }
+  for _, server in ipairs(servers) do
+    if client.name == server then
+      client.resolved_capabilities.document_formatting = false
+    end
+  end
+
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
