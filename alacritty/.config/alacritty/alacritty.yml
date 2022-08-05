@@ -769,6 +769,10 @@ key_bindings:
   - { key: Key8,       mods: Command,                    chars: "\x02\x38"      }
   - { key: T,          mods: Command,                    chars: "\x02\x63"      }
   - { key: D,          mods: Command,                    chars: "\x02\x25"      }
+  # Vim binding
+  - { key: LBracket,   mods: Shift|Control,              chars: "\x5c\x74\x68"  }
+  - { key: RBracket,   mods: Shift|Control,              chars: "\x5c\x74\x6c"  }
+
   # Move cursor by <Option + Arrow Keys>
   - { key: Right,      mods: Alt,                        chars: "\x1BF"         }
   - { key: Left,       mods: Alt,                        chars: "\x1BB"         }
