@@ -57,7 +57,13 @@ shift + alt + ctrl - e : yabai -m window --focus $(yabai -m query --windows | jq
 shift + alt + ctrl - p : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Plex")) | .id')
 
 # toggle layout
-shift + alt + ctrl - 0x32 : if [[ -z $(yabai -m query --spaces |grep float) ]]; \
+shift + alt + ctrl - 0x32 : if [[ -z $(yabai -m query --spaces |grep float) ]];\
                                 then yabai -m config layout float; yabai -m config window_border off;\
                                 else yabai -m config layout bsp; yabai -m config window_border on;\
                             fi;
+
+# toggle window border
+shift + alt + ctrl - w : if [[ $(yabai -m query --windows | jq '.[0]."has-border"') == "true" ]];\
+                                then yabai -m config window_border off;\
+                                else yabai -m config window_border on;\
+                         fi;

@@ -51,5 +51,3 @@ inoremap ˚ <Esc>:m .-2<CR>i
 
 -- Misc keymap for plugins
 k("n", "<C-f>r", "<Cmd>lua require('spectre').open()<CR>", opt)
-k("n", "<Space>", ":HopWord<CR>", opt)
-

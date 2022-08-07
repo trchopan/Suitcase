@@ -3,34 +3,19 @@ if not status_ok then
   return
 end
 
-local function on_open()
-  require("bufferline.state").set_offset(30 + 1, "")
-end
-
-local function on_close()
-  require("bufferline.state").set_offset(0)
-end
-
 local tree_view = require("nvim-tree.view")
 local default_open = tree_view.open
 local default_close = tree_view.close
 
 tree_view.open = function()
-  on_open()
+  require("bufferline.state").set_offset(30 + 1, "")
   default_open()
 end
 
 tree_view.close = function()
-  on_close()
+  require("bufferline.state").set_offset(0)
   default_close()
 end
-
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
   renderer = {
@@ -43,10 +28,10 @@ nvim_tree.setup({
           unstaged = "",
           staged = "ﰷ",
           unmerged = "",
-          renamed = "➜",
-          deleted = "",
+          renamed = "",
+          deleted = "ﯰ",
           untracked = "",
-          ignored = "◌",
+          ignored = "ﱤ",
         },
         folder = {
           arrow_closed = "",
@@ -110,12 +95,13 @@ nvim_tree.setup({
     mappings = {
       custom_only = false,
       list = {
-        { key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-        { key = "h", cb = tree_cb("close_node") },
-        { key = "s", cb = tree_cb("vsplit") },
-        { key = "o", cb = tree_cb("system_open") },
-        { key = "p", cb = tree_cb("parent_node") },
-        { key = "P", cb = tree_cb("paste") },
+        { key = { "l", "<CR>", "o" }, action = "edit" },
+        { key = "h", action = "close_node" },
+        { key = "p", action = "parent_node" },
+        { key = "s", action = "vsplit" },
+        { key = "o", action = "system_open" },
+        { key = "P", action = "paste" },
+        { key = "<Space>", action = "" },
       },
     },
   },

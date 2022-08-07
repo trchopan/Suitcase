@@ -1,16 +1,37 @@
-vim.g.tokyonight_style = "storm"
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+local tokyonight_ok, _ = pcall(require, "tokyonight")
+if tokyonight_ok then
+  vim.g.tokyonight_style = "night"
+  vim.g.tokyonight_italic_functions = true
+  vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+end
 
-vim.g.gruvbox_baby_function_style = "NONE"
-vim.g.gruvbox_baby_keyword_style = "italic"
-vim.g.gruvbox_baby_background_color = "dark"
+local gruvbox_ok, gruvbox = pcall(require, "gruvbox")
+if gruvbox_ok then
+  gruvbox.setup({
+    undercurl = true,
+    underline = true,
+    bold = true,
+    italic = true,
+    strikethrough = true,
+    invert_selection = false,
+    invert_signs = false,
+    invert_tabline = false,
+    invert_intend_guides = false,
+    inverse = true, -- invert background for search, diffs, statuslines and errors
+    contrast = "solf", -- can be "hard", "soft" or empty string
+    overrides = {},
+  })
+end
 
-require('onedark').setup {
+local onedark_ok, onedark = pcall(require, "onedark")
+if onedark_ok then
+  onedark.setup({
     style = 'darker'
-}
-require('onedark').load()
+  })
+  onedark.load()
+end
 
 -- Load the colorscheme
 -- vim.cmd[[colorscheme onedark]]
 vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[colorscheme tokyonight]]

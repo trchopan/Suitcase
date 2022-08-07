@@ -4,6 +4,7 @@ require('user.options')
 require('user.impatient')
 
 require('user.nvim-tree')
+require('user.hop')
 require('user.barbar')
 require('user.lualine')
 
