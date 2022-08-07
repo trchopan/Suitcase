@@ -33,5 +33,6 @@ end
 
 -- Load the colorscheme
 -- vim.cmd[[colorscheme onedark]]
-vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme melange]]
