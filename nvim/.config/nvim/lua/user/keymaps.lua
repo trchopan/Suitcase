@@ -21,14 +21,15 @@ k("i", "``<CR>", "``<Esc>i<CR><Esc>==O", opt)
 k("i", '""', '""<Esc>i', opt)
 k("i", '"""', '"""', opt)
 k("i", "''", "''<Esc>i", opt)
+k("i", "||", "||<Esc>i", opt)
 
 k("n", ",,", "ma$a,<Esc>`a", opt)
 k("n", ";;", "ma$a;<Esc>`a", opt)
 
 k("n", "<C-f>w", "*Nciw", opt)
+k("v", "<C-f>w", '"yy?<C-r>y<CR>N', opt)
 k("v", "<C-c>c", '"*y', opt)
-k("v", "<C-f><C-f>", 'y:%s?<C-r>"??g<Left><Left>', opt)
-k("v", "p", '"_dP', opt)
+k("v", "p", '"_dP', opt) -- paste without yanking current selection
 
 -- quick vim surround
 vim.cmd([[
