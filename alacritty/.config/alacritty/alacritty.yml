@@ -759,6 +759,7 @@ shell:
 # in the order they were defined in.
 key_bindings:
   # Tmux binding
+  # Command + number for tab switching
   - { key: Key1,       mods: Command,                    chars: "\x02\x31"      }
   - { key: Key2,       mods: Command,                    chars: "\x02\x32"      }
   - { key: Key3,       mods: Command,                    chars: "\x02\x33"      }
@@ -770,6 +771,7 @@ key_bindings:
   - { key: T,          mods: Command,                    chars: "\x02\x63"      }
   - { key: D,          mods: Command,                    chars: "\x02\x25"      }
   # Vim binding
+  # Shift + Control + '[' or ']' to move tab left and right
   - { key: LBracket,   mods: Shift|Control,              chars: "\x5c\x74\x68"  }
   - { key: RBracket,   mods: Shift|Control,              chars: "\x5c\x74\x6c"  }
 
