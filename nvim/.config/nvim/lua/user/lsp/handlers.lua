@@ -65,7 +65,7 @@ local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   k(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   k(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  k(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  -- k(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- Use Trouble.nvim
   k(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   k(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
@@ -74,7 +74,7 @@ local function lsp_keymaps(bufnr)
   k(bufnr, "n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   k(bufnr, "n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   k(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  k(bufnr, "n", "<leader>cl", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  -- k(bufnr, "n", "<leader>cl", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts) -- Use Trouble.nvim
   k(bufnr, "n", "<leader>cx", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
 
   k(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
