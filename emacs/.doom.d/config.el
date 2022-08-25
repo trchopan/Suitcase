@@ -3,7 +3,7 @@
 
 (setq doom-theme 'doom-tomorrow-night)
 
-(setq org-directory "~/org")
+(setq org-directory "~/Sync/org")
 
 (setq display-line-numbers-type t)
 
@@ -103,6 +103,8 @@
   (shell-command (concat "clipboard-image-paste 1280 " filename " \"png[Q=85]\""))
   (insert "#+attr_html: :width 720\n")
   (insert (concat "[[" filename "]]")))
+
+
 
 (with-eval-after-load 'centaur-tabs
   (centaur-tabs-group-by-projectile-project))
