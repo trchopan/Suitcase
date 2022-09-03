@@ -58,6 +58,7 @@ return require('packer').startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- inject LSP diagnostics, code actions, and more
   use "folke/trouble.nvim"
+  use "akinsho/toggleterm.nvim"
 
   -- LuaSnip
   use "L3MON4D3/LuaSnip" --snippet engine
