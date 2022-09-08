@@ -31,7 +31,7 @@ nvim_tree.setup({
           renamed = "",
           deleted = "ﯰ",
           untracked = "",
-          ignored = "ﱤ",
+          ignored = "",
         },
         folder = {
           arrow_closed = "",
