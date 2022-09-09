@@ -51,8 +51,6 @@
 
 (setq lsp-signature-auto-activate nil)
 
-(setq! lsp-disabled-clients '(deno-ls))
-
 (map! :leader :desc "Show flycheck" :n "t f" (cmd! (flycheck-list-errors)))
 
 (with-eval-after-load 'tree-sitter
