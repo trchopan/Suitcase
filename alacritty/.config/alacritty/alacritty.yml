@@ -757,6 +757,22 @@ shell:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
+#
+# If you run "xxd -psd" and hit "c-f v" and then enter and finally c-c to exit
+# , it outputs the following:
+#
+# 	$ xxd -psd
+# 	^Fv
+# 	06760a^C
+#
+# What matters is the sequence  06760a^C where:
+#
+# 	06 -> c-f
+# 	76 -> v
+# 	0a -> return
+#	^C -> c-c
+#
+# From here, we know that 0x06 0x76 corresponds to "c-f v".
 key_bindings:
   # Tmux binding
   # Command + number for tab switching
