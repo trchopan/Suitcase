@@ -33,11 +33,8 @@ dist
 dist-ssr
 *.local
 .log
-package-lock.json
-yarn.lock
 
 // Rust
-Cargo.lock
 target
 
 // Firebase
