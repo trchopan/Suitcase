@@ -36,3 +36,14 @@ end
 -- vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[colorscheme tokyonight]]
 vim.cmd [[colorscheme melange]]
+
+local theme_index = 1
+
+function _rotate_themes()
+  local themes = { "tokyonight-moon", "gruvbox", "onedark", "melange" }
+  local next_theme = themes[theme_index]
+  vim.cmd('colorscheme ' .. next_theme)
+  theme_index = theme_index < #themes and theme_index + 1 or 1
+end
+
+vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _rotate_themes()<CR>", { noremap = true, silent = true })
