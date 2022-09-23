@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use "lukas-reineke/indent-blankline.nvim"
 
   use {
     "nvim-treesitter/nvim-treesitter",

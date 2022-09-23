@@ -13,6 +13,7 @@ require('user.theme')
 require('user.telescope')
 require('user.treesitter')
 require('user.comment')
+require('user.indent')
 
 require('user.cmp')
 require('user.gitsigns')
