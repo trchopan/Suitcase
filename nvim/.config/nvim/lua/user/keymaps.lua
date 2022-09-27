@@ -2,6 +2,7 @@ local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
 k("n", "<Esc><Esc>", ":noh<CR>", opt)
+k("n", "<leader>bK", ":BufferCloseAllButCurrent<CR>", opt)
 
 -- Brackets
 k("i", "{{", "{{}}<Esc><Left>i", opt)
