@@ -1,0 +1,39 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+  name = Quang Tran (Chop Tr)
+  email = logan1011001@gmail.com
+	signingkey = B1240734D6DFACF8
+
+[includeIf "gitdir:~/Documents/ChatQ/"]
+  path = ~/Documents/ChatQ/.gitconfig
+
+[includeIf "gitdir:~/Documents/Line/"]
+  path = ~/Documents/Line/.gitconfig
+
+[alias]
+  log-graph = log --graph --abbrev-commit --decorate --color --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%ai%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%n'
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+[add.interactive]
+  useBuiltin = false # required for git 2.37.0
+
+[delta]
+  features = decorations
+  paging = always
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
