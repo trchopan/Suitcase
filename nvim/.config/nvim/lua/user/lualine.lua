@@ -75,7 +75,7 @@ lualine.setup({
 	sections = {
 		lualine_a = { mode },
 		lualine_b = { branch },
-		lualine_c = { diagnostics },
+		lualine_c = { diagnostics, require('auto-session-library').current_session_name },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
