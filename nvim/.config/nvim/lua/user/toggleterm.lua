@@ -22,6 +22,7 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal = require('toggleterm.terminal').Terminal
+
 local lazygit  = Terminal:new({
   cmd = "lazygit",
   dir = "git_dir",
@@ -33,9 +34,9 @@ local lazygit  = Terminal:new({
   direction = "float",
   count = 9,
 })
-
 function _lazygit_toggle()
   lazygit:toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gb", ":9TermExec cmd=\"git blame %\"<CR>", { noremap = true, silent = true })
