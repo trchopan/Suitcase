@@ -7,3 +7,7 @@ session.setup {
   log_level = "error",
   auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 }
+
+local opt = { noremap = true, silent = true }
+local k = vim.api.nvim_set_keymap
+k("n", "<leader>ss", "<Cmd>Telescope session-lens search_session<CR>", opt)
