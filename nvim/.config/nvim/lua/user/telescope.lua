@@ -104,4 +104,5 @@ local k = vim.api.nvim_set_keymap
 
 k("n", "<C-f>f", "<Cmd>Telescope live_grep<CR>", opt)
 k("n", "<leader><Space>", "<Cmd>Telescope find_files<CR>", opt)
+k("n", "<leader>lo", "<Cmd>Telescope oldfiles<CR>", opt)
 
