@@ -8,12 +8,12 @@ local default_open = tree_view.open
 local default_close = tree_view.close
 
 tree_view.open = function()
-  require("bufferline.state").set_offset(30 + 1, "")
+  require("bufferline.api").set_offset(30 + 1, "")
   default_open()
 end
 
 tree_view.close = function()
-  require("bufferline.state").set_offset(0)
+  require("bufferline.api").set_offset(0)
   default_close()
 end
 
