@@ -44,6 +44,7 @@ function _rotate_themes()
   local next_theme = themes[theme_index]
   vim.cmd('colorscheme ' .. next_theme)
   theme_index = theme_index < #themes and theme_index + 1 or 1
+  print(next_theme)
 end
 
 vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _rotate_themes()<CR>", { noremap = true, silent = true })

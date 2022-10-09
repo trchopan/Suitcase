@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
   use 'tpope/vim-surround'
+  use 'tpope/vim-abolish'
   use "phaazon/hop.nvim"
 
   use {
