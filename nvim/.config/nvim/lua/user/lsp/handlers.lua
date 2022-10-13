@@ -83,7 +83,7 @@ end
 
 M.on_attach = function(client, bufnr)
   -- Disable format for some servers
-  local servers = { "tsserver", "hls", "volar" }
+  local servers = { "tsserver", "hls", "volar", "html" }
   for _, server in ipairs(servers) do
     if client.name == server then
       client.resolved_capabilities.document_formatting = false
