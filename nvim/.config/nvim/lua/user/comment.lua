@@ -1,10 +1,10 @@
 require('Comment').setup({
-  toggler = {
-    line = '//',
-    block = '??',
-  },
-  opleader = {
-    line = '//',
-    block = '??',
-  }
+    toggler = {
+        line = '//',
+        block = '??',
+    },
+    opleader = {
+        line = '//',
+        block = '??',
+    }
 })

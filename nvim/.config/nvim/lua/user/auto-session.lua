@@ -1,15 +1,15 @@
 local ok, session = pcall(require, "auto-session")
 if not ok then
-  return
+    return
 end
 
 session.setup {
-  log_level = "error",
-  auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+    log_level = "error",
+    auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 }
 
 require('session-lens').setup {
-    path_display={'shorten'},
+    path_display = { 'shorten' },
 }
 
 local opt = { noremap = true, silent = true }

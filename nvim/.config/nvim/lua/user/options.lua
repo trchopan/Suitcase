@@ -12,8 +12,8 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.swapfile = false
 vim.o.expandtab = true
-vim.o.shiftwidth = 2
-vim.o.tabstop = 2
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 vim.o.cursorline = true
 vim.o.numberwidth = 4
 vim.o.wrap = false
@@ -37,14 +37,14 @@ vim.o.termguicolors = true
 vim.o.background = "dark"
 
 vim.api.nvim_exec(
-  [[
-  set whichwrap+=<,>,[,],h,l"
-  set iskeyword+=-
+    [[
+    set whichwrap+=<,>,[,],h,l"
+    set iskeyword+=-
 
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-  ]],
-  false
+    augroup YankHighlight
+      autocmd!
+      autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+    augroup end
+    ]],
+    false
 )
