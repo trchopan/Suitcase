@@ -71,7 +71,7 @@ local function lsp_keymaps(bufnr)
 
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     -- k(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.document_highlight()<CR>", opts)
-    k(bufnr, "n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+    k(bufnr, "n", "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
     k(bufnr, "n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     k(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     -- k(bufnr, "n", "<leader>cl", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts) -- Use Trouble.nvim
