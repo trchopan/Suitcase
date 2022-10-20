@@ -70,8 +70,8 @@ local function lsp_keymaps(bufnr)
     k(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    -- k(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.document_highlight()<CR>", opts)
     k(bufnr, "n", "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
+    k(bufnr, "v", "<leader>cf", "<ESC><cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
     k(bufnr, "n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     k(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     -- k(bufnr, "n", "<leader>cl", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts) -- Use Trouble.nvim
@@ -86,7 +86,8 @@ M.on_attach = function(client, bufnr)
     local servers = { "tsserver", "hls", "volar", "html" }
     for _, server in ipairs(servers) do
         if client.name == server then
-            client.server_capabilities.document_formatting = false
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
         end
     end
 

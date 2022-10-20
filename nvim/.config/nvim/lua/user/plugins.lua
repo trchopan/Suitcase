@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use 'folke/tokyonight.nvim'
-    use 'navarasu/onedark.nvim'
+    -- use 'navarasu/onedark.nvim'
     use "ellisonleao/gruvbox.nvim"
     use "savq/melange"
 
@@ -49,12 +49,8 @@ return require('packer').startup(function(use)
     use {
         "folke/which-key.nvim",
         config = function()
-            require("which-key").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
+            require("which-key").setup {}
+        end,
     }
 
     use "nvim-telescope/telescope.nvim"
@@ -69,7 +65,8 @@ return require('packer').startup(function(use)
 
     -- LSP
     use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+    use "williamboman/mason.nvim" -- simple to use language server installer
+    use "williamboman/mason-lspconfig.nvim" -- helper for mason and lspconfig
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
     use "jose-elias-alvarez/null-ls.nvim" -- inject LSP diagnostics, code actions, and more
     use "folke/trouble.nvim"
