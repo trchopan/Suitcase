@@ -66,7 +66,7 @@ nvim_tree.setup({
         },
     },
     update_focused_file = {
-        enable = true,
+        enable = false,
         update_cwd = false,
         ignore_list = {},
     },
@@ -114,4 +114,4 @@ local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
 k("n", "\\\\", "<Cmd>NvimTreeToggle<CR>", opt)
-k("n", "`h", "<Cmd>NvimTreeFocus<CR>", opt)
+k("n", "`h", "<Cmd>NvimTreeFindFile<CR>", opt)
