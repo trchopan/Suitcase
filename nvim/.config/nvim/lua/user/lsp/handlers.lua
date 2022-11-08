@@ -63,13 +63,14 @@ end
 local function lsp_keymaps(bufnr)
     local k = vim.api.nvim_buf_set_keymap
     local opts = { noremap = true, silent = true }
+    k(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
     k(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     k(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    -- k(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- Use Trouble.nvim
+    k(bufnr, "n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     k(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    k(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- k(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- Use Trouble.nvim
 
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    k(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     k(bufnr, "n", "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
     k(bufnr, "v", "<leader>cf", "<ESC><cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
     k(bufnr, "n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
