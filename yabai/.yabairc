@@ -69,6 +69,7 @@ yabai -m rule --add app="^sqlectron"                                 manage=off
 yabai -m rule --add app="^Voice Memo"                                manage=off
 yabai -m rule --add app="^Postman$"                                  manage=off
 yabai -m rule --add app="^VLC$"                                      manage=off
+yabai -m rule --add app="^Blender$"                                  manage=off
 
 yabai -m rule --add title="^.*[Ss]ign in.*"                          manage=off
 
