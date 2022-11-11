@@ -14,4 +14,3 @@ require('session-lens').setup {
 
 local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
-k("n", "<leader>ss", "<Cmd>Telescope session-lens search_session<CR>", opt)

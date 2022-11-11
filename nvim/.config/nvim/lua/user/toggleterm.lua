@@ -39,4 +39,4 @@ function _lazygit_toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gb", ":9TermExec cmd=\"git blame %\"<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gB", ":9TermExec cmd=\"git blame %\"<CR>", { noremap = true, silent = true })

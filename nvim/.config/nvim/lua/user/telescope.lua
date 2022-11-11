@@ -12,7 +12,7 @@ telescope.setup {
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json" },
 
         mappings = {
             i = {
@@ -33,11 +33,10 @@ telescope.setup {
                 -- ["<C-t>"] = actions.select_tab,
                 ["<C-t>"] = trouble.open_with_trouble,
 
-                ["<C-u>"] = actions.preview_scrolling_up,
-                ["<C-d>"] = actions.preview_scrolling_down,
-
-                ["<PageUp>"] = actions.results_scrolling_up,
-                ["<PageDown>"] = actions.results_scrolling_down,
+                -- ["<C-u>"] = actions.preview_scrolling_up,
+                -- ["<C-d>"] = actions.preview_scrolling_down,
+                ["<C-u>"] = actions.results_scrolling_up,
+                ["<C-d>"] = actions.results_scrolling_down,
 
                 ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
                 ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -48,7 +47,7 @@ telescope.setup {
             },
 
             n = {
-                ["q"] = actions.close,
+                ["<Esc>"] = actions.close,
                 ["<CR>"] = actions.select_default,
                 ["<C-x>"] = actions.select_horizontal,
                 ["<C-v>"] = actions.select_vertical,
@@ -71,8 +70,8 @@ telescope.setup {
                 ["gg"] = actions.move_to_top,
                 ["G"] = actions.move_to_bottom,
 
-                ["<C-u>"] = actions.preview_scrolling_up,
-                ["<C-d>"] = actions.preview_scrolling_down,
+                ["<C-u>"] = actions.results_scrolling_up,
+                ["<C-d>"] = actions.results_scrolling_down,
 
                 ["<PageUp>"] = actions.results_scrolling_up,
                 ["<PageDown>"] = actions.results_scrolling_down,
@@ -103,4 +102,5 @@ local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
 k("n", "<leader><Space>", "<Cmd>Telescope find_files<CR>", opt)
-k("n", "<leader>sp", "<Cmd>Telescope live_grep<CR>", opt)
+k("n", "<leader>s", "<Cmd>Telescope live_grep<CR>", opt)
+-- k("n", "<leader>ss", "<Cmd>Telescope session-lens search_session<CR>", opt)

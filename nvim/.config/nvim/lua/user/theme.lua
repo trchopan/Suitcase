@@ -40,7 +40,7 @@ vim.cmd [[colorscheme melange]]
 local theme_index = 1
 
 function _rotate_themes()
-    local themes = { "tokyonight-moon", "gruvbox", "onedark", "melange" }
+    local themes = { "tokyonight-moon", "gruvbox", "melange" }
     local next_theme = themes[theme_index]
     vim.cmd('colorscheme ' .. next_theme)
     theme_index = theme_index < #themes and theme_index + 1 or 1

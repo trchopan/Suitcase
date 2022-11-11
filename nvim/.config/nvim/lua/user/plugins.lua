@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'tpope/vim-abolish'
     use "phaazon/hop.nvim"
+    use 'mfussenegger/nvim-treehopper'
 
     use {
         "ethanholz/nvim-lastplace",
