@@ -22,7 +22,6 @@ k("i", "``<CR>", "``<Esc>i<CR><Esc>==O", opt)
 k("i", '""', '""<Esc>i', opt)
 k("i", '"""', '"""', opt)
 k("i", "''", "''<Esc>i", opt)
-k("i", "||", "||<Esc>i", opt)
 
 k("n", ",,", "ma$a,<Esc>`a", opt)
 k("n", ";;", "ma$a;<Esc>`a", opt)
@@ -31,6 +30,11 @@ k("n", "<C-f>w", "*Nciw", opt)
 k("v", "<C-f>w", '"yy?<C-r>y<CR>N', opt)
 k("v", "<C-c>c", '"*y', opt)
 k("v", "p", '"_dP', opt) -- paste without yanking current selection
+
+vim.cmd([[
+" change without yanking by put it to black hole register "_
+nnoremap c "_c
+]])
 
 -- quick vim surround
 vim.cmd([[
