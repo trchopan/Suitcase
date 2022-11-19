@@ -5,6 +5,8 @@ require('user.impatient')
 
 require('user.nvim-tree')
 require('user.hop')
+require('user.gomove')
+require('user.autopairs')
 require('user.barbar')
 require('user.lualine')
 require('user.auto-session')

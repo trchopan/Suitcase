@@ -29,11 +29,8 @@ return require('packer').startup(function(use)
     use 'tpope/vim-abolish'
     use "phaazon/hop.nvim"
     use 'mfussenegger/nvim-treehopper'
-
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
+    use 'booperlv/nvim-gomove'
+    use "windwp/nvim-autopairs"
 
     use {
         "ethanholz/nvim-lastplace",

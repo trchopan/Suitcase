@@ -22,17 +22,6 @@ nmap }} ysiw}
 nmap )) ysiw)
 ]])
 
--- Move line up down. On some terminal may need to change to <A-j> and <A-k>.
-vim.cmd([[
-" nnoremap <A-j> :m .+1<CR>
-nnoremap ∆ :m .+1<CR>
-nnoremap ˚ :m .-2<CR>
-vnoremap ∆ :m '>+1<CR>gv
-vnoremap ˚ :m '<-2<CR>gv
-inoremap ∆ <Esc>:m .+1<CR>i
-inoremap ˚ <Esc>:m .-2<CR>i
-]])
-
 -- Misc keymap for plugins
 k("n", "<C-f>r", "<Cmd>lua require('spectre').open()<CR>", opt)
 k("n", "vv", "<Cmd>lua require('tsht').nodes()<CR>", opt)
