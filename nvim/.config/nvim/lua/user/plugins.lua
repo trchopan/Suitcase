@@ -31,6 +31,11 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-treehopper'
 
     use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
+    use {
         "ethanholz/nvim-lastplace",
         event = "BufRead",
         config = function()

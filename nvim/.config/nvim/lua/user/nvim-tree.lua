@@ -17,6 +17,10 @@ tree_view.close = function()
     default_close()
 end
 
+local function tree_hop_fn()
+    require 'hop'.hint_lines_skip_whitespace()
+end
+
 nvim_tree.setup({
     renderer = {
         icons = {
@@ -100,7 +104,7 @@ nvim_tree.setup({
                 { key = "s", action = "vsplit" },
                 { key = "o", action = "system_open" },
                 { key = "P", action = "paste" },
-                { key = "<Space>", action = "" },
+                { key = "<Space>", action = "tree_hop_fn", action_cb = tree_hop_fn },
             },
         },
     },

@@ -4,28 +4,6 @@ local k = vim.api.nvim_set_keymap
 k("n", "<Esc><Esc>", ":noh<CR>", opt)
 k("n", "<leader>bK", ":BufferCloseAllButCurrent<CR>", opt)
 
--- Brackets
-k("i", "{{", "{{}}<Esc><Left>i", opt)
-k("i", "{}", "{}<Esc>i", opt)
-k("i", "{}<CR>", "{}<Esc>i<CR><Esc>==O", opt)
-k("i", "{}<CR><CR>", "{},<Esc><Left>i<CR><Esc>==O", opt)
-k("i", "()", "()<Esc>i", opt)
-k("i", "()<Space>", "()<Space>", opt)
-k("i", "();", "();", opt)
-k("i", "()<CR>", "()<Esc>i<CR><Esc>==O", opt)
-k("i", "<>", "<><Esc>i", opt)
-k("i", "[]", "[]<Esc>i", opt)
-k("i", "[]<CR>", "[]<Esc>i<CR><Esc>==O", opt)
-k("i", "``", "``<Esc>i", opt)
-k("i", "```", "```", opt)
-k("i", "``<CR>", "``<Esc>i<CR><Esc>==O", opt)
-k("i", '""', '""<Esc>i', opt)
-k("i", '"""', '"""', opt)
-k("i", "''", "''<Esc>i", opt)
-
-k("n", ",,", "ma$a,<Esc>`a", opt)
-k("n", ";;", "ma$a;<Esc>`a", opt)
-
 k("n", "<C-f>w", "*Nciw", opt)
 k("v", "<C-f>w", '"yy?<C-r>y<CR>N', opt)
 k("v", "<C-c>c", '"*y', opt)
