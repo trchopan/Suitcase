@@ -35,7 +35,7 @@ end
 -- vim.cmd[[colorscheme onedark]]
 -- vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[colorscheme tokyonight]]
-vim.cmd [[colorscheme melange]]
+vim.cmd [[colorscheme gruvbox]]
 
 local theme_index = 1
 
