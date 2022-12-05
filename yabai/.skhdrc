@@ -37,10 +37,10 @@ shift + alt + ctrl - right : yabai -m window --move rel:50:0
 shift + alt + ctrl - space : yabai -m window --grid 1:1:0:0:1:1
 
 # resize window
-shift + alt - 0x1B        : yabai -m window --resize bottom_right:-50:0
-shift + alt - 0x18        : yabai -m window --resize bottom_right:50:0
-ctrl + shift + alt - 0x1B : yabai -m window --resize bottom_right:0:-50
-ctrl + shift + alt - 0x18 : yabai -m window --resize bottom_right:0:50
+shift + alt - 0x1B        : yabai -m window --resize bottom_right:-75:0
+shift + alt - 0x18        : yabai -m window --resize bottom_right:75:0
+ctrl + shift + alt - 0x1B : yabai -m window --resize bottom_right:0:-75
+ctrl + shift + alt - 0x18 : yabai -m window --resize bottom_right:0:75
 
 # restart yabai
 shift + alt + ctrl - d : if [[ -z $(brew services list | grep yabai | grep none) ]]; \
