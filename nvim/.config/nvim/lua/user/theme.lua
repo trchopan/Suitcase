@@ -31,16 +31,24 @@ if onedark_ok then
     onedark.load()
 end
 
+local catppuccin_ok, catppuccin = pcall(require, "catppuccin")
+if catppuccin_ok then
+    catppuccin.setup({
+        flavour = 'mocha'
+    })
+end
+
+
 -- Load the colorscheme
 -- vim.cmd[[colorscheme onedark]]
 -- vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[colorscheme tokyonight]]
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd.colorscheme "catppuccin"
 
 local theme_index = 1
 
 function _rotate_themes()
-    local themes = { "tokyonight-moon", "gruvbox", "melange" }
+    local themes = { "tokyonight-moon", "gruvbox", "melange", "onedark", "catppuccin" }
     local next_theme = themes[theme_index]
     vim.cmd('colorscheme ' .. next_theme)
     theme_index = theme_index < #themes and theme_index + 1 or 1

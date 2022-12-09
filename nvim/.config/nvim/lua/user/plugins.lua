@@ -9,8 +9,10 @@ end
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    -- Themes
     use 'folke/tokyonight.nvim'
-    -- use 'navarasu/onedark.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use 'navarasu/onedark.nvim'
     use "ellisonleao/gruvbox.nvim"
     use "savq/melange"
 

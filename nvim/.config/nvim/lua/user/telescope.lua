@@ -12,7 +12,7 @@ telescope.setup {
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
-        file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json" },
+        file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", ".git" },
 
         mappings = {
             i = {
@@ -88,6 +88,9 @@ telescope.setup {
         -- }
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
+        find_files = {
+            hidden = true,
+        }
     },
     extensions = {
         -- Your extension configuration goes here:
