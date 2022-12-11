@@ -13,7 +13,6 @@ return require('packer').startup(function(use)
     use 'folke/tokyonight.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'navarasu/onedark.nvim'
-    use "ellisonleao/gruvbox.nvim"
     use "savq/melange"
 
     use 'kyazdani42/nvim-web-devicons'

@@ -5,24 +5,6 @@ if tokyonight_ok then
     vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 end
 
-local gruvbox_ok, gruvbox = pcall(require, "gruvbox")
-if gruvbox_ok then
-    gruvbox.setup({
-        undercurl = true,
-        underline = true,
-        bold = true,
-        italic = true,
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "solf", -- can be "hard", "soft" or empty string
-        overrides = {},
-    })
-end
-
 local onedark_ok, onedark = pcall(require, "onedark")
 if onedark_ok then
     onedark.setup({
@@ -34,7 +16,26 @@ end
 local catppuccin_ok, catppuccin = pcall(require, "catppuccin")
 if catppuccin_ok then
     catppuccin.setup({
-        flavour = 'mocha'
+        flavour = 'mocha',
+        highlight_overrides = {
+            all = function(colors)
+                local visible_bg = "#1e1e2e"
+                local current_bg = "#45475a"
+                return {
+                    BufferVisible = { bg = visible_bg, fg = "#cdd6f4" },
+                    BufferVisibleIndex = { bg = visible_bg, fg = colors.blue },
+                    BufferVisibleMod = { bg = visible_bg, fg = colors.yellow },
+                    BufferVisibleSign = { bg = visible_bg, fg = colors.blue },
+                    BufferVisibleTarget = { bg = visible_bg, fg = colors.red },
+
+                    BufferCurrent = { bg = "#45475a", fg = colors.flamingo },
+                    BufferCurrentIndex = { bg = current_bg, fg = colors.blue },
+                    BufferCurrentMod = { bg = current_bg, fg = colors.yellow },
+                    BufferCurrentSign = { bg = current_bg, fg = colors.blue },
+                    BufferCurrentTarget = { bg = current_bg, fg = colors.red },
+                }
+            end,
+        },
     })
 end
 
@@ -48,7 +49,7 @@ vim.cmd.colorscheme "catppuccin"
 local theme_index = 1
 
 function _rotate_themes()
-    local themes = { "tokyonight-moon", "gruvbox", "melange", "onedark", "catppuccin" }
+    local themes = { "tokyonight-moon", "melange", "onedark", "catppuccin" }
     local next_theme = themes[theme_index]
     vim.cmd('colorscheme ' .. next_theme)
     theme_index = theme_index < #themes and theme_index + 1 or 1
