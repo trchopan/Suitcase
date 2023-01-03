@@ -5,7 +5,7 @@ end
 
 session.setup {
     log_level = "error",
-    auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+    auto_session_suppress_dirs = { "~/", "~/Sync", "~/Downloads", "~/Documents", "/" },
 }
 
 require('session-lens').setup {
