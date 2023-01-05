@@ -24,10 +24,9 @@ return require('packer').startup(function(use)
 
     use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
     use "lewis6991/impatient.nvim" -- Speed up loading Lua modules in Neovim to improve startup time.
-    use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
     use 'tpope/vim-surround'
-    use 'tpope/vim-abolish'
+    use 'tpope/vim-abolish' -- Search replace with case and plural aware. Also support for case coercion.
     use "phaazon/hop.nvim"
     use 'mfussenegger/nvim-treehopper'
     use 'booperlv/nvim-gomove'

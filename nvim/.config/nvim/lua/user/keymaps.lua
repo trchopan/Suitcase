@@ -22,11 +22,6 @@ nmap }} ysiw}
 nmap )) ysiw)
 ]])
 
--- highlight
-k("n", "<leader>hh", "<cmd>lua vim.lsp.buf.clear_references()<cr>", opt)
-k("n", "<leader>hr", "<cmd>lua vim.lsp.buf.document_highlight()<cr>", opt)
-
 -- Misc keymap for plugins
 k("n", "<C-f>r", "<Cmd>lua require('spectre').open()<CR>", opt)
 k("n", "vv", "<Cmd>lua require('tsht').nodes()<CR>", opt)
-
