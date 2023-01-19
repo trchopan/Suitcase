@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-  name = Quang Tran (Chop Tr)
-  email = logan1011001@gmail.com
+	name = Chop TRAN
+	email = m@chop.dev
 	signingkey = B1240734D6DFACF8
 
 [includeIf "gitdir:~/Documents/ChatQ/"]
