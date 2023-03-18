@@ -150,6 +150,11 @@
                                         "identifiers": [
                                             {
                                                 "is_keyboard": true,
+                                                "product_id": 64020,
+                                                "vendor_id": 9639
+                                            },
+                                            {
+                                                "is_keyboard": true,
                                                 "product_id": 591,
                                                 "vendor_id": 1452
                                             },
@@ -191,6 +196,11 @@
                                         "identifiers": [
                                             {
                                                 "is_keyboard": true,
+                                                "product_id": 64020,
+                                                "vendor_id": 9639
+                                            },
+                                            {
+                                                "is_keyboard": true,
                                                 "product_id": 591,
                                                 "vendor_id": 1452
                                             },
@@ -227,6 +237,11 @@
                                 "conditions": [
                                     {
                                         "identifiers": [
+                                            {
+                                                "is_keyboard": true,
+                                                "product_id": 64020,
+                                                "vendor_id": 9639
+                                            },
                                             {
                                                 "is_keyboard": true,
                                                 "product_id": 591,
