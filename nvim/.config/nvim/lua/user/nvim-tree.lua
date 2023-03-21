@@ -121,4 +121,4 @@ local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
 k("n", "\\\\", "<Cmd>NvimTreeToggle<CR>", opt)
-k("n", "`h", "<Cmd>NvimTreeFindFile<CR>", opt)
+k("n", "`h", "<Cmd>NvimTreeFindFile<CR><Cmd>NvimTreeFocus<CR>", opt)
