@@ -24,6 +24,7 @@ nmap )) ysiw)
 
 -- Misc keymap for plugins
 k("n", "<C-f>r", "<Cmd>lua require('spectre').open()<CR>", opt)
+k("n", "<leader>rr", "<Cmd>LspRestart<CR>", opt)
 k("n", "vv", "<Cmd>lua require('tsht').nodes()<CR>", opt)
 
 -- Rust
