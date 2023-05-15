@@ -21,8 +21,27 @@ tree_view.close = function()
     default_close()
 end
 
-local function tree_hop_fn()
-    require 'hop'.hint_lines_skip_whitespace()
+local function on_attach(bufnr)
+    local api = require('nvim-tree.api')
+
+    local function opts(desc)
+        return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    api.config.mappings.default_on_attach(bufnr)
+
+    vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+    vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
+    vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+    vim.keymap.set('n', 'p', api.node.navigate.parent, opts('Parent Directory'))
+    vim.keymap.set('n', 's', api.node.open.vertical, opts('Open: Vertical Split'))
+    vim.keymap.set('n', 'o', api.node.run.system, opts('Run System'))
+    vim.keymap.set('n', 'P', api.fs.paste, opts('Paste'))
+    vim.keymap.set('n', '<Space>', function()
+        require 'hop'.hint_lines_skip_whitespace()
+    end, opts('tree_hop_fn'))
+
+    vim.keymap.set('n', 'Z', api.node.run.system, opts('Run System'))
 end
 
 nvim_tree.setup({
@@ -55,11 +74,6 @@ nvim_tree.setup({
     },
     disable_netrw = true,
     hijack_netrw = true,
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
     open_on_tab = false,
     hijack_cursor = false,
     update_cwd = true,
@@ -98,23 +112,12 @@ nvim_tree.setup({
         number = false,
         relativenumber = false,
         signcolumn = "yes",
-        mappings = {
-            custom_only = false,
-            list = {
-                { key = { "l", "<CR>" }, action = "edit" },
-                { key = "h", action = "close_node" },
-                { key = "p", action = "parent_node" },
-                { key = "s", action = "vsplit" },
-                { key = "o", action = "system_open" },
-                { key = "P", action = "paste" },
-                { key = "<Space>", action = "tree_hop_fn", action_cb = tree_hop_fn },
-            },
-        },
     },
     trash = {
         cmd = "trash",
         require_confirm = true,
     },
+    on_attach = on_attach,
 })
 
 local opt = { noremap = true, silent = true }

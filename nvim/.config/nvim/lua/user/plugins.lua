@@ -22,7 +22,6 @@ return require('packer').startup(function(use)
     use 'romgrk/barbar.nvim'
     use 'nvim-lualine/lualine.nvim'
     use 'rmagatti/auto-session'
-    use 'rmagatti/session-lens'
 
     use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
     use "lewis6991/impatient.nvim" -- Speed up loading Lua modules in Neovim to improve startup time.
