@@ -55,7 +55,7 @@ nvim_tree.setup({
                     unstaged = "",
                     staged = "ﰷ",
                     unmerged = "",
-                    renamed = "",
+                    renamed = "󰇾",
                     deleted = "ﯰ",
                     untracked = "",
                     ignored = "",

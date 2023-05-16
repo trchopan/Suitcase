@@ -75,7 +75,8 @@ require'barbar'.setup {
     -- Supports all the base icon options, plus `modified` and `pinned`.
     alternate = {filetype = {enabled = false}},
     current = {buffer_index = true},
-    inactive = {button = '×'},
+    -- inactive = {button = '×'},
+    inactive = {button = ''},
     visible = {modified = {buffer_number = false}},
   },
 
