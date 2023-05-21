@@ -11,3 +11,9 @@ require("telescope").load_extension("flutter")
 local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 k("n", "<leader>fp", "<cmd>Telescope flutter commands<CR>", opt)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "dart",
+	command = "setlocal shiftwidth=2 tabstop=2"
+})
+
