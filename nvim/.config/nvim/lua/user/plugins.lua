@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-treehopper'
     use 'booperlv/nvim-gomove'
     use "windwp/nvim-autopairs"
-    use 'arywz/multi-highlight.nvim'
+    use 'lfv89/vim-interestingwords'
 
     use {
         "ethanholz/nvim-lastplace",
