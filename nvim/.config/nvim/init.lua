@@ -7,6 +7,8 @@ require('user.nvim-tree')
 require('user.hop')
 require('user.gomove')
 require('user.autopairs')
+require('user.multi-highlight')
+
 require('user.barbar')
 require('user.lualine')
 require('user.auto-session')

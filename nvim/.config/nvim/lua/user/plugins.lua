@@ -9,8 +9,12 @@ end
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-        setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" },
+    })
 
     -- Themes
     use 'folke/tokyonight.nvim'
@@ -33,6 +37,7 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-treehopper'
     use 'booperlv/nvim-gomove'
     use "windwp/nvim-autopairs"
+    use 'arywz/multi-highlight.nvim'
 
     use {
         "ethanholz/nvim-lastplace",
