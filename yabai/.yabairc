@@ -76,6 +76,7 @@ yabai -m rule --add app="^Firefox$"                                  manage=off
 yabai -m rule --add app="^Safari$"                                   manage=off
 yabai -m rule --add app="^Docker Desktop$"                           manage=off
 yabai -m rule --add app="^Microsoft.*$"                              manage=off
+yabai -m rule --add app="^DaVinci Resolve.*$"                        manage=off
 
 yabai -m rule --add title="^.*[Ss]ign in.*"                          manage=off
 
