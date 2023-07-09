@@ -16,6 +16,15 @@ return require('packer').startup(function(use)
         ft = { "markdown" },
     })
 
+    use({
+      "jackMort/ChatGPT.nvim",
+        requires = {
+          "MunifTanjim/nui.nvim",
+          "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
+    })
+
     -- Themes
     use 'folke/tokyonight.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
@@ -59,6 +68,8 @@ return require('packer').startup(function(use)
     use {
         "folke/which-key.nvim",
         config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
             require("which-key").setup {}
         end,
     }

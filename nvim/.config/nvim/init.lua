@@ -9,6 +9,8 @@ require('user.gomove')
 require('user.autopairs')
 require('user.interesting-words')
 
+require('user.chatgpt')
+
 require('user.barbar')
 require('user.lualine')
 require('user.auto-session')
