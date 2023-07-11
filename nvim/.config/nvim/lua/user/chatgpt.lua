@@ -26,27 +26,18 @@ wk.register({
 
 wk.register({
     p = {
-        name = "ChatGPT Complete Code",
-        e = {
-            function()
-                chatgpt.complete_code()
-            end,
-            "Complete code",
-        },
-    },
-}, {
-    prefix = "<leader>",
-    mode = "c",
-})
-
-wk.register({
-    p = {
         name = "ChatGPT",
         p = {
             function()
                 chatgpt.openChat()
             end,
             "Open chat window",
+        },
+        c = {
+            function()
+                chatgpt.complete_code()
+            end,
+            "Complete code",
         },
     },
 }, {
