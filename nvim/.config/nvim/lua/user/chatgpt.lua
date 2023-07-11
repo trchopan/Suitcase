@@ -10,7 +10,7 @@ chatgpt.setup({
 local wk = require('which-key')
 wk.register({
     p = {
-        name = "ChatGPT",
+        name = "ChatGPT with Instructions",
         e = {
             function()
                 chatgpt.edit_with_instructions()
@@ -21,6 +21,22 @@ wk.register({
 }, {
     prefix = "<leader>",
     mode = "v",
+})
+
+
+wk.register({
+    p = {
+        name = "ChatGPT Complete Code",
+        e = {
+            function()
+                chatgpt.complete_code()
+            end,
+            "Complete code",
+        },
+    },
+}, {
+    prefix = "<leader>",
+    mode = "c",
 })
 
 wk.register({
