@@ -29,3 +29,17 @@ k("n", "vv", "<Cmd>lua require('tsht').nodes()<CR>", opt)
 
 -- Rust
 k("n", "<leader>rsc", ":e Cargo.toml<CR>", opt)
+
+vim.g.is_wrap = false
+
+function _toggleWrap()
+    if vim.g.is_wrap then
+        vim.g.is_wrap = false
+        vim.cmd("set nowrap")
+    else
+        vim.g.is_wrap = true
+        vim.cmd("set wrap")
+    end
+end 
+
+k("n", "<leader>w", "<cmd>lua _toggleWrap()<CR>", opt)

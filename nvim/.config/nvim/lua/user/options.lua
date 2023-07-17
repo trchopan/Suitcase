@@ -35,6 +35,7 @@ vim.o.smartcase = true
 vim.o.signcolumn = "yes"
 vim.o.termguicolors = true
 vim.o.background = "dark"
+vim.o.linebreak = true
 
 vim.api.nvim_exec(
     [[
