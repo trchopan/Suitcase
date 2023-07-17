@@ -86,10 +86,10 @@ cmp.setup {
         end,
     },
     sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
+        { name = "nvim_lsp", priority = 8 },
+        { name = "buffer",   priority = 7 },
+        { name = "luasnip",  priority = 6 },
+        { name = "path",     priority = 5 },
     },
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
