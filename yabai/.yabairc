@@ -35,11 +35,11 @@ yabai -m config auto_balance                 off
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  8
-yabai -m config bottom_padding               8
-yabai -m config left_padding                 8
-yabai -m config right_padding                8
-yabai -m config window_gap                   8
+yabai -m config top_padding                  0
+yabai -m config bottom_padding               0
+yabai -m config left_padding                 0
+yabai -m config right_padding                0
+yabai -m config window_gap                   5
 
 # rules
 yabai -m rule --add app="^System Preferences$"                       manage=off
