@@ -5,9 +5,6 @@
 	email = m@chop.dev
 	signingkey = B1240734D6DFACF8
 
-[includeIf "gitdir:~/Documents/ChatQ/"]
-  path = ~/Documents/ChatQ/.gitconfig
-
 [includeIf "gitdir:~/Documents/Line/"]
   path = ~/Documents/Line/.gitconfig
 
