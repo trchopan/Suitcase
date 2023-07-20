@@ -1,7 +1,7 @@
 local opt = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
-k("n", "<Esc><Esc>", ":noh<CR>", opt)
+k("n", "<Esc><Esc>", ":noh<CR>:ccl<CR>", opt)
 k("n", "<leader>bK", ":BufferCloseAllButCurrent<CR>", opt)
 
 k("n", "<C-f>w", "*Nciw", opt)
@@ -25,7 +25,6 @@ nmap )) ysiw)
 -- Misc keymap for plugins
 k("n", "<C-f>r", "<Cmd>lua require('spectre').open()<CR>", opt)
 k("n", "<leader>rr", "<Cmd>LspRestart<CR>", opt)
-k("n", "vv", "<Cmd>lua require('tsht').nodes()<CR>", opt)
 
 -- Rust
 k("n", "<leader>rsc", ":e Cargo.toml<CR>", opt)

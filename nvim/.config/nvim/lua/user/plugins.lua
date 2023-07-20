@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'tpope/vim-abolish' -- Search replace with case and plural aware. Also support for case coercion.
     use "phaazon/hop.nvim"
-    use 'mfussenegger/nvim-treehopper'
+    use 'mfussenegger/nvim-treehopper' -- Use Treesitter to hop arround
     use 'booperlv/nvim-gomove'
     use "windwp/nvim-autopairs"
     use 'lfv89/vim-interestingwords'
