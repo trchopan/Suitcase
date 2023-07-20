@@ -77,8 +77,10 @@ yabai -m rule --add app="^Safari$"                                   manage=off
 yabai -m rule --add app="^Docker Desktop$"                           manage=off
 yabai -m rule --add app="^Microsoft.*$"                              manage=off
 yabai -m rule --add app="^DaVinci Resolve.*$"                        manage=off
+yabai -m rule --add app="^Ivanti Secure Access Client.*$"            manage=off
 
 yabai -m rule --add title="^.*[Ss]ign in.*"                          manage=off
+yabai -m rule --add title="^.*Install.*"                             manage=off
 
 # For flutter dev
 yabai -m rule --add app="^Google Chrome"                             manage=off
