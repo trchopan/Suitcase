@@ -5,6 +5,7 @@ require('user.impatient')
 
 require('user.nvim-tree')
 require('user.hop')
+require('user.treehopper')
 require('user.gomove')
 require('user.autopairs')
 require('user.interesting-words')
