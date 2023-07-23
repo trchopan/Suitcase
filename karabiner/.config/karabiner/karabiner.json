@@ -31,9 +31,7 @@
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                        "optional": ["any"]
                                     }
                                 },
                                 "to": [
@@ -54,9 +52,7 @@
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                        "optional": ["any"]
                                     }
                                 },
                                 "to": [
@@ -77,9 +73,7 @@
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                        "optional": ["any"]
                                     }
                                 },
                                 "to": [
@@ -100,9 +94,7 @@
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                        "optional": ["any"]
                                     }
                                 },
                                 "to": [
@@ -116,9 +108,7 @@
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                        "optional": ["any"]
                                     }
                                 },
                                 "to": [
@@ -135,6 +125,41 @@
                                             "name": "caps_lock pressed",
                                             "value": 0
                                         }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Shift Ctrl + page_up/page_down to move tabs",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": {
+                                        "mandatory": ["shift", "control"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_up",
+                                        "modifiers": ["shift", "control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "close_bracket",
+                                    "modifiers": {
+                                        "mandatory": ["shift", "control"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_down",
+                                        "modifiers": ["shift", "control"]
                                     }
                                 ],
                                 "type": "basic"
@@ -170,17 +195,13 @@
                                 "from": {
                                     "key_code": "escape",
                                     "modifiers": {
-                                        "mandatory": [
-                                            "shift"
-                                        ]
+                                        "mandatory": ["shift"]
                                     }
                                 },
                                 "to": [
                                     {
                                         "key_code": "grave_accent_and_tilde",
-                                        "modifiers": [
-                                            "shift"
-                                        ]
+                                        "modifiers": ["shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -216,9 +237,7 @@
                                 "from": {
                                     "key_code": "escape",
                                     "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
+                                        "mandatory": ["control"]
                                     }
                                 },
                                 "to": [
@@ -259,17 +278,13 @@
                                 "from": {
                                     "key_code": "escape",
                                     "modifiers": {
-                                        "mandatory": [
-                                            "command"
-                                        ]
+                                        "mandatory": ["command"]
                                     }
                                 },
                                 "to": [
                                     {
                                         "key_code": "grave_accent_and_tilde",
-                                        "modifiers": [
-                                            "command"
-                                        ]
+                                        "modifiers": ["command"]
                                     }
                                 ],
                                 "type": "basic"
