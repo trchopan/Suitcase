@@ -9,6 +9,7 @@ return {
   keys = function()
     return {
       { "<leader><leader>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
+      { "`h", "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
     }
   end,
   opts = {

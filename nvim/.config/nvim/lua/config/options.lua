@@ -7,3 +7,4 @@ vim.g.maplocal = "<M-\\>"
 
 local opt = vim.opt
 opt.clipboard = ""
+opt.conceallevel = 0
