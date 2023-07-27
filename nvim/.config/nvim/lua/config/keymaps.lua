@@ -28,3 +28,7 @@ map("i", "∆", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "˚", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "∆", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "˚", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+
+-- Toogle float term
+map("n", "<c-\\>", function () Util.float_term() end, { desc = "Terminal (cwd)" })
+map("t", "<c-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
