@@ -7,5 +7,10 @@ vim.g.maplocal = "<M-\\>"
 
 local opt = vim.opt
 opt.clipboard = ""
-opt.conceallevel = 0
+opt.conceallevel = 3 -- Show quote in json file or links in markdown
 opt.shiftwidth = 4
+opt.tabstop = 4
+opt.foldmethod = "indent"
+opt.foldlevelstart = 20
+
+
