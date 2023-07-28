@@ -21,7 +21,7 @@ return {
         function()
           -- 2-char jump simmilar to Hop.nvim
           Flash.jump({
-            search = { mode = "search" },
+            search = { mode = "search", multi_window = false },
             label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
             pattern = [[\<]],
             action = function(match, state)
