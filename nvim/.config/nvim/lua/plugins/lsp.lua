@@ -4,6 +4,9 @@ return {
     opts = {
       autoformat = false,
     },
+    keys = {
+      { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
+    },
     setup = {
       ruff_lsp = function()
         require("lazyvim.util").on_attach(function(client, _)
@@ -14,14 +17,6 @@ return {
         end)
       end,
     },
-  },
-  { "tpope/vim-abolish" },
-  { "mattn/emmet-vim" },
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = true,
   },
   {
     "williamboman/mason.nvim",
@@ -69,5 +64,11 @@ return {
         },
       })
     end,
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    config = true,
   },
 }
