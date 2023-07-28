@@ -19,6 +19,7 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+map("n", "<C-f>w", "*Nciw", { desc = "Change word and repeat", silent = true, remap = false })
 map("v", "<C-c>c", '"*y', { desc = "Copy to System clipboard", silent = true, remap = false })
 
 -- Move Lines
@@ -30,5 +31,7 @@ map("v", "∆", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "˚", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Toogle float term
-map("n", "<c-\\>", function () Util.float_term() end, { desc = "Terminal (cwd)" })
+map("n", "<c-\\>", function()
+  Util.float_term(nil, { border = "single" })
+end, { desc = "Terminal (cwd)" })
 map("t", "<c-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
