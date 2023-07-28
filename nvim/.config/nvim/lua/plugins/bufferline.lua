@@ -9,5 +9,6 @@ return {
       end,
       desc = "Delete Buffer",
     },
+    { "<leader>bK", "<cmd>BufferLineCloseOthers<cr>", desc = "Delete Buffer" },
   },
 }
