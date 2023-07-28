@@ -17,6 +17,8 @@ return {
       mappings = {
         ["l"] = "open",
         ["h"] = "close_node",
+        ["P"] = "paste_from_clipboard",
+        ["p"] = "",
       },
     },
     filesystem = {
