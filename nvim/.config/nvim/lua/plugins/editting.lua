@@ -2,31 +2,36 @@ return {
   { "tpope/vim-abolish" }, -- For Subvert and Coercion
   { "mattn/emmet-vim" },
   {
-    'booperlv/nvim-gomove',
+    'echasnovski/mini.move',
     config = true,
     opts = {
-      -- whether or not to map default key bindings, (true/false)
-      map_defaults = false,
-      -- whether or not to reindent lines moved vertically (true/false)
-      reindent = true,
-      -- whether or not to undojoin same direction moves (true/false)
-      undojoin = true,
-      -- whether to not to move past end column when moving blocks horizontally, (true/false)
-      move_past_end_col = false,
+      mappings = {
+        -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+        left = '',
+        right = '',
+        down = '',
+        up = '',
+
+        -- Move current line in Normal mode
+        line_left = '',
+        line_right = '',
+        line_down = '',
+        line_up = '',
+      },
     },
     keys = function()
       return {
         --
-        { mode = { "n" }, "˙", "<Plug>GoNSMLeft", desc = "Move left" },
-        { mode = { "n" }, "∆", "<Plug>GoNSMDown", desc = "Move down" },
-        { mode = { "n" }, "˚", "<Plug>GoNSMUp", desc = "Move up" },
-        { mode = { "n" }, "¬", "<Plug>GoNSMRight", desc = "move right" },
+        { mode = { "n" }, "∆", "<cmd>lua MiniMove.move_line('down')<cr>", desc = "Move down" },
+        { mode = { "n" }, "˚", "<cmd>lua MiniMove.move_line('up')<cr>", desc = "Move up" },
+        { mode = { "n" }, "˙", "<cmd>lua MiniMove.move_line('left')<cr>", desc = "Move left" },
+        { mode = { "n" }, "¬", "<cmd>lua MiniMove.move_line('right')<cr>", desc = "move right" },
 
         --
-        { mode = { "x" }, "˙", "<Plug>GoVSMLeft", desc = "Move left" },
-        { mode = { "x" }, "∆", "<Plug>GoVSMDown", desc = "Move down" },
-        { mode = { "x" }, "˚", "<Plug>GoVSMUp", desc = "Move up" },
-        { mode = { "x" }, "¬", "<Plug>GoVSMRight", desc = "move right" },
+        { mode = { "x" }, "∆", "<cmd>lua MiniMove.move_selection('down')<cr>", desc = "Move down" },
+        { mode = { "x" }, "˚", "<cmd>lua MiniMove.move_selection('up')<cr>", desc = "Move up" },
+        { mode = { "x" }, "˙", "<cmd>lua MiniMove.move_selection('left')<cr>", desc = "Move left" },
+        { mode = { "x" }, "¬", "<cmd>lua MiniMove.move_selection('right')<cr>", desc = "move right" },
       }
     end
   }
