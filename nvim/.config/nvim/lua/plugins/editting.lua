@@ -1,6 +1,11 @@
 return {
   { "tpope/vim-abolish" }, -- For Subvert and Coercion
   { "mattn/emmet-vim" },
+  { "tpope/vim-surround" },
+  {
+    'echasnovski/mini.splitjoin',
+    config = true,
+  },
   {
     'echasnovski/mini.move',
     config = true,
