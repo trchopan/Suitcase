@@ -8,8 +8,8 @@ return {
   },
   keys = function()
     return {
-      { "<leader><leader>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
-      { "`h", "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
+      { "<leader><leader>", "<cmd>Neotree toggle<cr>",       { desc = "Toggle Neotree" } },
+      { "`h",               "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
     }
   end,
   opts = {
@@ -18,12 +18,15 @@ return {
         ["l"] = "open",
         ["h"] = "close_node",
         ["P"] = "paste_from_clipboard",
-        ["p"] = "",
+        ["p"] = function(state)
+          local node = state.tree:get_node()
+          require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+        end,
       },
     },
     filesystem = {
       follow_current_file = {
-        enabled = true, -- This will find and focus the file in the active buffer every time
+        enabled = true,         -- This will find and focus the file in the active buffer every time
         --               -- the current file is changed while the tree is open.
         leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
