@@ -1,0 +1,13 @@
+{
+    "add_to_dict": {
+        "type": "chat",
+        "opts": {
+            "template": "This is a class written in Python. Write the to_dict function for it.\n\nPython class:\n```{{filetype}}\n{{input}}\n```\n\n```{{filetype}}\n",
+            "strategy": "append",
+            "params": {
+                "model": "gpt-3.5-turbo",
+                "stop": ["```"]
+            }
+        }
+    }
+}

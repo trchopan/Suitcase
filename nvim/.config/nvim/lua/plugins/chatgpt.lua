@@ -5,6 +5,12 @@ return {
     config = function()
       require("chatgpt").setup({
         api_key_cmd = "secret-openai",
+        actions_paths = {
+          vim.fn.expand("$HOME/.config/nvim/chatgpt-actions.json"),
+        },
+        openai_params = {
+          model = "gpt-4",
+        }
       })
     end,
     dependencies = {
@@ -14,14 +20,6 @@ return {
     },
     keys = {
       {
-        mode = { "v" },
-        "<leader>pv",
-        function()
-          require("chatgpt").edit_with_instructions()
-        end,
-        desc = "ChatGPT Edit with instruction"
-      },
-      {
         mode = { "n" },
         "<leader>pp",
         function()
@@ -30,13 +28,25 @@ return {
         desc = "ChatGPT Open Chat"
       },
       {
-        mode = { "n" },
-        "<leader>pc",
+        mode = { "v" },
+        "<leader>pv",
         function()
-          require("chatgpt").complete_code()
+          require("chatgpt").edit_with_instructions()
         end,
+        desc = "ChatGPT Code with instruction"
+      },
+      {
+        mode = { "v" },
+        "<leader>pg",
+        "<cmd>ChatGPTRun grammar_correction<cr>",
+        desc = "ChatGPT Grammar Correction"
+      },
+      {
+        mode = { "v" },
+        "<leader>pc",
+        "<cmd>ChatGPTRun complete_code<cr>",
         desc = "ChatGPT Complete Code"
-      }
+      },
     }
   }
 }
