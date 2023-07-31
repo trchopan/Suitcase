@@ -50,15 +50,22 @@ brew install --cask telegram
 brew install --cask slack
 ```
 
-### Install programing, container and cloud
+### Install programming, container and cloud
 
 ```
-
 brew install pyenv
 brew install pyenv-virtualenv
 brew install go
+brew install deno
 
 brew install --cask docker
 brew install --cask google-cloud-sdk
 brew install awscli
+```
+
+### Install programs for release blogs
+
+```
+brew install vips
+brew install hugo
 ```
