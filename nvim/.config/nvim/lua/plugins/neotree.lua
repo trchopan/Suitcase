@@ -32,6 +32,20 @@ return {
       },
     },
     default_component_configs = {
+      diagnostics = {
+        symbols = {
+          hint = "H",
+          info = "I",
+          warn = "!",
+          error = "X",
+        },
+        highlights = {
+          hint = "DiagnosticSignHint",
+          info = "DiagnosticSignInfo",
+          warn = "DiagnosticSignWarn",
+          error = "DiagnosticSignError",
+        },
+      },
       git_status = {
         symbols = {
           -- Change type
