@@ -26,7 +26,7 @@ return {
           require("flash").jump({
             search = { mode = "search", max_length = 0, multi_window = false },
             label = { after = { 0, 0 } },
-            pattern = "\\S"
+            pattern = "^"
           })
         end
       },
