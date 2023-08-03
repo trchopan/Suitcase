@@ -22,6 +22,13 @@ return {
           local node = state.tree:get_node()
           require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
         end,
+        ["<space>"] = function(state)
+          require("flash").jump({
+            search = { mode = "search", max_length = 0, multi_window = false },
+            label = { after = { 0, 0 } },
+            pattern = "\\S"
+          })
+        end
       },
     },
     filesystem = {
