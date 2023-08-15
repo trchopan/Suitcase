@@ -1,7 +1,9 @@
 return {
   "folke/flash.nvim",
   event = "VeryLazy",
-  opts = {},
+  opts = function ()
+    vim.api.nvim_set_hl(0, "FlashMatch", { fg="#ff5da8"})
+  end,
   keys = function()
     local Flash = require("flash")
 
