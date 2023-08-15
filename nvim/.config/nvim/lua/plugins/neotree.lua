@@ -13,6 +13,7 @@ return {
     }
   end,
   opts = {
+    enable_normal_mode_for_inputs = true,
     window = {
       mappings = {
         ["l"] = "open",
