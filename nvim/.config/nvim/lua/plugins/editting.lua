@@ -1,7 +1,13 @@
 return {
-  { "tpope/vim-abolish" }, -- For Subvert and Coercion
   { "mattn/emmet-vim" },
   { "tpope/vim-surround" },
+  {
+    "johmsalas/text-case.nvim",
+    config = true,
+    keys = {
+      { mode = { "n", "v" }, "ga.", '<cmd>TextCaseOpenTelescope<CR>', desc = "Telescope" },
+    }
+  },
   {
     'echasnovski/mini.splitjoin',
     config = true,
@@ -19,6 +25,7 @@ return {
 
         -- Move current line in Normal mode
         line_left = '',
+        LineLeft = '',
         line_right = '',
         line_down = '',
         line_up = '',
