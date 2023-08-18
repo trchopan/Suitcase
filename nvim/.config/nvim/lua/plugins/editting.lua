@@ -25,7 +25,6 @@ return {
 
         -- Move current line in Normal mode
         line_left = '',
-        LineLeft = '',
         line_right = '',
         line_down = '',
         line_up = '',
