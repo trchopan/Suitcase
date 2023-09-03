@@ -45,11 +45,11 @@ return {
     dependencies = { "mason.nvim" },
     event = { "BufReadPre", "BufNewFile" },
     opts = function()
-      local mason_registry = require("mason-registry")
+      -- local mason_registry = require("mason-registry")
       local null_ls = require("null-ls")
       local formatting = null_ls.builtins.formatting
       local diagnostics = null_ls.builtins.diagnostics
-      local code_actions = null_ls.builtins.code_actions
+      -- local code_actions = null_ls.builtins.code_actions
 
       null_ls.setup({
         -- debug = true, -- Turn on debug for :NullLsLog
