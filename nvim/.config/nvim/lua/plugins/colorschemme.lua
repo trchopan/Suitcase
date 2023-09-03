@@ -6,4 +6,5 @@ return {
       -- colorscheme = "tokyonight",
     },
   },
+  { "ellisonleao/gruvbox.nvim" }
 }
