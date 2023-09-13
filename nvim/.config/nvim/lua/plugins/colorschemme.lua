@@ -2,8 +2,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "terafox",
-      -- colorscheme = "catppuccin",
+      -- colorscheme = "terafox",
+      colorscheme = "catppuccin",
       -- colorscheme = "tokyonight",
     },
   },
@@ -27,6 +27,11 @@ return {
         strings = {},
         variables = {},
       },
+      custom_highlights = function(colors)
+        return {
+          VertSplit = { fg = colors.flamingo },
+        }
+      end
     }
   },
   {
