@@ -1,4 +1,4 @@
--- return {
+return {
 --   "akinsho/flutter-tools.nvim",
 --   lazy = true,
 --   dependencies = {
@@ -12,4 +12,4 @@
 --   keys = {
 --     { "<leader>fp", "<cmd>Telescope flutter commands<CR>", desc = "Flutter commands" }
 --   }
--- }
+}
