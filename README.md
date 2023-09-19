@@ -41,6 +41,7 @@ brew install koekeishiya/formulae/skhd
 
 brew install neovim
 brew install lazygit
+brea install stats # CPU GPU HDD Monitoring
 ```
 
 ### Install the applications
