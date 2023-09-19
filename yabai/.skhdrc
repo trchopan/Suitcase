@@ -23,7 +23,7 @@ shift + alt + ctrl - 2 : yabai -m window --space 2
 # window location
 shift + alt + ctrl - 3 : yabai -m window --grid 1:2:0:0:1:1
 shift + alt + ctrl - 4 : yabai -m window --grid 1:2:1:0:1:1
-shift + alt + ctrl - 5 : yabai -m window --grid 1:3:0:0:2:1
+shift + alt + ctrl - 5 : yabai -m window --grid 8:12:2:1:8:6
 shift + alt + ctrl - 6 : yabai -m window --grid 1:3:2:0:1:1
 
 # move window
