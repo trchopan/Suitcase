@@ -12,5 +12,4 @@ opt.shiftwidth = 4
 opt.tabstop = 4
 opt.foldmethod = "indent"
 opt.foldlevelstart = 20
-
-
+opt.iskeyword = opt.iskeyword + '-'
