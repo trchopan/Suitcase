@@ -24,12 +24,10 @@ return {
           require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
         end,
         ["<space>"] = function(state)
-          require("flash").jump({
-            search = { mode = "search", max_length = 0, multi_window = false },
-            label = { after = { 0, 0 } },
-            pattern = "^"
-          })
-        end
+          require("hop").hint_lines_skip_whitespace()
+        end,
+        ["/"] = "noop",
+        ["g/"] = "fuzzy_finder",
       },
     },
     filesystem = {
