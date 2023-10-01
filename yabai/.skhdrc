@@ -50,6 +50,10 @@ shift + alt + ctrl - d : if [[ -z $(brew services list | grep yabai | grep none)
 
 # focus specific app
 shift + alt + ctrl - a : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Alacritty")) | .id')
+shift + alt + ctrl - b : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Brave")) | .id')
+shift + alt + ctrl - t : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Telegram")) | .id')
+shift + alt + ctrl - s : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Slack")) | .id')
+shift + alt + ctrl - e : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Emacs")) | .id')
 shift + alt + ctrl - x : yabai -m window --toggle float
 
 # toggle layout
