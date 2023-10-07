@@ -89,5 +89,6 @@ yabai -m rule --add app="^Google Chrome"                             manage=off
 
 # For floating separate workspaces
 yabai -m rule --add title=".*Brave - t7sg"                           manage=off
+yabai -m rule --add title=".*Brave - ChatQ"                          manage=off
 
 echo "yabai configuration loaded.."
