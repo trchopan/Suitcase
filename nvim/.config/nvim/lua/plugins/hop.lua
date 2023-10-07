@@ -1,10 +1,13 @@
 return {
   "phaazon/hop.nvim",
-  config = function()
-    require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-  end,
+  config = {
+    keys = 'etovxqpdygfblzhckisuran',
+  },
   keys = function()
-    local hop = require("hop")
+    local ok, hop = pcall(require, "hop")
+    if not ok then
+      return {}
+    end
     local directions = require('hop.hint').HintDirection
     return {
       { mode = { "n", "v" }, "<space>", function ()
