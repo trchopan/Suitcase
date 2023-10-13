@@ -35,10 +35,10 @@ yabai -m config auto_balance                 off
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  0
-yabai -m config bottom_padding               0
-yabai -m config left_padding                 0
-yabai -m config right_padding                0
+yabai -m config top_padding                  5
+yabai -m config bottom_padding               5
+yabai -m config left_padding                 5
+yabai -m config right_padding                5
 yabai -m config window_gap                   5
 
 # rules
@@ -81,8 +81,8 @@ yabai -m rule --add app="^DaVinci Resolve.*$"                        manage=off
 yabai -m rule --add app="^Ivanti Secure Access Client.*$"            manage=off
 yabai -m rule --add app="^Steam.*$"                                  manage=off
 
-yabai -m rule --add title="^.*[Ss]ign in.*"                          manage=off
-yabai -m rule --add title="^.*Install.*"                             manage=off
+yabai -m rule --add title="^Sign in.*"                               manage=off
+yabai -m rule --add title="^.*[Ii]nstall.*"                             manage=off
 
 # For flutter dev
 yabai -m rule --add app="^Google Chrome"                             manage=off
