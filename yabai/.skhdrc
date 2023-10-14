@@ -58,12 +58,7 @@ shift + alt + ctrl - x : yabai -m window --toggle float
 
 # toggle layout
 shift + alt + ctrl - 0x2C : if [[ -z $(yabai -m query --spaces |grep float) ]];\
-                                then yabai -m config layout float; yabai -m config window_border off;\
-                                else yabai -m config layout bsp; yabai -m config window_border on;\
+                                then yabai -m config layout float; \
+                                else yabai -m config layout bsp; \
                             fi;
 
-# toggle window border
-shift + alt + ctrl - w : if [[ $(yabai -m query --windows | jq '.[0]."has-border"') == "true" ]];\
-                                then yabai -m config window_border off;\
-                                else yabai -m config window_border on;\
-                         fi;
