@@ -29,7 +29,7 @@ return {
       },
       custom_highlights = function(colors)
         return {
-          VertSplit = { fg = colors.flamingo },
+          VertSplit = { fg = "#553039" },
         }
       end
     }
