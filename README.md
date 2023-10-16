@@ -27,6 +27,7 @@ brew install zoxide
 brew install jq
 brew install stow
 brew install gh
+brew install fzf
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code-nerd-font
