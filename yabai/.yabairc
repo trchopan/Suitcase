@@ -81,7 +81,7 @@ yabai -m rule --add app="^DaVinci Resolve.*$"                        manage=off
 yabai -m rule --add app="^Ivanti Secure Access Client.*$"            manage=off
 yabai -m rule --add app="^Steam.*$"                                  manage=off
 
-yabai -m rule --add title="^Sign in.*"                               manage=off
+yabai -m rule --add title="^[Ss]ign in.*"                            manage=off
 yabai -m rule --add title="^.*[Ii]nstall.*"                          manage=off
 
 # For flutter dev
