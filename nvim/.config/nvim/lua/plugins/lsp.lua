@@ -1,16 +1,12 @@
 local _border = "single"
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = _border,
+})
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = _border
-  }
-)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = _border,
+})
 
 return {
   {
@@ -22,14 +18,14 @@ return {
       { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
     },
     setup = {
-      ruff_lsp = function()
-        require("lazyvim.util").on_attach(function(client, _)
-          if client.name == "ruff_lsp" then
-            -- Disable hover in favor of Pyright
-            client.server_capabilities.hoverProvider = false
-          end
-        end)
-      end,
+      -- ruff_lsp = function()
+      --   require("lazyvim.util").on_attach(function(client, _)
+      --     if client.name == "ruff_lsp" then
+      --       -- Disable hover in favor of Pyright
+      --       client.server_capabilities.hoverProvider = false
+      --     end
+      --   end)
+      -- end,
     },
   },
   {
@@ -37,17 +33,17 @@ return {
     opts = {
       ensure_installed = {
         -- python
-        "ruff",
-        "ruff-lsp",
-        "pyright",
-        "black",
+        -- "ruff",
+        -- "ruff-lsp",
+        -- "pyright",
+        -- "black",
 
         -- javascript/typescript
-        "prettier",
-        "typescript-language-server",
+        -- "prettier",
+        -- "typescript-language-server",
 
         -- rust
-        "rust-analyzer",
+        -- "rust-analyzer",
 
         -- go
         -- handled by lazy.lua
@@ -55,27 +51,18 @@ return {
     },
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     dependencies = { "mason.nvim" },
     event = { "BufReadPre", "BufNewFile" },
-    opts = function()
-      -- local mason_registry = require("mason-registry")
-      local null_ls = require("null-ls")
-      local formatting = null_ls.builtins.formatting
-      local diagnostics = null_ls.builtins.diagnostics
-      -- local code_actions = null_ls.builtins.code_actions
-
-      null_ls.setup({
-        -- debug = true, -- Turn on debug for :NullLsLog
-        debug = false,
-        -- diagnostics_format = "#{m} #{s}[#{c}]",
-        sources = {
-          formatting.prettier,
-          formatting.brittany,
-          formatting.cabal_fmt,
-          formatting.black,
-          diagnostics.ruff,
-        },
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.root_dir = opts.root_dir
+        or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        nls.builtins.formatting.prettier,
+        nls.builtins.formatting.cabal_fmt,
+        nls.builtins.formatting.black,
+        nls.builtins.diagnostics.ruff,
       })
     end,
   },
@@ -98,10 +85,10 @@ return {
           c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
         }),
       },
-      preselect = require('cmp').PreselectMode.None,
+      preselect = require("cmp").PreselectMode.None,
       completion = {
         completeopt = "noselect",
-      }
+      },
     },
   },
   {
