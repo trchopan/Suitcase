@@ -537,9 +537,9 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "3",
+                                    "key_code": "4",
                                     "modifiers": {
-                                        "mandatory": ["right_command"],
+                                        "mandatory": ["right_command", "left_shift"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -559,7 +559,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "9",
+                                    "key_code": "4",
                                     "modifiers": {
                                         "mandatory": ["right_command"],
                                         "optional": ["any"]
@@ -581,9 +581,9 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "2",
+                                    "key_code": "5",
                                     "modifiers": {
-                                        "mandatory": ["right_command"],
+                                        "mandatory": ["right_command", "left_shift"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -603,7 +603,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "6",
+                                    "key_code": "9",
                                     "modifiers": {
                                         "mandatory": ["right_command"],
                                         "optional": ["any"]
@@ -627,7 +627,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "5",
+                                    "key_code": "8",
                                     "modifiers": {
                                         "mandatory": ["right_command"],
                                         "optional": ["any"]
@@ -651,7 +651,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "4",
+                                    "key_code": "7",
                                     "modifiers": {
                                         "mandatory": ["right_command"],
                                         "optional": ["any"]
