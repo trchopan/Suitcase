@@ -35,6 +35,6 @@ end, { desc = "Toggle wrap" })
 
 -- Toogle float term
 map("n", "<c-\\>", function()
-  Util.float_term(nil, { border = "single" })
+  Util.terminal.open(nil, { border = "single" })
 end, { desc = "Terminal (cwd)" })
 map("t", "<c-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
