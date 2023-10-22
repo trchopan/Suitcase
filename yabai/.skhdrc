@@ -54,6 +54,7 @@ shift + alt + ctrl - b : yabai -m window --focus $(yabai -m query --windows | jq
 shift + alt + ctrl - t : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Telegram")) | .id')
 shift + alt + ctrl - s : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Slack")) | .id')
 shift + alt + ctrl - e : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Emacs")) | .id')
+
 shift + alt + ctrl - x : yabai -m window --toggle float
 
 # toggle layout
