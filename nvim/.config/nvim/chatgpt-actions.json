@@ -1,11 +1,11 @@
 {
-    "add_to_dict": {
+    "complete_python": {
         "type": "chat",
         "opts": {
-            "template": "This is a class written in Python. Write the to_dict function for it.\n\nPython class:\n```{{filetype}}\n{{input}}\n```\n\n```{{filetype}}\n",
+            "template": "Complete the Python code below.\n\n```{{filetype}}\n{{input}}\n```\n\n```{{filetype}}\n",
             "strategy": "append",
             "params": {
-                "model": "gpt-3.5-turbo",
+                "model": "gpt-4",
                 "stop": ["```"]
             }
         }
