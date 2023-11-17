@@ -5,7 +5,7 @@
             "template": "Complete the Python code below.\n\n```{{filetype}}\n{{input}}\n```\n\n```{{filetype}}\n",
             "strategy": "append",
             "params": {
-                "model": "gpt-4",
+                "model": "gpt-4-1106-preview",
                 "stop": ["```"]
             }
         }

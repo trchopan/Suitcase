@@ -10,7 +10,7 @@ return {
           vim.fn.expand("$HOME/.config/nvim/chatgpt-actions.json"),
         },
         openai_params = {
-          model = "gpt-4",
+          model = "gpt-4-1106-preview",
         }
       })
     end,
