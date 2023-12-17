@@ -89,6 +89,9 @@ return {
       completion = {
         completeopt = "noselect",
       },
+      window = {
+        documentation = require("cmp").config.window.bordered(),
+      },
     },
   },
   {
