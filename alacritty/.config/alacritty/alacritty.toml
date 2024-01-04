@@ -1,0 +1,208 @@
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+
+[colors.bright]
+black = "0x72696a"
+blue = "0xf38d70"
+cyan = "0x85dacc"
+green = "0xadda78"
+magenta = "0xa8a9eb"
+red = "0xfd6883"
+white = "0xfff1f3"
+yellow = "0xf9cc6c"
+
+[colors.cursor]
+cursor = "0xfd6883"
+text = "#fefff2"
+
+[colors.normal]
+black = "0x2c2525"
+blue = "0xf38d70"
+cyan = "0x85dacc"
+green = "0xadda78"
+magenta = "0xa8a9eb"
+red = "0xfd6883"
+white = "0xfff1f3"
+yellow = "0xf9cc6c"
+
+[colors.primary]
+background = "0x2D2A2E"
+foreground = "0xfff1f3"
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 1
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 3
+
+[[hints.enabled]]
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\\]\"\\s{-}\\^⟨⟩`']+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.command]
+program = "/usr/local/bin/copy-clip"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+# [hints.end]
+# background = "#1d1f21"
+# foreground = "#e9ff5e"
+
+# [hints.start]
+# background = "#e9ff5e"
+# foreground = "#1d1f21"
+
+# Tmux binding
+# Command + number for tab switching
+
+[[keyboard.bindings]]
+chars = "\u00021"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00022"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00023"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00024"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00025"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00026"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00027"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00028"
+key = "Key8"
+mods = "Command"
+
+# New tab
+[[keyboard.bindings]]
+chars = "\u0002c"
+key = "T"
+mods = "Command"
+
+# New pane
+[[keyboard.bindings]]
+chars = "\u0002%"
+key = "D"
+mods = "Command"
+
+# Shift + Control + '[' or ']' to move tab left and right
+
+[[keyboard.bindings]]
+chars = '\th'
+key = "PageUp"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+chars = '\tl'
+key = "PageDown"
+mods = "Shift|Control"
+
+# Move cursor by <Option + Arrow Keys>
+
+[[keyboard.bindings]]
+chars = "\u001BF"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BB"
+key = "Left"
+mods = "Alt"
+
+# [line_indicator]
+# background = "None"
+# foreground = "None"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+# [search.bar]
+# background = "#c5c8c6"
+# foreground = "#1d1f21"
+#
+# [search.focused_match]
+# background = "#000000"
+# foreground = "#ffffff"
+#
+# [search.matches]
+# background = "#ffffff"
+# foreground = "#000000"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[shell]
+args = ["-l", "-c", "tmux attach || tmux"]
+program = "/bin/zsh"
+
+[window]
+decorations = "none"
+dynamic_title = false
+startup_mode = "Windowed"
+title = "Alacritty"
+
+[window.dimensions]
+columns = 100
+lines = 80
+
+[window.padding]
+x = 5
+y = 5
