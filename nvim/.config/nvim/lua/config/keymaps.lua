@@ -39,7 +39,7 @@ map("n", "<C-t>fd", function()
 end, { desc = "Fold by indent" })
 
 -- Toogle float term
-map("n", "<c-\\>", function()
+map("n", "<C-\\>", function()
   Util.terminal.open(nil, { border = "single" })
 end, { desc = "Terminal (cwd)" })
-map("t", "<c-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })

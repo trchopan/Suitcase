@@ -11,7 +11,10 @@ return {
         },
         openai_params = {
           model = "gpt-4-1106-preview",
-        }
+        },
+        openai_edit_params = {
+          model = "gpt-4",
+        },
       })
     end,
     dependencies = {
