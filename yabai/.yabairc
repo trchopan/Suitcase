@@ -84,7 +84,7 @@ yabai -m rule --add app="^Emacs.*$"                                  manage=off
 
 yabai -m rule --add title="^[Ss]ign in.*"                            manage=off
 yabai -m rule --add title="^.*[Ii]nstall.*"                          manage=off
-yabai -m rule --add app="^UTM.*$"                                  manage=off
+yabai -m rule --add app="^UTM.*$"                                    manage=off
 
 # For flutter dev
 yabai -m rule --add app="^Google Chrome"                             manage=off
@@ -92,5 +92,6 @@ yabai -m rule --add app="^Google Chrome"                             manage=off
 # For floating separate workspaces
 yabai -m rule --add title=".*Brave - 2-t7\.sg.*"                     manage=off
 yabai -m rule --add title=".*Brave - 3-ChatQ.*"                      manage=off
+yabai -m rule --add title=".*Brave (Private)"                        manage=off
 
 echo "yabai configuration loaded.."
