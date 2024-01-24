@@ -22,18 +22,6 @@ end
 map("n", "<C-f>w", "*Nciw", { desc = "Change word and repeat", silent = true, remap = false })
 map("v", "<C-c>c", '"*y', { desc = "Copy to System clipboard", silent = true, remap = false })
 
-map("n", "<C-t>w", function()
-  if vim.g.isWrapping then
-    vim.opt.wrap = false
-    vim.opt.linebreak = false
-    vim.g.isWrapping = false
-  else
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
-    vim.g.isWrapping = true
-  end
-end, { desc = "Toggle wrap" })
-
 map("n", "<C-t>fd", function()
   vim.opt.foldmethod = "indent"
 end, { desc = "Fold by indent" })
