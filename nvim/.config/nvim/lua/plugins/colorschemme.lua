@@ -2,17 +2,24 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "terafox",
-      colorscheme = "duskfox",
-      -- colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
     },
   },
-  { "ellisonleao/gruvbox.nvim" },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
     opts = {
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        neotree = true,
+        treesitter = true,
+        mini = {
+          enabled = true,
+          indentscope_color = "",
+        },
+      },
       styles = {
         comments = { "italic" },
         properties = { "italic" },
@@ -29,38 +36,10 @@ return {
       },
       custom_highlights = function(colors)
         return {
-          VertSplit = { fg = "#553039" },
+          CmpBorder = { fg = colors.flamingo },
+          VertSplit = { fg = colors.flamingo },
         }
-      end
-    }
-  },
-  {
-    "EdenEast/nightfox.nvim",
-    name = "nightfox",
-    priority = 1000,
-    opts = {
-      options = {
-        styles = {
-          comments = "italic",
-          conditionals = "bold",
-          constants = "NONE",
-          functions = "bold",
-          keywords = "italic",
-          numbers = "NONE",
-          operators = "bold",
-          strings = "NONE",
-          types = "NONE",
-          variables = "NONE",
-        },
-      },
-      groups = {
-        terafox = {
-          VertSplit = { bg = "bg1", fg = "#005b03" }
-        },
-        nightfox = {
-          VertSplit = { bg = "bg1", fg = "#0d4e6c" }
-        },
-      }
-    }
+      end,
+    },
   },
 }
