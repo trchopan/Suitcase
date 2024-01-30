@@ -63,3 +63,11 @@ shift + alt + ctrl - 0x2C : if [[ -z $(yabai -m query --spaces |grep float) ]];\
                                 else yabai -m config layout bsp; \
                             fi;
 
+shift + alt + ctrl - m : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Brave")) | .id'); \
+                            yabai -m window --space 1; \
+                            yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Telegram")) | .id'); \
+                            yabai -m window --space 2; \
+                            yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Slack")) | .id'); \
+                            yabai -m window --space 2; \
+                            yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Alacritty")) | .id'); \
+                            yabai -m window --space 1;
