@@ -21,16 +21,8 @@ yabai -m config window_origin_display        default
 yabai -m config window_placement             first_child
 yabai -m config window_topmost               off
 yabai -m config window_shadow                off
-yabai -m config window_opacity               off
-yabai -m config window_opacity_duration      0.0
-yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        1.0
-# yabai -m config window_border                on
-# yabai -m config window_border_width          3
-yabai -m config active_window_border_color   0xff63f834
-yabai -m config normal_window_border_color   0x00000000
 yabai -m config insert_feedback_color        0xffd75f5f
-yabai -m config split_ratio                  0.50
+yabai -m config split_ratio                  0.68
 yabai -m config auto_balance                 off
 
 # general space settings
@@ -92,8 +84,11 @@ yabai -m rule --add app="^Google Chrome"                             manage=off
 # For floating separate workspaces
 yabai -m rule --add title=".*Brave - 2-t7\.sg.*"                     manage=off
 yabai -m rule --add title=".*Brave - 3-ChatQ.*"                      manage=off
+yabai -m rule --add title=".*Brave - 4-kyons.*"                      manage=off
 yabai -m rule --add title=".*Brave \(Private\)"                      manage=off
 yabai -m rule --add title="Picture in Picture"                       manage=off
 yabai -m rule --add app="PathOfExileClient"                          manage=off
 
 echo "yabai configuration loaded.."
+
+borders active_color=0xff00FF31 inactive_color=0x00000000 width=3.0
