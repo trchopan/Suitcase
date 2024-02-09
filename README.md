@@ -40,10 +40,10 @@ brew install --cask alacritty
 brew install syncthing
 brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
+brew install --ignore-dependencies borders # This package requires Sonoma and up, but it should work fine on Ventura.
 
 brew install neovim
 brew install lazygit
-brea install stats # CPU GPU HDD Monitoring
 ```
 
 ### Install the applications
@@ -55,7 +55,7 @@ brew install --cask slack
 
 ### Install programming, container and cloud
 
-```
+```bash
 brew install pyenv
 brew install pyenv-virtualenv
 brew install go
@@ -68,7 +68,7 @@ brew install awscli
 
 ### Install programs for release blogs
 
-```
+```bash
 brew install vips
 brew install hugo
 ```
