@@ -3,13 +3,15 @@ return {
   opts = {
     groups = {
       "#cd5b45",
-      "#536878",
-      "#08457e",
+      "#0091ff",
+      "#36ff44",
       "#986960",
       "#013220",
     },
   },
   keys = {
+    { "<space>m", false },
+    { "<space>M", false },
     {
       "<leader>m",
       function()
