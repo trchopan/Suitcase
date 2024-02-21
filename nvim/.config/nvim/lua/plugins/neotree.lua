@@ -23,7 +23,7 @@ return {
           local node = state.tree:get_node()
           require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
         end,
-        ["<space>"] = function(state)
+        ["<space>"] = function(_)
           require("hop").hint_lines_skip_whitespace()
         end,
         ["/"] = "noop",
@@ -32,8 +32,8 @@ return {
     },
     filesystem = {
       follow_current_file = {
-        enabled = true,         -- This will find and focus the file in the active buffer every time
-        --               -- the current file is changed while the tree is open.
+        -- enabled = true,         -- This will find and focus the file in the active buffer every time
+        --                         -- the current file is changed while the tree is open.
         leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
     },
