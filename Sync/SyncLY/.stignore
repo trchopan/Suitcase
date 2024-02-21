@@ -1,0 +1,84 @@
+// MacOS
+.DS_Store
+
+// Haskell
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
+// END Haskell
+
+// Javscript + Typescript
+node_modules
+dist
+dist-ssr
+*.local
+.log
+
+// Rust
+target
+
+// Firebase
+.firebase
+firebase-debug.log
+
+// Ignore Editor config
+.vscode
+
+// Hugo
+.idea
+*.log
+tmp/
+/public/
+/resources/_gen/
+hugo.exe
+hugo.darwin
+hugo.linux
+
+// ### Code ###
+.vscode/*
+
+// Emacs
+.dir-locals.el
+
+// Vim
+packer_compiled.lua
+
+// IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+
+// Android Studio
+/*/build/
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*.ipr
+*~
+*.swp
