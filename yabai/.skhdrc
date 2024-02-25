@@ -71,3 +71,13 @@ shift + alt + ctrl - m : yabai -m window --focus $(yabai -m query --windows | jq
                             yabai -m window --space 2; \
                             yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Alacritty")) | .id'); \
                             yabai -m window --space 1;
+
+ctrl - tab [
+    "Alacritty"   : skhd -k "shift - l"
+    *             ~
+]
+
+shift + ctrl - tab [
+    "Alacritty"   : skhd -k "shift - h"
+    *             ~
+]
