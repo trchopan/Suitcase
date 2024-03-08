@@ -17,15 +17,15 @@ return {
       { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
     },
     setup = {
-      ruff_lsp = function()
-        require("lazyvim.util").on_attach(function(client, _)
-          if client.name == "ruff_lsp" then
-            -- Disable hover in favor of Pyright
-            client.server_capabilities.hoverProvider = false
-            client.server_capabilities.diagnostics = false
-          end
-        end)
-      end,
+      -- ruff_lsp = function()
+      --   require("lazyvim.util").on_attach(function(client, _)
+      --     if client.name == "ruff_lsp" then
+      --       -- Disable hover in favor of Pyright
+      --       client.server_capabilities.hoverProvider = false
+      --       client.server_capabilities.diagnostics = false
+      --     end
+      --   end)
+      -- end,
     },
   },
   {
@@ -35,15 +35,15 @@ return {
         -- python
         -- "ruff",
         -- "ruff-lsp",
-        -- "pyright",
-        -- "black",
+        "pyright",
+        "black",
 
         -- javascript/typescript
-        -- "prettier",
-        -- "typescript-language-server",
+        "prettier",
+        "typescript-language-server",
 
         -- rust
-        -- "rust-analyzer",
+        "rust-analyzer",
 
         -- go
         -- handled by lazy.lua
@@ -61,7 +61,7 @@ return {
       opts.sources = vim.list_extend(opts.sources or {}, {
         nls.builtins.formatting.prettier,
         nls.builtins.formatting.black,
-        nls.builtins.diagnostics.ruff,
+        -- nls.builtins.diagnostics.ruff,
       })
     end,
   },
