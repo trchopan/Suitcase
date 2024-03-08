@@ -77,6 +77,8 @@ yabai -m rule --add app="^Emacs.*$"                                  manage=off
 yabai -m rule --add title="^[Ss]ign in.*"                            manage=off
 yabai -m rule --add title="^.*[Ii]nstall.*"                          manage=off
 yabai -m rule --add app="^UTM.*$"                                    manage=off
+yabai -m rule --add app="^Moonlight.*$"                              manage=off
+yabai -m rule --add app="^WireGuard.*$"                              manage=off
 
 # For flutter dev
 yabai -m rule --add app="^Google Chrome"                             manage=off
