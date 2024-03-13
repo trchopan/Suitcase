@@ -63,6 +63,14 @@ shift + alt + ctrl - 0x2C : if [[ -z $(yabai -m query --spaces |grep float) ]];\
                                 else yabai -m config layout bsp; \
                             fi;
 
+# toggle borders
+shift + alt + ctrl - n : if [[ `pgrep -f borders` ]]; \
+                            then killall borders; \
+                            else borders active_color=0xff00FF31 inactive_color=0x00000000 width=3.0 &; \
+                         fi;
+
+# automatic put layout to spaces
+
 shift + alt + ctrl - m : yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Brave")) | .id'); \
                             yabai -m window --space 1; \
                             yabai -m window --focus $(yabai -m query --windows | jq '.[] | select(.app | contains("Telegram")) | .id'); \

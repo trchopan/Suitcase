@@ -93,4 +93,4 @@ yabai -m rule --add app="PathOfExileClient"                          manage=off
 
 echo "yabai configuration loaded.."
 
-borders active_color=0xff00FF31 inactive_color=0x00000000 width=2.0
+borders active_color=0xff00FF31 inactive_color=0x00000000 width=3.0
