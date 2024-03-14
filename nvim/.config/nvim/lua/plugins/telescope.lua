@@ -4,6 +4,7 @@ return {
     defaults = {
       prompt_prefix = " ",
       selection_caret = " ",
+      file_ignore_patterns = { "node_modules", "yarn.lock", "package%-lock.json", ".git/.*" },
       mappings = {
         i = {
           ["<C-n>"] = function(...)
