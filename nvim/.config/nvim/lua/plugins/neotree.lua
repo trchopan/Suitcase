@@ -8,12 +8,21 @@ return {
   },
   keys = function()
     return {
-      { "<leader><leader>", "<cmd>Neotree toggle<cr>",       { desc = "Toggle Neotree" } },
-      { "`h",               "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
+      { "<leader><leader>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
+      { "`h", "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
     }
   end,
   opts = {
-    enable_normal_mode_for_inputs = true,
+    event_handlers = {
+      {
+        event = "neo_tree_popup_input_ready",
+        ---@param input NuiInput
+        handler = function(input)
+          -- enter input popup with normal mode by default.
+          vim.cmd("stopinsert")
+        end,
+      },
+    },
     window = {
       mappings = {
         ["l"] = "open",
