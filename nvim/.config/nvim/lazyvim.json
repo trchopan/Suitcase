@@ -1,7 +1,6 @@
 {
   "extras": [
     "lazyvim.plugins.extras.coding.codeium",
-    "lazyvim.plugins.extras.editor.aerial",
     "lazyvim.plugins.extras.formatting.black",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.docker",
@@ -13,10 +12,11 @@
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
-    "lazyvim.plugins.extras.lsp.none-ls"
+    "lazyvim.plugins.extras.lsp.none-ls",
+    "lazyvim.plugins.extras.editor.aerial"
   ],
   "news": {
-    "NEWS.md": "2123"
+    "NEWS.md": "2850"
   },
   "version": 3
 }
