@@ -13,10 +13,10 @@
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.lsp.none-ls",
-    "lazyvim.plugins.extras.editor.aerial"
+    "lazyvim.plugins.extras.test.core"
   ],
   "news": {
-    "NEWS.md": "2850"
+    "NEWS.md": "3314"
   },
   "version": 3
 }
