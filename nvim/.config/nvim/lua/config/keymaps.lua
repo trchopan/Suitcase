@@ -31,3 +31,10 @@ map("n", "<C-\\>", function()
   Util.terminal.open(nil, { border = "single" })
 end, { desc = "Terminal (cwd)" })
 map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+map(
+  "n",
+  "<leader>z",
+  "<cmd>let&l:fdl=indent('.')/&sw<cr>",
+  { desc = "Fold up to current position", silent = true, remap = false }
+)
