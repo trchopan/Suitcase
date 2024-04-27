@@ -742,7 +742,7 @@
                                             "set_mouse_cursor_position": {
                                                 "screen": 0,
                                                 "x": "68%",
-                                                "y": "68%"
+                                                "y": "50%"
                                             }
                                         }
                                     }
@@ -768,7 +768,7 @@
                                             "set_mouse_cursor_position": {
                                                 "screen": 1,
                                                 "x": "68%",
-                                                "y": "68%"
+                                                "y": "50%"
                                             }
                                         }
                                     }
