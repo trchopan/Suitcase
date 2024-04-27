@@ -8,7 +8,7 @@ return {
   },
   keys = function()
     return {
-      { "<leader><leader>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
+      { "<leader>\\", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
       { "`h", "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
     }
   end,
@@ -32,7 +32,7 @@ return {
           local node = state.tree:get_node()
           require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
         end,
-        ["<space>"] = function(_)
+        ["f"] = function(_)
           require("hop").hint_lines_skip_whitespace()
         end,
         ["/"] = "noop",
