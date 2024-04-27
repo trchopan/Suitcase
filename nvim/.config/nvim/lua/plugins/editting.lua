@@ -9,7 +9,7 @@ return {
       require('telescope').load_extension('textcase')
     end,
     keys = {
-      { mode = { "n", "v" }, "ga.", '<cmd>TextCaseOpenTelescope<CR>', desc = "Telescope" },
+      { mode = { "n", "v" }, "ga.", '<cmd>TextCaseOpenTelescope<CR>', desc = "Telescope Text Case" },
     },
   },
   {
