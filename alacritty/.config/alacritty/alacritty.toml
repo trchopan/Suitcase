@@ -144,12 +144,12 @@ mods = "Command"
 # Shift + Control + '[' or ']' to move tab left and right
 
 [[keyboard.bindings]]
-chars = '\th'
+chars = ' bl'
 key = "PageUp"
 mods = "Shift|Control"
 
 [[keyboard.bindings]]
-chars = '\tl'
+chars = ' br'
 key = "PageDown"
 mods = "Shift|Control"
 
