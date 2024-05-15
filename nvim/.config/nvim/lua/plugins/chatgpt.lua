@@ -8,10 +8,10 @@ return {
         vim.fn.expand("$HOME/.config/nvim/chatgpt-actions.json"),
       },
       openai_params = {
-        model = "gpt-4-1106-preview",
+        model = "gpt-4o",
       },
       openai_edit_params = {
-        model = "gpt-4",
+        model = "gpt-4o",
       },
     },
     dependencies = {
@@ -38,6 +38,12 @@ return {
       },
       {
         mode = { "v" },
+        "<leader>pu",
+        "<cmd>ChatGPTRun optimize_code<cr>",
+        desc = "ChatGPT Optimize Code",
+      },
+      {
+        mode = { "v" },
         "<leader>pg",
         "<cmd>ChatGPTRun grammar_correction<cr>",
         desc = "ChatGPT Grammar Correction",
@@ -47,6 +53,12 @@ return {
         "<leader>pc",
         "<cmd>ChatGPTRun complete_code<cr>",
         desc = "ChatGPT Complete Code",
+      },
+      {
+        mode = { "v" },
+        "<leader>pi",
+        "<cmd>ChatGPTRun inline_instruction<cr>",
+        desc = "ChatGPT Inline Instruction",
       },
     },
   },
