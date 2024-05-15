@@ -1,12 +1,13 @@
 {
-    "complete_python": {
+    "inline_instruction": {
         "type": "chat",
         "opts": {
-            "template": "Complete the Python code below.\n\n```{{filetype}}\n{{input}}\n```\n\n```{{filetype}}\n",
             "strategy": "append",
+            "template": "{{input}}",
             "params": {
-                "model": "gpt-4-1106-preview",
-                "stop": ["```"]
+                "model": "gpt-4o",
+                "max_tokens": 4096,
+                "temperature": 0.5
             }
         }
     }
