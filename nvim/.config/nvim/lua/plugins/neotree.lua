@@ -32,10 +32,10 @@ return {
           local node = state.tree:get_node()
           require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
         end,
+        ["/"] = "noop", -- Search by f instead
         ["f"] = function(_)
           require("hop").hint_lines_skip_whitespace()
         end,
-        ["/"] = "noop",
         ["g/"] = "fuzzy_finder",
       },
     },
