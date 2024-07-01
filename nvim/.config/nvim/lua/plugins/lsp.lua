@@ -94,10 +94,22 @@ return {
     },
   },
   {
+    "folke/trouble.nvim",
+    keys = {
+      { "<leader>cs", false },
+    },
+  },
+  {
     "hedyhli/outline.nvim",
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
-    keys = { { "<leader>cs", "<cmd>Outline<CR>", desc = "Toggle outline" } },
-    opts = {},
+    keys = {
+      { "<leader>cs", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      outline_window = {
+        width = 25,
+      },
+    },
   },
 }
