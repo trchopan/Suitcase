@@ -22,7 +22,7 @@ end
 map("n", "<C-f>w", "*Nciw", { desc = "Change word and repeat", silent = true, remap = false })
 map("v", "<C-c>c", '"*y', { desc = "Copy to System clipboard", silent = true, remap = false })
 map("v", "<C-c>p", '"py', { desc = "Copy to register p", silent = true, remap = false })
-map("v", "<C-c>P", '"pp', { desc = "Paste from register p", silent = true, remap = false })
+map("n", "<C-P>", '"pp', { desc = "Paste from register p", silent = true, remap = false })
 
 map("n", "<leader><Tab>n", '<cmd>tabnew<cr>', { desc = "New Tab", silent = true, remap = false })
 map("n", "<leader><Tab><Tab>", '<cmd>tabnext<cr>', { desc = "Next Tab", silent = true, remap = true })
