@@ -15,10 +15,8 @@ return {
         gitsigns = true,
         neotree = true,
         treesitter = true,
-        mini = {
-          enabled = true,
-          indentscope_color = "",
-        },
+        mini = true,
+        symbols_outline = true,
       },
       styles = {
         comments = { "italic" },
