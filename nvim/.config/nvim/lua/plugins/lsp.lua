@@ -16,16 +16,12 @@ return {
     keys = {
       { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
     },
-    setup = {
-      -- ruff_lsp = function()
-      --   require("lazyvim.util").on_attach(function(client, _)
-      --     if client.name == "ruff_lsp" then
-      --       -- Disable hover in favor of Pyright
-      --       client.server_capabilities.hoverProvider = false
-      --       client.server_capabilities.diagnostics = false
-      --     end
-      --   end)
-      -- end,
+    opts = {
+      setup = {
+        rust_analyzer = function()
+          return true
+        end,
+      },
     },
   },
   {
