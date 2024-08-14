@@ -39,7 +39,7 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 map(
   "n",
-  "<leader>z",
+  "zC",
   "<cmd>let&l:fdl=indent('.')/&sw<cr>",
   { desc = "Fold up to current position", silent = true, remap = false }
 )
