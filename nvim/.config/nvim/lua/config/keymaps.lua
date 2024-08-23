@@ -41,5 +41,5 @@ map(
   "n",
   "zC",
   "<cmd>let&l:fdl=indent('.')/&sw<cr>",
-  { desc = "Fold up to current position", silent = true, remap = false }
+  { desc = "Fold by indent to current position", silent = true, remap = false }
 )
