@@ -23,6 +23,9 @@
     paging = always
     light = false
 
+[merge]
+    conflictstyle = diff3
+
 [delta "interactive"]
     keep-plus-minus-markers = false
 
