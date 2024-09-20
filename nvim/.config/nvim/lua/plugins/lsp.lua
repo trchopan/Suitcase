@@ -17,6 +17,7 @@ return {
       { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
     },
     opts = {
+      inlay_hints = { enabled = false },
       setup = {
         rust_analyzer = function()
           return true
