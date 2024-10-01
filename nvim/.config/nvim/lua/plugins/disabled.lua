@@ -6,6 +6,5 @@ return {
   { "echasnovski/mini.pairs",         enabled = false },
   { "folke/flash.nvim",               enabled = false },
   { "folke/noice.nvim",               enabled = false },
-  { "folke/noice.nvim",               enabled = false },
   { "simrat39/symbols-outline.nvim",  enabled = false },
 }
