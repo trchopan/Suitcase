@@ -10,6 +10,13 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 vim.g.autoformat = false
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.livemd",
+  callback = function()
+    vim.bo.filetype = "markdown"
+  end,
+})
+
 return {
   {
     "neovim/nvim-lspconfig",
