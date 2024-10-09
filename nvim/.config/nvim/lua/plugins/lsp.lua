@@ -20,6 +20,11 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 return {
   {
     "neovim/nvim-lspconfig",
+    event = "LazyFile",
+    dependencies = {
+      "mason.nvim",
+      { "williamboman/mason-lspconfig.nvim", config = function() end },
+    },
     keys = {
       { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
     },
