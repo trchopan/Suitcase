@@ -1,3 +1,4 @@
+local inspect = require "vim.inspect"
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = {
@@ -36,12 +37,20 @@ return {
         ["f"] = function(_)
           require("hop").hint_lines_skip_whitespace()
         end,
-        ["g/"] = "fuzzy_finder",
+        -- ["g/"] = "fuzzy_finder",
+        ["g/"] = function(state)
+          local node = state.tree:get_node()
+          print(inspect(node))
+          require("telescope.builtin").live_grep({
+            prompt_title = "Search in " .. node.path,
+            cwd = node.path,
+          })
+        end,
       },
     },
     filesystem = {
       follow_current_file = {
-        enabled = true,         -- This will find and focus the file in the active buffer every time
+        enabled = true, -- This will find and focus the file in the active buffer every time
         --                         -- the current file is changed while the tree is open.
         leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
