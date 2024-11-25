@@ -54,8 +54,8 @@ return {
         -- rust
         "rust-analyzer",
 
-        -- go
-        -- handled by lazy.lua
+        -- elixir
+        -- "nextls"
       },
     },
   },
