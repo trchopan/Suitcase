@@ -24,8 +24,8 @@ map("v", "<C-c>c", '"*y', { desc = "Copy to System clipboard", silent = true, re
 map("v", "<C-c>p", '"py', { desc = "Copy to register p", silent = true, remap = false })
 map("n", "<C-P>", '"pp', { desc = "Paste from register p", silent = true, remap = false })
 
-map("n", "<leader><Tab>n", '<cmd>tabnew<cr>', { desc = "New Tab", silent = true, remap = false })
-map("n", "<leader><Tab><Tab>", '<cmd>tabnext<cr>', { desc = "Next Tab", silent = true, remap = true })
+map("n", "<leader><Tab>n", "<cmd>tabnew<cr>", { desc = "New Tab", silent = true, remap = false })
+map("n", "<leader><Tab><Tab>", "<cmd>tabnext<cr>", { desc = "Next Tab", silent = true, remap = true })
 
 map("n", "<C-t>fd", function()
   vim.opt.foldmethod = "indent"
@@ -33,8 +33,9 @@ end, { desc = "Fold by indent" })
 
 -- Toogle float term
 map("n", "<C-\\>", function()
-  Util.terminal.open(nil, { border = "single" })
+  Snacks.terminal()
 end, { desc = "Terminal (cwd)" })
+
 map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 map(

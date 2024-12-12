@@ -5,33 +5,33 @@ return {
     "johmsalas/text-case.nvim",
     event = "VeryLazy",
     config = function()
-      require('textcase').setup()
-      require('telescope').load_extension('textcase')
+      require("textcase").setup()
+      require("telescope").load_extension("textcase")
     end,
     keys = {
-      { mode = { "n", "v" }, "ga.", '<cmd>TextCaseOpenTelescope<CR>', desc = "Telescope Text Case" },
+      { mode = { "n", "v" }, "ga.", "<cmd>TextCaseOpenTelescope<CR>", desc = "Telescope Text Case" },
     },
   },
   {
-    'echasnovski/mini.splitjoin',
+    "echasnovski/mini.splitjoin",
     config = true,
   },
   {
-    'echasnovski/mini.move',
+    "echasnovski/mini.move",
     config = true,
     opts = {
       mappings = {
         -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
-        left = '',
-        right = '',
-        down = '',
-        up = '',
+        left = "",
+        right = "",
+        down = "",
+        up = "",
 
         -- Move current line in Normal mode
-        line_left = '',
-        line_right = '',
-        line_down = '',
-        line_up = '',
+        line_left = "",
+        line_right = "",
+        line_down = "",
+        line_up = "",
       },
     },
     keys = function()
@@ -48,6 +48,6 @@ return {
         { mode = { "x" }, "˙", "<cmd>lua MiniMove.move_selection('left')<cr>", desc = "Move left" },
         { mode = { "x" }, "¬", "<cmd>lua MiniMove.move_selection('right')<cr>", desc = "move right" },
       }
-    end
-  }
+    end,
+  },
 }

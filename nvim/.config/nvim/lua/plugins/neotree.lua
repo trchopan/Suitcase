@@ -1,4 +1,3 @@
-local inspect = require "vim.inspect"
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = {
@@ -40,7 +39,6 @@ return {
         -- ["g/"] = "fuzzy_finder",
         ["g/"] = function(state)
           local node = state.tree:get_node()
-          print(inspect(node))
           require("telescope.builtin").live_grep({
             prompt_title = "Search in " .. node.path,
             cwd = node.path,
