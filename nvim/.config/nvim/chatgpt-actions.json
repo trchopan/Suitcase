@@ -10,5 +10,22 @@
                 "temperature": 0.5
             }
         }
+    },
+    "inline_writer": {
+        "type": "chat",
+        "opts": {
+            "strategy": "append",
+            "template": "{{input}}",
+            "params": {
+                "model": "gpt-4o",
+                "max_tokens": 4096,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "\nYou are a content writer tasked with assisting the user in developing the next part of the script. Your responsibilities include:\n- Understanding that the context of the last part is crucial for continuing the script.\n- Continuing the script without adding new sections.\n- Providing ideas to expand upon the last part, rather than completing the entire script.\n"
+                    }
+                ]
+            }
+        }
     }
 }

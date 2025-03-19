@@ -60,6 +60,12 @@ return {
         "<cmd>ChatGPTRun inline_instruction<cr>",
         desc = "ChatGPT Inline Instruction",
       },
+      {
+        mode = { "v" },
+        "<leader>pw",
+        "<cmd>ChatGPTRun inline_writer<cr>",
+        desc = "ChatGPT Inline Writer",
+      },
     },
   },
 }
