@@ -4,6 +4,9 @@ return {
   opts = function(_, opts)
     opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
     opts.options = {
+      indicator = {
+          style = 'underline',
+      },
       show_buffer_close_icons = false,
       show_close_icon = false,
       always_show_bufferline = true,
