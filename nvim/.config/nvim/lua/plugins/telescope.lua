@@ -17,8 +17,4 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    require("telescope").setup(opts)
-    require "telescope.multigrep".setup()
-  end,
 }
