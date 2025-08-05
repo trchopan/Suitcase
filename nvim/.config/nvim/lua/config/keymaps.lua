@@ -19,6 +19,10 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- map("n", "K", function()
+--   return vim.lsp.buf.hover({ border = "single" })
+-- end, { desc = "show LSP hover information" })
+
 map("n", "<C-f>w", "*Nciw", { desc = "Change word and repeat", silent = true, remap = false })
 map("v", "<C-c>c", '"*y', { desc = "Copy to System clipboard", silent = true, remap = false })
 map("v", "<C-c>p", '"py', { desc = "Copy to register p", silent = true, remap = false })

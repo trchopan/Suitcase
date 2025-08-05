@@ -1,12 +1,13 @@
 local _border = "single"
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = _border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = _border,
-})
+local hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+    return hover({
+        max_width = 120,
+        border = _border,
+    })
+end
 
 vim.g.autoformat = false
 
@@ -56,6 +57,9 @@ return {
 
         -- elixir
         -- "nextls"
+      },
+      ui = {
+        border = "single",
       },
     },
   },
