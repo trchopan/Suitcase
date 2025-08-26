@@ -6,6 +6,8 @@ return {
         adapter = {
           name = "gemini",
           model = "gemini-2.5-flash",
+          -- name = "openai",
+          -- model = "gpt-5",
         },
         keymaps = {
           accept_change = {
@@ -22,6 +24,8 @@ return {
         adapter = {
           name = "gemini",
           model = "gemini-2.5-flash",
+          -- name = "openai",
+          -- model = "gpt-5",
         },
         keymaps = {
           send = {
@@ -34,7 +38,7 @@ return {
       openai = function()
         return require("codecompanion.adapters").extend("openai", {
           env = {
-            api_key = "cmd:secret-openai",
+            api_key = "cmd:secret-openai personal",
           },
         })
       end,
