@@ -31,10 +31,6 @@ map("n", "<C-P>", '"pp', { desc = "Paste from register p", silent = true, remap 
 map("n", "<leader><Tab>n", "<cmd>tabnew<cr>", { desc = "New Tab", silent = true, remap = false })
 map("n", "<leader><Tab><Tab>", "<cmd>tabnext<cr>", { desc = "Next Tab", silent = true, remap = true })
 
-map("n", "<C-t>fd", function()
-  vim.opt.foldmethod = "indent"
-end, { desc = "Fold by indent" })
-
 -- Toogle float term
 map("n", "<C-\\>", function()
   Snacks.terminal()
