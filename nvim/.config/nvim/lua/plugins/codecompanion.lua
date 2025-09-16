@@ -1,3 +1,6 @@
+--- @param filename string The name of the prompt file (e.g., "my_prompt.txt").
+--- @param replacements table<string, string>? An optional table of key-value pairs for string interpolation. Keys in the table correspond to patterns like `{{KEY}}` in the prompt file.
+--- @return string? The content of the prompt file with replacements applied, or nil if the file could not be read.
 local function read_prompt(filename, replacements)
   -- Read system prompts from Neovim config directory: <config>/prompts
   local prompts_dir = vim.fn.stdpath("config") .. "/prompts"
@@ -59,14 +62,21 @@ return {
       openai = function()
         return require("codecompanion.adapters").extend("openai", {
           env = {
-            api_key = "cmd:secret-openai personal",
+            api_key = "cmd:secret-key openai personal",
           },
         })
       end,
       gemini = function()
         return require("codecompanion.adapters").extend("gemini", {
           env = {
-            api_key = "cmd:secret-genai",
+            api_key = "cmd:secret-key gemini personal",
+          },
+        })
+      end,
+      tavily = function()
+        return require("codecompanion.adapters").extend("tavily", {
+          env = {
+            api_key = "cmd:secret-key tavily personal",
           },
         })
       end,
@@ -80,7 +90,7 @@ return {
           short_name = "improve_code",
           auto_submit = true,
           stop_context_insertion = true,
-          ignore_system_prompt = false,
+          ignore_system_prompt = true, -- ignore default system prompt from plugin
         },
         prompts = {
           {
@@ -106,7 +116,7 @@ return {
           short_name = "docs_code",
           auto_submit = true,
           stop_context_insertion = true,
-          ignore_system_prompt = false,
+          ignore_system_prompt = true, -- ignore default system prompt from plugin
         },
         prompts = {
           {
@@ -136,13 +146,15 @@ return {
           short_name = "fix_error",
           auto_submit = false,
           stop_context_insertion = true,
-          ignore_system_prompt = true,
+          ignore_system_prompt = false, -- Use system prompt from plugin
         },
         prompts = {
           {
             role = "user",
             content = function(context)
-              return "#{buffer}\n\nI have the following error:\n\n```" .. context.filetype .. "\n\n\n```\n\nHelp me fix it."
+              return "#{buffer}\n\nI have the following error:\n\n```"
+                .. context.filetype
+                .. "\n\n\n```\n\nHelp me fix it."
             end,
           },
         },
