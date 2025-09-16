@@ -22,47 +22,98 @@ local function read_prompt(filename, replacements)
   return nil
 end
 
-return {
-  "olimorris/codecompanion.nvim",
-  opts = {
-    strategies = {
-      inline = {
-        adapter = {
-          name = "gemini",
-          model = "gemini-2.5-flash",
-          -- name = "openai",
-          -- model = "gpt-5",
-        },
-        keymaps = {
-          accept_change = {
-            modes = { n = "<leader>at" },
-            description = "Accept the suggested change",
-          },
-          reject_change = {
-            modes = { n = "<leader>ar" },
-            description = "Reject the suggested change",
-          },
-        },
+local function get_ai_mode()
+  local ai_mode_file = vim.fn.expand("~/.ai_mode")
+  local ok, lines = pcall(vim.fn.readfile, ai_mode_file)
+  if ok and lines and #lines > 0 then
+    return vim.trim(lines[1])
+  end
+  return nil
+end
+
+local ai_mode = get_ai_mode()
+local configured_strategies = {}
+
+if ai_mode == "line" then
+  configured_strategies = {
+    inline = {
+      adapter = {
+        name = "openai_line",
+        model = "gpt-4.1",
       },
-      chat = {
-        adapter = {
-          name = "gemini",
-          model = "gemini-2.5-flash",
-          -- name = "openai",
-          -- model = "gpt-5",
+      keymaps = {
+        accept_change = {
+          modes = { n = "<leader>at" },
+          description = "Accept the suggested change",
         },
-        keymaps = {
-          send = {
-            modes = { n = "<leader><CR>" },
-          },
+        reject_change = {
+          modes = { n = "<leader>ar" },
+          description = "Reject the suggested change",
         },
       },
     },
+    chat = {
+      adapter = {
+        name = "openai_line",
+        model = "gpt-4.1",
+      },
+      keymaps = {
+        send = {
+          modes = { n = "<leader><CR>" },
+        },
+      },
+    },
+  }
+else
+  configured_strategies = {
+    inline = {
+      adapter = {
+        name = "gemini",
+        model = "gemini-2.5-flash",
+      },
+      keymaps = {
+        accept_change = {
+          modes = { n = "<leader>at" },
+          description = "Accept the suggested change",
+        },
+        reject_change = {
+          modes = { n = "<leader>ar" },
+          description = "Reject the suggested change",
+        },
+      },
+    },
+    chat = {
+      adapter = {
+        name = "gemini",
+        model = "gemini-2.5-flash",
+      },
+      keymaps = {
+        send = {
+          modes = { n = "<leader><CR>" },
+        },
+      },
+    },
+  }
+end
+
+return {
+  "olimorris/codecompanion.nvim",
+  opts = {
+    strategies = configured_strategies,
     adapters = {
       openai = function()
         return require("codecompanion.adapters").extend("openai", {
           env = {
             api_key = "cmd:secret-key openai personal",
+          },
+        })
+      end,
+      openai_line = function()
+        return require("codecompanion.adapters").extend("openai", {
+          name = "openai_line",
+          url = "https://openai-proxy.linecorp.com/v1/chat/completions",
+          env = {
+            api_key = "cmd:secret-key openai line",
           },
         })
       end,
