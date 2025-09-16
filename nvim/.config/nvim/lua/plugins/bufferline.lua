@@ -2,7 +2,7 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = function(_, opts)
-    opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+    -- opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
     opts.options = {
       indicator = {
           style = 'underline',
