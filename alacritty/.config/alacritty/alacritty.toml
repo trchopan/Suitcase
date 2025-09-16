@@ -189,7 +189,7 @@ multiplier = 3
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 save_to_clipboard = true
 
-[shell]
+[terminal.shell]
 args = ["-l", "-c", "tmux attach || tmux"]
 program = "/bin/zsh"
 

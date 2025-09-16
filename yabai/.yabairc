@@ -90,8 +90,8 @@ yabai -m rule --add app="^Google Chrome"                             manage=off
 yabai -m rule --add title=".*Brave - 2-t7\.sg.*"                     manage=off
 yabai -m rule --add title=".*Brave - 3-ChatQ.*"                      manage=off
 yabai -m rule --add title=".*Brave - 4-kyons.*"                      manage=off
-yabai -m rule --add title=".*Brave - 4-kyons.*"                      manage=off
-yabai -m rule --add title=".*Brave - 6-Roto.*"                      manage=off
+yabai -m rule --add title=".*Brave - 5-vietnam.*"                    manage=off
+yabai -m rule --add title=".*Brave - 6-Roto.*"                       manage=off
 yabai -m rule --add title=".*Brave \(Private\)"                      manage=off
 yabai -m rule --add title="Picture in Picture"                       manage=off
 yabai -m rule --add app="PathOfExileClient"                          manage=off
