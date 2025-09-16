@@ -4,11 +4,18 @@
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "dart",
-  command = "setlocal shiftwidth=2 tabstop=2"
+  command = "setlocal shiftwidth=2 tabstop=2",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "yaml", "yml" },
+  command = "setlocal shiftwidth=4 tabstop=4",
+})
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "yaml",
-  command = "setlocal shiftwidth=4 tabstop=4"
+  pattern = { "markdown", "md" },
+  callback = function()
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  end,
 })
