@@ -5,15 +5,15 @@
 vim.g.mapleader = " "
 vim.g.maplocal = "\\"
 
-local opt = vim.opt
-opt.clipboard = ""
-opt.conceallevel = 3 -- Show quote in json file or links in markdown
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.foldmethod = "indent"
-opt.foldlevelstart = 20
-opt.iskeyword = opt.iskeyword + "-"
-opt.linebreak = true
+vim.opt.clipboard = ""
+vim.opt.conceallevel = 3 -- Show quote in json file or links in markdown
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 20
+vim.opt.iskeyword = vim.opt.iskeyword + "-"
+vim.opt.linebreak = true
+vim.opt.undolevels = 1000
 
 for c = string.byte('a'), string.byte('z') do
   local lower = string.char(c)
