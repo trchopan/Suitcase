@@ -3,10 +3,10 @@ local _border = "single"
 local hover = vim.lsp.buf.hover
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.hover = function()
-    return hover({
-        max_width = 120,
-        border = _border,
-    })
+  return hover({
+    max_width = 120,
+    border = _border,
+  })
 end
 
 vim.g.autoformat = false
@@ -24,7 +24,7 @@ return {
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
-      { "williamboman/mason-lspconfig.nvim", config = function() end },
+      { "mason-org/mason-lspconfig.nvim", config = function() end },
     },
     keys = {
       { "<leader>rr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
@@ -39,7 +39,7 @@ return {
     },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         -- python

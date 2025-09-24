@@ -13,11 +13,11 @@ return {
     },
   },
   {
-    "echasnovski/mini.splitjoin",
+    "nvim-mini/mini.splitjoin",
     config = true,
   },
   {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
     config = true,
     opts = {
       mappings = {

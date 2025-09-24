@@ -133,6 +133,29 @@ return {
       end,
     },
     prompt_library = {
+      ["Content writer"] = {
+        strategy = "chat",
+        description = "Content writer",
+        opts = {
+          modes = { "n" },
+          short_name = "content_writer",
+          auto_submit = false,
+          stop_context_insertion = true,
+          ignore_system_prompt = true, -- ignore default system prompt from plugin
+        },
+        prompts = {
+          {
+            role = "system",
+            content = function(context)
+              return read_prompt("content_writer.md", {})
+            end,
+          },
+          {
+            role = "user",
+            content = "",
+          },
+        },
+      },
       ["Improve code"] = {
         strategy = "chat",
         description = "Improve the select code",
@@ -193,7 +216,6 @@ return {
         strategy = "chat",
         description = "Propose fix for current buffer",
         opts = {
-          modes = { "v" },
           short_name = "fix_error",
           auto_submit = false,
           stop_context_insertion = true,
@@ -236,10 +258,22 @@ return {
       desc = "Open Write Docs Code Assistant",
     },
     {
+      mode = { "v" },
+      "<leader>aa",
+      "<cmd>CodeCompanionChat Add<CR>",
+      desc = "Add Selected Text to Chat Buffer",
+    },
+    {
       mode = { "n" },
       "<leader>ar",
       "<cmd>CodeCompanion /fix_error<CR>",
       desc = "Open Fix Error Code Assistant",
+    },
+    {
+      mode = { "n" },
+      "<leader>at",
+      "<cmd>CodeCompanion /content_writer<CR>",
+      desc = "Open Content Writer Assistant",
     },
     {
       mode = { "n" },
@@ -252,12 +286,6 @@ return {
       "<leader>ac",
       "<cmd>CodeCompanionChat Toggle<CR>",
       desc = "Toggle Chat Buffer",
-    },
-    {
-      mode = { "n" },
-      "<leader>aa",
-      "<cmd>CodeCompanionChat Add<CR>",
-      desc = "Add Selected Text to Chat Buffer",
     },
     {
       mode = { "n" },
