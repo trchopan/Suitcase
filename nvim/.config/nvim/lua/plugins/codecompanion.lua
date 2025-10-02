@@ -32,69 +32,50 @@ local function get_ai_mode()
 end
 
 local ai_mode = get_ai_mode()
-local configured_strategies = {}
+
+local adapter_name
+local adapter_model
 
 if ai_mode == "line" then
-  configured_strategies = {
-    inline = {
-      adapter = {
-        name = "openai_line",
-        model = "gpt-4.1",
-      },
-      keymaps = {
-        accept_change = {
-          modes = { n = "<leader>at" },
-          description = "Accept the suggested change",
-        },
-        reject_change = {
-          modes = { n = "<leader>ar" },
-          description = "Reject the suggested change",
-        },
-      },
-    },
-    chat = {
-      adapter = {
-        name = "openai_line",
-        model = "gpt-4.1",
-      },
-      keymaps = {
-        send = {
-          modes = { n = "<leader><CR>" },
-        },
-      },
-    },
-  }
+  adapter_name = "openai_line"
+  adapter_model = "gpt-4.1"
 else
-  configured_strategies = {
-    inline = {
-      adapter = {
-        name = "gemini",
-        model = "gemini-2.5-flash",
-      },
-      keymaps = {
-        accept_change = {
-          modes = { n = "<leader>at" },
-          description = "Accept the suggested change",
-        },
-        reject_change = {
-          modes = { n = "<leader>ar" },
-          description = "Reject the suggested change",
-        },
-      },
-    },
-    chat = {
-      adapter = {
-        name = "gemini",
-        model = "gemini-2.5-flash",
-      },
-      keymaps = {
-        send = {
-          modes = { n = "<leader><CR>" },
-        },
-      },
-    },
-  }
+  adapter_name = "gemini"
+  adapter_model = "gemini-2.5-flash"
 end
+
+local configured_strategies = {
+  inline = {
+    adapter = {
+      name = adapter_name,
+      model = adapter_model,
+    },
+    keymaps = {
+      accept_change = {
+        modes = { n = "<leader>at" },
+        description = "Accept the suggested change",
+      },
+      reject_change = {
+        modes = { n = "<leader>ar" },
+        description = "Reject the suggested change",
+      },
+    },
+  },
+  chat = {
+    adapter = {
+      name = adapter_name,
+      model = adapter_model,
+    },
+    keymaps = {
+      send = {
+        modes = { n = "<leader><CR>" },
+      },
+    },
+    opts = {
+      undolevels = 100,
+    },
+  },
+}
 
 return {
   "olimorris/codecompanion.nvim",
