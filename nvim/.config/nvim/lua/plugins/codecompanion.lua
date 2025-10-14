@@ -188,7 +188,7 @@ return {
             content = function(context)
               local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
-              return "```" .. context.filetype .. "\n" .. text .. "\n```\n\n"
+              return "#buffer ```" .. context.filetype .. "\n" .. text .. "\n```\n\n"
             end,
           },
         },
