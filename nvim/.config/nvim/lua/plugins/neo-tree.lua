@@ -44,12 +44,23 @@ return {
             cwd = node.path,
           })
         end,
+        ["<leader>p"] = function(state)
+          local node = state.tree:get_node()
+          if node and node.type == "directory" then
+            require("telescope.builtin").find_files({
+              prompt_title = "Find files in " .. node.path,
+              search_dirs = { node.path },
+            })
+          else
+            vim.notify("Cursor is not on a directory.", vim.log.levels.WARN)
+          end
+        end,
       },
     },
     filesystem = {
       follow_current_file = {
         enabled = true, -- This will find and focus the file in the active buffer every time
-                        -- the current file is changed while the tree is open.
+        -- the current file is changed while the tree is open.
         leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       commands = {
