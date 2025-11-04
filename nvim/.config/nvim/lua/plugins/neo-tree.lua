@@ -55,6 +55,12 @@ return {
             vim.notify("Cursor is not on a directory.", vim.log.levels.WARN)
           end
         end,
+        ["Y"] = function(state)
+          local node = state.tree:get_node()
+          local filepath = node:get_id()
+          local result = vim.fn.fnamemodify(filepath, ":.")
+          vim.fn.setreg("*", result)
+        end,
       },
     },
     filesystem = {
