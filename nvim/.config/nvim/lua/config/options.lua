@@ -14,16 +14,3 @@ vim.opt.foldlevelstart = 20
 vim.opt.iskeyword = vim.opt.iskeyword + "-"
 vim.opt.linebreak = true
 vim.opt.undolevels = 1000
-
-for c = string.byte('a'), string.byte('z') do
-  local lower = string.char(c)
-  local upper = string.char(c):upper()
-
-  -- Remap setting a mark
-  vim.keymap.set('n', 'm'..lower, 'm'..upper, { noremap = true, silent = true })
-  -- Remap jumping to a mark (line)
-  vim.keymap.set('n', "'"..lower, "'"..upper, { noremap = true, silent = true })
-  -- Remap jumping to a mark (exact place)
-  vim.keymap.set('n', '`'..lower, '`'..upper, { noremap = true, silent = true })
-end
-
