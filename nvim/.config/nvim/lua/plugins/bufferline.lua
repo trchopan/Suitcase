@@ -5,7 +5,7 @@ return {
     -- opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
     opts.options = {
       indicator = {
-          style = 'underline',
+        style = "underline",
       },
       show_buffer_close_icons = false,
       show_close_icon = false,
@@ -40,5 +40,17 @@ return {
     -- Below moving keymap is mapped again in alacrity to sync up with browser tab move
     { "<leader>br", ":BufferLineMoveNext<CR>", desc = "Move Buffer Next", silent = true },
     { "<leader>bl", ":BufferLineMovePrev<CR>", desc = "Move Buffer Previous", silent = true },
+
+    -- Assume there is nomore than 10 buffer. Move first just move it 10 times.
+    {
+      "<leader>bf",
+      function()
+        for _ = 1, 10 do
+          vim.cmd("BufferLineMovePrev")
+        end
+      end,
+      desc = "Move Buffer To First",
+      silent = true,
+    },
   },
 }
