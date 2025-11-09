@@ -213,6 +213,56 @@ return {
           },
         },
       },
+      ["Check naming and typo"] = {
+        strategy = "chat",
+        description = "Check naming and typo of selected text",
+        opts = {
+          short_name = "check_naming_and_typo",
+          modes = { "v" },
+          auto_submit = true,
+          stop_context_insertion = true,
+          ignore_system_prompt = true, -- ignore default system prompt from plugin
+        },
+        prompts = {
+          {
+            role = "system",
+            content = function(context)
+              return read_prompt("check_naming_and_typo.md", {})
+            end,
+          },
+          {
+            role = "user",
+            content = function(context)
+              local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+              return "#{buffer}\n\n```" .. context.filetype .. "\n" .. text .. "\n```\n\n"
+            end,
+          },
+        },
+      },
+      ["Fix grammar"] = {
+        strategy = "chat",
+        description = "Fix this paragraph grammar and typo",
+        opts = {
+          short_name = "fix_grammar_and_typo",
+          modes = { "v" },
+          auto_submit = true,
+          stop_context_insertion = true,
+          ignore_system_prompt = true, -- ignore default system prompt from plugin
+        },
+        prompts = {
+          {
+            role = "system",
+            content = "Help me fix the grammar and typos in the given text.",
+          },
+          {
+            role = "user",
+            content = function(context)
+              local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+              return text .. "\n"
+            end,
+          },
+        },
+      },
     },
     extensions = {
       mcphub = {
@@ -248,6 +298,18 @@ return {
       "<leader>ad",
       "<cmd>CodeCompanion /docs_code<CR>",
       desc = "Open Write Docs Code Assistant",
+    },
+    {
+      mode = { "v" },
+      "<leader>ag",
+      "<cmd>CodeCompanion /fix_grammar_and_typo<CR>",
+      desc = "Open Fix grammar and typos Code Assistant",
+    },
+    {
+      mode = { "v" },
+      "<leader>ah",
+      "<cmd>CodeCompanion /check_naming_and_typo<CR>",
+      desc = "Open Check code naming and typo Code Assistant",
     },
     {
       mode = { "v" },
