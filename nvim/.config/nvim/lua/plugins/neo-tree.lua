@@ -37,7 +37,7 @@ return {
           require("hop").hint_lines_skip_whitespace()
         end,
         -- ["g/"] = "fuzzy_finder",
-        ["g/"] = function(state)
+        ["<leader>P"] = function(state)
           local node = state.tree:get_node()
           require("telescope.builtin").live_grep({
             prompt_title = "Search in " .. node.path,
@@ -70,31 +70,34 @@ return {
         leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       commands = {
-        avante_add_files = function(state)
+        copy_path_to_right_buffer = function(state)
           local node = state.tree:get_node()
-          local filepath = node:get_id()
-          local relative_path = require("avante.utils").relative_path(filepath)
-
-          local sidebar = require("avante").get()
-
-          local open = sidebar:is_open()
-          -- ensure avante sidebar is open
-          if not open then
-            require("avante.api").ask()
-            sidebar = require("avante").get()
+          if not node or node.type == "root" then
+            vim.notify("No file or directory selected.", vim.log.levels.WARN)
+            return
           end
 
-          sidebar.file_selector:add_selected_file(relative_path)
+          local filepath = node:get_id()
+          -- Get path relative to the current working directory
+          local relative_path = vim.fn.fnamemodify(filepath, ":.")
 
-          -- remove neo tree buffer
-          if not open then
-            sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+          -- Temporarily switch to the window on the right
+          vim.cmd("wincmd l")
+          local target_buf_id = vim.api.nvim_get_current_buf()
+          -- Switch back to Neo-tree
+          vim.cmd("wincmd h")
+
+          if target_buf_id ~= nil and vim.api.nvim_buf_is_loaded(target_buf_id) then
+            -- Append the path at the end of the target buffer
+            vim.api.nvim_buf_set_lines(target_buf_id, -1, -1, false, { relative_path })
+          else
+            vim.notify("Could not find a valid buffer to the right.", vim.log.levels.WARN)
           end
         end,
       },
       window = {
         mappings = {
-          ["oa"] = "avante_add_files",
+          ["oa"] = "copy_path_to_right_buffer",
         },
       },
     },
