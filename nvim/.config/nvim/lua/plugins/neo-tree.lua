@@ -1,140 +1,152 @@
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-    "MunifTanjim/nui.nvim",
-    "s1n7ax/nvim-window-picker",
-  },
-  keys = function()
-    return {
-      { "<leader>\\", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
-      { "`h", "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
-    }
-  end,
-  opts = {
-    event_handlers = {
-      {
-        event = "neo_tree_popup_input_ready",
-        ---@param input NuiInput
-        handler = function(input)
-          -- enter input popup with normal mode by default.
-          vim.cmd("stopinsert")
-        end,
-      },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
     },
-    window = {
-      mappings = {
-        ["l"] = "open",
-        ["h"] = "close_node",
-        ["P"] = "paste_from_clipboard",
-        ["p"] = function(state)
-          local node = state.tree:get_node()
-          require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-        end,
-        ["/"] = "noop", -- Search by f instead
-        ["f"] = function(_)
-          require("hop").hint_lines_skip_whitespace()
-        end,
-        -- ["g/"] = "fuzzy_finder",
-        ["<leader>P"] = function(state)
-          local node = state.tree:get_node()
-          require("telescope.builtin").live_grep({
-            prompt_title = "Search in " .. node.path,
-            cwd = node.path,
-          })
-        end,
-        ["<leader>p"] = function(state)
-          local node = state.tree:get_node()
-          if node and node.type == "directory" then
-            require("telescope.builtin").find_files({
-              prompt_title = "Find files in " .. node.path,
-              search_dirs = { node.path },
-            })
-          else
-            vim.notify("Cursor is not on a directory.", vim.log.levels.WARN)
-          end
-        end,
-        ["Y"] = function(state)
-          local node = state.tree:get_node()
-          local filepath = node:get_id()
-          local result = vim.fn.fnamemodify(filepath, ":.")
-          vim.fn.setreg("*", result)
-        end,
-      },
-    },
-    filesystem = {
-      follow_current_file = {
-        enabled = true, -- This will find and focus the file in the active buffer every time
-        -- the current file is changed while the tree is open.
-        leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
-      },
-      commands = {
-        copy_path_to_right_buffer = function(state)
-          local node = state.tree:get_node()
-          if not node or node.type == "root" then
-            vim.notify("No file or directory selected.", vim.log.levels.WARN)
-            return
-          end
-
-          local filepath = node:get_id()
-          -- Get path relative to the current working directory
-          local relative_path = vim.fn.fnamemodify(filepath, ":.")
-
-          -- Temporarily switch to the window on the right
-          vim.cmd("wincmd l")
-          local target_buf_id = vim.api.nvim_get_current_buf()
-          -- Switch back to Neo-tree
-          vim.cmd("wincmd h")
-
-          if target_buf_id ~= nil and vim.api.nvim_buf_is_loaded(target_buf_id) then
-            -- Append the path at the end of the target buffer
-            vim.api.nvim_buf_set_lines(target_buf_id, -1, -1, false, { relative_path })
-          else
-            vim.notify("Could not find a valid buffer to the right.", vim.log.levels.WARN)
-          end
-        end,
-      },
+    lazy = false, -- neo-tree will lazily load itself
+    keys = function()
+      return {
+        { "<leader>\\", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" } },
+        { "`h", "<cmd>Neotree focus reveal<cr>", { desc = "Show file in Neotree" } },
+      }
+    end,
+    opts = {
       window = {
         mappings = {
-          ["oa"] = "copy_path_to_right_buffer",
+          ["l"] = "open",
+          ["h"] = "close_node",
+          ["P"] = "paste_from_clipboard",
+          ["p"] = function(state)
+            local node = state.tree:get_node()
+            require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+          end,
+          ["/"] = "noop", -- Search by f instead
+          ["f"] = function(_)
+            require("hop").hint_lines_skip_whitespace()
+          end,
+          -- ["g/"] = "fuzzy_finder",
+          ["<leader>P"] = function(state)
+            local node = state.tree:get_node()
+            require("telescope.builtin").live_grep({
+              prompt_title = "Search in " .. node.path,
+              cwd = node.path,
+            })
+          end,
+          ["<leader>p"] = function(state)
+            local node = state.tree:get_node()
+            if node and node.type == "directory" then
+              require("telescope.builtin").find_files({
+                prompt_title = "Find files in " .. node.path,
+                search_dirs = { node.path },
+              })
+            else
+              vim.notify("Cursor is not on a directory.", vim.log.levels.WARN)
+            end
+          end,
+          ["Y"] = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            local result = vim.fn.fnamemodify(filepath, ":.")
+            vim.fn.setreg("*", result)
+          end,
+        },
+      },
+      filesystem = {
+        follow_current_file = {
+          enabled = true, -- This will find and focus the file in the active buffer every time
+          -- the current file is changed while the tree is open.
+          leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+        },
+        commands = {
+          copy_path_to_right_buffer = function(state)
+            local node = state.tree:get_node()
+            if not node or node.type == "root" then
+              vim.notify("No file or directory selected.", vim.log.levels.WARN)
+              return
+            end
+
+            local filepath = node:get_id()
+            -- Get path relative to the current working directory
+            local relative_path = vim.fn.fnamemodify(filepath, ":.")
+
+            -- Temporarily switch to the window on the right
+            vim.cmd("wincmd l")
+            local target_buf_id = vim.api.nvim_get_current_buf()
+            -- Switch back to Neo-tree
+            vim.cmd("wincmd h")
+
+            if target_buf_id ~= nil and vim.api.nvim_buf_is_loaded(target_buf_id) then
+              -- Append the path at the end of the target buffer
+              vim.api.nvim_buf_set_lines(target_buf_id, -1, -1, false, { relative_path })
+            else
+              vim.notify("Could not find a valid buffer to the right.", vim.log.levels.WARN)
+            end
+          end,
+        },
+        window = {
+          mappings = {
+            ["oa"] = "copy_path_to_right_buffer",
+          },
+        },
+      },
+      default_component_configs = {
+        diagnostics = {
+          symbols = {
+            hint = "",
+            info = "",
+            warn = "",
+            error = "",
+            -- hint = "H",
+            -- info = "I",
+            -- warn = "!",
+            -- error = "X",
+          },
+          highlights = {
+            hint = "DiagnosticSignHint",
+            info = "DiagnosticSignInfo",
+            warn = "DiagnosticSignWarn",
+            error = "DiagnosticSignError",
+          },
+        },
+        git_status = {
+          symbols = {
+            -- Change type
+            added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+            deleted = "✖", -- this can only be used in the git_status source
+            renamed = "󰁕", -- this can only be used in the git_status source
+            -- Status type
+            untracked = "",
+            ignored = "",
+            unstaged = "",
+            staged = "",
+            conflict = "",
+          },
         },
       },
     },
-    default_component_configs = {
-      diagnostics = {
-        symbols = {
-          hint = "",
-          info = "",
-          warn = "",
-          error = "",
-          -- hint = "H",
-          -- info = "I",
-          -- warn = "!",
-          -- error = "X",
+  },
+  {
+    "s1n7ax/nvim-window-picker",
+    version = "2.*",
+    config = function()
+      require("window-picker").setup({
+        filter_rules = {
+          include_current_win = false,
+          autoselect_one = true,
+          -- filter using buffer options
+          bo = {
+            -- if the file type is one of following, the window will be ignored
+            filetype = { "neo-tree", "neo-tree-popup", "notify" },
+            -- if the buffer type is one of following, the window will be ignored
+            buftype = { "terminal", "quickfix" },
+          },
         },
-        highlights = {
-          hint = "DiagnosticSignHint",
-          info = "DiagnosticSignInfo",
-          warn = "DiagnosticSignWarn",
-          error = "DiagnosticSignError",
-        },
-      },
-      git_status = {
-        symbols = {
-          -- Change type
-          added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-          modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-          deleted = "✖", -- this can only be used in the git_status source
-          renamed = "󰁕", -- this can only be used in the git_status source
-          -- Status type
-          untracked = "",
-          ignored = "",
-          unstaged = "",
-          staged = "",
-          conflict = "",
-        },
-      },
-    },
+      })
+    end,
   },
 }

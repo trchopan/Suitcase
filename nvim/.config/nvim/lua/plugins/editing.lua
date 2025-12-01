@@ -1,6 +1,17 @@
 return {
   { "mattn/emmet-vim" },
-  { "tpope/vim-surround" },
+  "tpope/vim-surround",
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+      enable_check_bracket_line = false,
+      fast_wrap = {
+        map = "<C-e>",
+      },
+    },
+  },
   {
     "johmsalas/text-case.nvim",
     event = "VeryLazy",

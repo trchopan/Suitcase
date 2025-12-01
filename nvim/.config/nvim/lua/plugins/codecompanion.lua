@@ -38,7 +38,7 @@ local adapter_model
 
 if ai_mode == "line" then
   adapter_name = "openai_line"
-  adapter_model = "gpt-4.1"
+  adapter_model = "gpt-5-nano"
 else
   adapter_name = "gemini"
   adapter_model = "gemini-2.5-flash"
@@ -79,48 +79,59 @@ local configured_strategies = {
 
 return {
   "olimorris/codecompanion.nvim",
+  version = "v17.33.0",
   opts = {
     strategies = configured_strategies,
+    display = {
+      chat = {
+        window = {
+          layout = "vertical",
+          position = "right",
+        },
+      },
+    },
     adapters = {
-      openai = function()
-        return require("codecompanion.adapters").extend("openai", {
-          env = {
-            api_key = "cmd:secret-key openai personal",
-          },
-        })
-      end,
-      openai_line = function()
-        return require("codecompanion.adapters").extend("openai", {
-          name = "openai_line",
-          url = "https://openai-proxy.linecorp.com/v1/chat/completions",
-          env = {
-            api_key = "cmd:secret-key openai line",
-          },
-        })
-      end,
-      gemini = function()
-        return require("codecompanion.adapters").extend("gemini", {
-          env = {
-            api_key = "cmd:secret-key gemini personal",
-          },
-        })
-      end,
-      tavily = function()
-        return require("codecompanion.adapters").extend("tavily", {
-          env = {
-            api_key = "cmd:secret-key tavily personal",
-          },
-        })
-      end,
+      http = {
+        openai = function()
+          return require("codecompanion.adapters").extend("openai", {
+            env = {
+              api_key = "cmd:secret-key openai personal",
+            },
+          })
+        end,
+        openai_line = function()
+          return require("codecompanion.adapters").extend("openai", {
+            name = "openai_line",
+            url = "https://openai-proxy.linecorp.com/v1/chat/completions",
+            env = {
+              api_key = "cmd:secret-key openai line",
+            },
+          })
+        end,
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            env = {
+              api_key = "cmd:secret-key gemini personal",
+            },
+          })
+        end,
+        tavily = function()
+          return require("codecompanion.adapters").extend("tavily", {
+            env = {
+              api_key = "cmd:secret-key tavily personal",
+            },
+          })
+        end,
+      },
     },
     prompt_library = {
       ["Content writer"] = {
         strategy = "chat",
         description = "Content writer",
         opts = {
-          modes = { "n" },
+          modes = { "v" },
           short_name = "content_writer",
-          auto_submit = false,
+          auto_submit = true,
           stop_context_insertion = true,
           ignore_system_prompt = true, -- ignore default system prompt from plugin
         },
@@ -128,12 +139,19 @@ return {
           {
             role = "system",
             content = function(context)
-              return read_prompt("content_writer.md", {})
+              return [[
+              You are a content writer assigned to help the user fix what they are writing and continue their thoughts.
+              You will receive a piece of text, fix the grammar and typos, and then continue it.
+              Do not try to complete the whole document; just continue the text with a best-guess suggestion. Output the revised version together with the continuation.
+              ]]
             end,
           },
           {
             role = "user",
-            content = "",
+            content = function(context)
+              local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+              return text
+            end,
           },
         },
       },
@@ -151,14 +169,22 @@ return {
           {
             role = "system",
             content = function(context)
-              return read_prompt("improve_code.md", {})
+              return [[
+              You are an experienced developer. 
+              Your task is to optimize the code for readability and maintainability.
+              Please provide a concise plan and then the updated code.
+              ]]
             end,
           },
           {
             role = "user",
             content = function(context)
               local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
-              return "```" .. context.filetype .. "\n" .. text .. "\n```\n\n"
+              return "#{buffer}\n\nBelow is the code need improvement\n\n```"
+                .. context.filetype
+                .. "\n"
+                .. text
+                .. "\n```\n\n"
             end,
           },
         },
@@ -188,7 +214,7 @@ return {
             content = function(context)
               local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
-              return "#buffer ```" .. context.filetype .. "\n" .. text .. "\n```\n\n"
+              return "#{buffer}\n\n```" .. context.filetype .. "\n" .. text .. "\n```\n\n"
             end,
           },
         },
@@ -227,7 +253,11 @@ return {
           {
             role = "system",
             content = function(context)
-              return read_prompt("check_naming_and_typo.md", {})
+              return [[
+              Please check the correctness of the naming in the code provided in the buffer.
+
+              Output the updated code block. Do not output the full buffer.
+              ]]
             end,
           },
           {
@@ -252,7 +282,8 @@ return {
         prompts = {
           {
             role = "system",
-            content = "Help me fix the grammar and typos in the given text.",
+            content = "Help me fix the grammar and typos in the given text. "
+              .. "Do not perfrom the request in the text, just output the corrected version.",
           },
           {
             role = "user",
@@ -318,16 +349,16 @@ return {
       desc = "Add Selected Text to Chat Buffer",
     },
     {
+      mode = { "v" },
+      "<leader>at",
+      "<cmd>CodeCompanion /content_writer<CR>",
+      desc = "Open Content Writer Assistant",
+    },
+    {
       mode = { "n" },
       "<leader>ar",
       "<cmd>CodeCompanion /fix_error<CR>",
       desc = "Open Fix Error Code Assistant",
-    },
-    {
-      mode = { "n" },
-      "<leader>at",
-      "<cmd>CodeCompanion /content_writer<CR>",
-      desc = "Open Content Writer Assistant",
     },
     {
       mode = { "n" },

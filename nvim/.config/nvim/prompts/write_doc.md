@@ -25,25 +25,26 @@ def calculate_area(width, height):
     return width * height
 ```
 
-````typescript
+```typescript
 /**
-* Calculate the area of a rectangle.
-*
-* @param {number} width - The width of the rectangle. Must be a positive number.
-* @param {number} height - The height of the rectangle. Must be a positive number.
-* @returns {number} The area of the rectangle.
-* @throws {Error} Throws an error if either width or height is not positive.
-*
-* Example usage:
-* calculateArea(5, 10); // Returns 50
-*/
+ * Calculate the area of a rectangle.
+ *
+ * @param {number} width - The width of the rectangle. Must be a positive number.
+ * @param {number} height - The height of the rectangle. Must be a positive number.
+ * @returns {number} The area of the rectangle.
+ * @throws {Error} Throws an error if either width or height is not positive.
+ *
+ * Example usage:
+ * calculateArea(5, 10); // Returns 50
+ */
 function calculateArea(width: number, height: number): number {
     if (width <= 0 || height <= 0) {
-        throw new Error("Invalid input. Both width and height must be positive.");
+        throw new Error('Invalid input. Both width and height must be positive.');
     }
 
     return width * height;
 }
+```
 
 ```go
 // Calculate the area of a rectangle.
@@ -65,7 +66,7 @@ func CalculateArea(width, height float64) (float64, error) {
     }
     return width * height, nil
 }
-````
+```
 
 ```elixir
 @doc """

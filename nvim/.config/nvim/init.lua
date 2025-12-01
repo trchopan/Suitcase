@@ -1,3 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.options")
 require("config.lazy")
-require("mylua.debug")
+require("config.keymaps")
+require("config.autocmds")
+require("config.lsp")
