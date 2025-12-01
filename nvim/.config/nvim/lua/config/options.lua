@@ -12,3 +12,4 @@ vim.opt.linebreak = true
 vim.opt.undolevels = 1000
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.splitright = true
+vim.opt.cmdheight = 0
