@@ -13,3 +13,5 @@ vim.opt.undolevels = 1000
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.splitright = true
 vim.opt.cmdheight = 0
+vim.opt.ignorecase = true
+vim.opt.smartcase = true

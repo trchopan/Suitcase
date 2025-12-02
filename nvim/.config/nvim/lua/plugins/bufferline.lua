@@ -53,6 +53,8 @@ return {
     -- Below moving keymap is mapped again in alacrity to sync up with browser tab move
     { "<leader>br", ":BufferLineMoveNext<CR>", desc = "Move Buffer Next", silent = true },
     { "<leader>bl", ":BufferLineMovePrev<CR>", desc = "Move Buffer Previous", silent = true },
+    { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+    { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
 
     -- Assume there is nomore than 10 buffer. Move first just move it 10 times.
     {
