@@ -304,12 +304,16 @@ return {
           show_result_in_chat = true,
         },
       },
+      history = {
+        enabled = true,
+      },
     },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
+    "ravitemer/codecompanion-history.nvim",
   },
   keys = {
     {
