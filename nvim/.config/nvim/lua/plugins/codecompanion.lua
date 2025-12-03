@@ -72,7 +72,7 @@ local configured_strategies = {
       },
     },
     opts = {
-      undolevels = 100,
+      undolevels = 200,
     },
   },
 }
