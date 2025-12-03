@@ -21,11 +21,7 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 3000,
-      },
+      format_on_save = nil,
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
