@@ -16,3 +16,4 @@ vim.opt.splitright = true
 vim.opt.cmdheight = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.wrapscan = true
