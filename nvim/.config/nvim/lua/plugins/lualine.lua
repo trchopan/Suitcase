@@ -39,6 +39,18 @@ return {
           Snacks.profiler.status(),
           -- stylua: ignore
           {
+            function()
+              local recording_register = vim.fn.reg_recording()
+              if recording_register ~= "" then
+                return "REC @" .. recording_register
+              end
+              return ""
+            end,
+            cond = function() return vim.fn.reg_recording() ~= "" end,
+            color = function() return { fg = Snacks.util.color("Error") } end,
+          },
+          -- stylua: ignore
+          {
             function() return require("noice").api.status.command.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
             color = function() return { fg = Snacks.util.color("Statement") } end,
