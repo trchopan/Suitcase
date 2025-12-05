@@ -4,4 +4,7 @@ return {
     "kristijanhusak/vim-dadbod-ui",
     "kristijanhusak/vim-dadbod-completion",
   },
+  keys = {
+    { "<leader>D", "<cmd>DBUI<cr>", desc = "DB UI" },
+  },
 }
