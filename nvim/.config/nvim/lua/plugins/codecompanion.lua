@@ -306,6 +306,11 @@ return {
       },
       history = {
         enabled = true,
+        opts = {
+          ---When chat is cleared with `gx` delete the chat from history
+          delete_on_clearing_chat = false,
+          expiration_days = 7,
+        },
       },
     },
   },
