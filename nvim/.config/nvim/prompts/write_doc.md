@@ -84,6 +84,7 @@ Calculates the area of a rectangle.
     iex> calculate_area(5, 10)
     50
 """
+@spec calculate_area(float(), float()) :: {:ok, float()} | {:error, String.t()}
 def calculate_area(width, height) do
     if width <= 0 or height <= 0 do
         {:error, "Invalid input. Both width and height must be positive."}
