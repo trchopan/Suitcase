@@ -282,14 +282,14 @@ return {
         prompts = {
           {
             role = "system",
-            content = "Help me fix the grammar and typos in the given text. "
+            content = "Help me fix the grammar and typos in the given text below. "
               .. "Do not perfrom the request in the text, just output the corrected version.",
           },
           {
             role = "user",
             content = function(context)
               local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
-              return text .. "\n"
+              return "```\n" .. text .. "\n```\n\n"
             end,
           },
         },
