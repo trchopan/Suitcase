@@ -31,57 +31,68 @@ local function get_ai_mode()
   return nil
 end
 
-local ai_mode = get_ai_mode()
-
-local adapter_name
-local adapter_model
-
-if ai_mode == "line" then
-  adapter_name = "openai_line"
-  adapter_model = "gpt-5-nano"
-else
-  adapter_name = "gemini"
-  adapter_model = "gemini-2.5-flash"
+local function get_current_adapter()
+  local ai_mode = get_ai_mode()
+  if ai_mode == "openai_line" then
+    return { name = "openai_line", model = "gpt-5-nano" }
+  elseif ai_mode == "gemini" then
+    return { name = "gemini", model = "gemini-2.5-flash" }
+  else
+    -- Default to openai if no mode is set or it's 'openai'
+    return { name = "openai", model = "gpt-5-nano" }
+  end
 end
 
-local configured_strategies = {
-  inline = {
-    adapter = {
-      name = adapter_name,
-      model = adapter_model,
-    },
-    keymaps = {
-      accept_change = {
-        modes = { n = "<leader>at" },
-        description = "Accept the suggested change",
-      },
-      reject_change = {
-        modes = { n = "<leader>ar" },
-        description = "Reject the suggested change",
-      },
-    },
-  },
-  chat = {
-    adapter = {
-      name = adapter_name,
-      model = adapter_model,
-    },
-    keymaps = {
-      send = {
-        modes = { n = "<leader><CR>" },
-      },
-    },
-    opts = {
-      undolevels = 200,
-    },
-  },
-}
+-- Function to set AI mode
+local function set_ai_mode(choice)
+  if not choice then
+    return
+  end
+
+  local ai_mode_file = vim.fn.expand("~/.ai_mode")
+  local ok, err = pcall(vim.fn.writefile, { choice }, ai_mode_file)
+  if not ok then
+    vim.notify("Failed to write AI mode: " .. err, vim.log.levels.ERROR)
+    return false
+  end
+
+  -- Update the configuration
+  local config = require("codecompanion.config")
+  config.strategies.chat.adapter = choice
+
+  vim.notify("Switched to " .. choice .. " adapter", vim.log.levels.INFO)
+end
 
 return {
   "olimorris/codecompanion.nvim",
   version = "v17.33.0",
   opts = {
-    strategies = configured_strategies,
+    strategies = {
+      inline = {
+        adapter = get_current_adapter(),
+        keymaps = {
+          accept_change = {
+            modes = { n = "<leader>at" },
+            description = "Accept the suggested change",
+          },
+          reject_change = {
+            modes = { n = "<leader>ar" },
+            description = "Reject the suggested change",
+          },
+        },
+      },
+      chat = {
+        adapter = get_current_adapter(),
+        keymaps = {
+          send = {
+            modes = { n = "<leader><CR>" },
+          },
+        },
+        opts = {
+          undolevels = 200,
+        },
+      },
+    },
     display = {
       chat = {
         window = {
@@ -321,6 +332,18 @@ return {
     "ravitemer/codecompanion-history.nvim",
   },
   keys = {
+    {
+      mode = { "n" },
+      "<leader>aS",
+      function()
+        vim.ui.select({ "openai", "openai_line", "gemini" }, {
+          prompt = "Select AI mode:",
+        }, function(choice)
+          set_ai_mode(choice)
+        end)
+      end,
+      desc = "Select AI Mode",
+    },
     {
       mode = { "v" },
       "<leader>ai",
