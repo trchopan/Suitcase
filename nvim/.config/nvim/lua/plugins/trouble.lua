@@ -1,6 +1,6 @@
 return {
   "folke/trouble.nvim",
-  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  opts = {},
   cmd = "Trouble",
   keys = {
     {
@@ -15,7 +15,10 @@ return {
     },
     {
       "<leader>cs",
-      "<cmd>Trouble symbols toggle focus=false<cr>",
+      function()
+        local size = (vim.bo.filetype == "markdown") and 60 or 50
+        vim.cmd("Trouble symbols toggle focus=false win.size=" .. size)
+      end,
       desc = "Symbols (Trouble)",
     },
     {
