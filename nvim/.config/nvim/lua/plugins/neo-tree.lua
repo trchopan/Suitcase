@@ -1,3 +1,5 @@
+local neo_tree_commands = require("mylua.neo-tree-commands")
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -19,6 +21,7 @@ return {
         mappings = {
           ["l"] = "open",
           ["h"] = "close_node",
+          ["z"] = "noop",
           ["P"] = "paste_from_clipboard",
           ["p"] = function(state)
             local node = state.tree:get_node()
@@ -53,6 +56,15 @@ return {
             local result = vim.fn.fnamemodify(filepath, ":.")
             vim.fn.setreg("*", result)
           end,
+          ["O"] = {
+            function(state)
+              require("lazy.util").open(state.tree:get_node().path, { system = true })
+            end,
+            desc = "Open with System Application",
+          },
+          ["oa"] = "copy_path_to_right_buffer",
+          ["<leader>yc"] = "copy_file_content_to_clipboard",
+          ["<leader>ys"] = "copy_file_content_to_scratch",
         },
       },
       filesystem = {
@@ -62,35 +74,10 @@ return {
           leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
         commands = {
-          copy_path_to_right_buffer = function(state)
-            local node = state.tree:get_node()
-            if not node or node.type == "root" then
-              vim.notify("No file or directory selected.", vim.log.levels.WARN)
-              return
-            end
-
-            local filepath = node:get_id()
-            -- Get path relative to the current working directory
-            local relative_path = vim.fn.fnamemodify(filepath, ":.")
-
-            -- Temporarily switch to the window on the right
-            vim.cmd("wincmd l")
-            local target_buf_id = vim.api.nvim_get_current_buf()
-            -- Switch back to Neo-tree
-            vim.cmd("wincmd h")
-
-            if target_buf_id ~= nil and vim.api.nvim_buf_is_loaded(target_buf_id) then
-              -- Append the path at the end of the target buffer
-              vim.api.nvim_buf_set_lines(target_buf_id, -1, -1, false, { relative_path })
-            else
-              vim.notify("Could not find a valid buffer to the right.", vim.log.levels.WARN)
-            end
-          end,
-        },
-        window = {
-          mappings = {
-            ["oa"] = "copy_path_to_right_buffer",
-          },
+          -- Use functions from the separate module
+          copy_path_to_right_buffer = neo_tree_commands.copy_path_to_right_buffer,
+          copy_file_content_to_clipboard = neo_tree_commands.copy_file_content_to_clipboard,
+          copy_file_content_to_scratch = neo_tree_commands.copy_file_content_to_scratch,
         },
       },
       default_component_configs = {
