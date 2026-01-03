@@ -1,13 +1,3 @@
-vim.keymap.set("n", "<leader>p", function()
-  vim.ui.input({ prompt = "Find files in directory: " }, function(input)
-    if input and #input > 0 then
-      require("telescope.builtin").find_files({
-        search_dirs = { input },
-      })
-    end
-  end)
-end, { desc = "Telescope find_files in directory" })
-
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
