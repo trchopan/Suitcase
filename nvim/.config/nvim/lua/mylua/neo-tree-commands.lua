@@ -54,7 +54,9 @@ function M.copy_path_to_right_buffer(state)
 
     for _, name in ipairs(vim.fn.readdir(dirpath)) do
       local full_path = dirpath .. "/" .. name
-      table.insert(paths_to_add, "@" .. vim.fn.fnamemodify(full_path, ":."))
+      if vim.fn.isdirectory(full_path) == 0 then -- Only add if it's not a directory
+        table.insert(paths_to_add, "@" .. vim.fn.fnamemodify(full_path, ":."))
+      end
     end
 
     if #paths_to_add == 0 then
