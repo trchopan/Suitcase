@@ -43,35 +43,38 @@ function M.copy_path_to_right_buffer(state)
     return
   end
 
-  local filepath = node:get_id()
-  local relative_path = vim.fn.fnamemodify(filepath, ":.")
+  local paths_to_add = {}
 
+  if node.type == "file" then
+    local filepath = node:get_id()
+    table.insert(paths_to_add, "@" .. vim.fn.fnamemodify(filepath, ":."))
+  elseif node.type == "directory" then
+    local dirpath = node.path
+    vim.notify("Listing paths in directory '" .. dirpath .. "' (depth 1 only).", vim.log.levels.INFO)
+
+    for _, name in ipairs(vim.fn.readdir(dirpath)) do
+      local full_path = dirpath .. "/" .. name
+      table.insert(paths_to_add, "@" .. vim.fn.fnamemodify(full_path, ":."))
+    end
+
+    if #paths_to_add == 0 then
+      vim.notify("Directory is empty: " .. dirpath, vim.log.levels.INFO)
+      return
+    end
+  else
+    vim.notify("Unsupported node type.", vim.log.levels.WARN)
+    return
+  end
+
+  -- Identify right-hand buffer
   vim.cmd("wincmd l")
   local target_buf_id = vim.api.nvim_get_current_buf()
   vim.cmd("wincmd h")
 
   if target_buf_id ~= nil and vim.api.nvim_buf_is_loaded(target_buf_id) then
-    vim.api.nvim_buf_set_lines(target_buf_id, -1, -1, false, { relative_path })
+    vim.api.nvim_buf_set_lines(target_buf_id, -1, -1, false, paths_to_add)
   else
     vim.notify("Could not find a valid buffer to the right.", vim.log.levels.WARN)
-  end
-end
-
-function M.copy_file_content_to_clipboard(state)
-  local node = state.tree:get_node()
-  if not node or node.type ~= "file" then
-    vim.notify("Please select a file to copy its content.", vim.log.levels.WARN)
-    return
-  end
-
-  local filepath = node.path
-  local lines = vim.fn.readfile(filepath)
-  if #lines > 0 then
-    local content = table.concat(lines, "\n")
-    vim.fn.setreg("*", content)
-    vim.notify("File content copied to system clipboard!", vim.log.levels.INFO)
-  else
-    vim.notify("File is empty or could not be read.", vim.log.levels.WARN)
   end
 end
 
@@ -120,7 +123,7 @@ function M.copy_file_content_to_scratch(state)
     end
 
     local lines = vim.fn.readfile(filepath_to_add)
-    local header = { "-- " .. vim.fn.fnamemodify(filepath_to_add, ":p") .. " --" }
+    local header = { "--- " .. vim.fn.fnamemodify(filepath_to_add, ":p") .. " ---" }
     local separator = { "", string.rep("-", 80), "", "" }
 
     vim.bo[target_bufnr].modifiable = true
