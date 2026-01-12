@@ -65,7 +65,7 @@ end
 
 return {
   "olimorris/codecompanion.nvim",
-  version = "v17.33.0",
+  -- version = "v17.33.0",
   opts = {
     strategies = {
       inline = {

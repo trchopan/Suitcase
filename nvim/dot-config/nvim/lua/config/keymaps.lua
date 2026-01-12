@@ -117,3 +117,9 @@ map("n", "<leader>dk", function()
     end
   end)
 end, { desc = "Search mix usage rules" })
+
+map("n", "<leader>rr", function()
+  vim.cmd("normal! mF") -- Mark current position with global mark 'F'
+  snacksLocal.bufdelete()
+  vim.cmd("normal! `F") -- Go to the global mark 'F' (which will reopen the file at the marked position)
+end, { desc = "Reopen current buffer" })
