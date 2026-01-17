@@ -56,10 +56,6 @@ local function set_ai_mode(choice)
     return false
   end
 
-  -- Update the configuration
-  local config = require("codecompanion.config")
-  config.strategies.chat.adapter = choice
-
   vim.notify("Switched to " .. choice .. " adapter", vim.log.levels.INFO)
 end
 
@@ -137,11 +133,11 @@ return {
     },
     prompt_library = {
       ["Content writer"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Content writer",
         opts = {
           modes = { "v" },
-          short_name = "content_writer",
+          alias = "content_writer",
           auto_submit = true,
           stop_context_insertion = true,
           ignore_system_prompt = true, -- ignore default system prompt from plugin
@@ -167,11 +163,11 @@ return {
         },
       },
       ["Improve code"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Improve the select code",
         opts = {
           modes = { "v" },
-          short_name = "improve_code",
+          alias = "improve_code",
           auto_submit = true,
           stop_context_insertion = true,
           ignore_system_prompt = true, -- ignore default system prompt from plugin
@@ -201,11 +197,11 @@ return {
         },
       },
       ["Write doc for code"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Write document for select code.",
         opts = {
           modes = { "v" },
-          short_name = "docs_code",
+          alias = "docs_code",
           auto_submit = true,
           stop_context_insertion = true,
           ignore_system_prompt = true, -- ignore default system prompt from plugin
@@ -231,10 +227,10 @@ return {
         },
       },
       ["Fix error"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Propose fix for current buffer",
         opts = {
-          short_name = "fix_error",
+          alias = "fix_error",
           auto_submit = false,
           stop_context_insertion = true,
           ignore_system_prompt = false, -- Use system prompt from plugin
@@ -251,10 +247,10 @@ return {
         },
       },
       ["Check naming and typo"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Check naming and typo of selected text",
         opts = {
-          short_name = "check_naming_and_typo",
+          alias = "check_naming_and_typo",
           modes = { "v" },
           auto_submit = true,
           stop_context_insertion = true,
@@ -281,10 +277,10 @@ return {
         },
       },
       ["Fix grammar"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Fix this paragraph grammar and typo",
         opts = {
-          short_name = "fix_grammar_and_typo",
+          alias = "fix_grammar_and_typo",
           modes = { "v" },
           auto_submit = true,
           stop_context_insertion = true,
