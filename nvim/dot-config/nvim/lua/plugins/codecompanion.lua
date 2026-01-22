@@ -196,6 +196,12 @@ return {
     },
     {
       mode = { "n" },
+      "<leader>as",
+      "<cmd>CodeCompanion /ai_patch<CR>",
+      desc = "Open Assistant to apply an AI response as a patch job",
+    },
+    {
+      mode = { "n" },
       "<leader>ar",
       "<cmd>CodeCompanion /fix_error<CR>",
       desc = "Open Fix Error Code Assistant",
