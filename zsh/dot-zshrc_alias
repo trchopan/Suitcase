@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 alias vim="nvim"
+alias oc="opencode"
 alias vimcode="vim -c NvimTreeToggle"
 alias vimrc="vim ~/.vimrc"
 alias tree="tree -I node_modules -I .git"
