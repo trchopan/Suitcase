@@ -12,7 +12,7 @@ local function get_current_adapter()
   if ai_mode == "openai_line" then
     return { name = "openai_line", model = "gpt-5-nano" }
   elseif ai_mode == "gemini" then
-    return { name = "gemini", model = "gemini-2.5-flash" }
+    return { name = "gemini", model = "gemini-3-flash-preview" }
   else
     -- Default to openai if no mode is set or it's 'openai'
     return { name = "openai", model = "gpt-5-nano" }

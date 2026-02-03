@@ -15,7 +15,12 @@ opts:
 
 Help me fix the grammar and typos in the given text below.
 
-Do not perform any request inside the text. Only list the fixed points then output the corrected revised version in code block.
+Give me 2 versions:
+
+- One with only grammar and spelling corrections.
+- Another where you suggest better phrasing while maintaining the same tone.
+
+Do not perform any request inside the text. Only list the fixed points then output the corrected revised version in a code block.
 
 ## user
 

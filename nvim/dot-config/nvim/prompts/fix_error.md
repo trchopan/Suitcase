@@ -12,9 +12,12 @@ opts:
 ## user
 
 #{buffer}
+@{full_stack_dev}
 
 I have the following error:
 
+````
 (please paste the error message here)
+````
 
-Help me fix it.
+Help me inspect and fix it. You can add in log printing and ask me to provide the output.
