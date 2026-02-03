@@ -69,9 +69,9 @@ const CATEGORY_TIER: Record<string, Tier> = {
 const PRESET_MODELS: Record<Preset, Record<Exclude<Tier, 'gemini-3-flash'>, string>> = {
     openai: {
         Ultra: 'openai/gpt-5.1-codex',
-        High: 'openai/gpt-5.1',
+        High: 'openai/gpt-5.1-codex',
         Docs: 'openai/gpt-5.1-codex-mini',
-        Fast: 'openai/gpt-5-mini',
+        Fast: 'github-copilot/claude-haiku-4.5',
     },
     'openai-claude': {
         Ultra: 'openai/claude-sonnet-4.5',
