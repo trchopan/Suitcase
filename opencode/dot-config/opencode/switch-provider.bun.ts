@@ -22,6 +22,7 @@ import {parse as parseJsonc} from 'jsonc-parser';
 type Preset =
     | 'openai'
     | 'openai-claude'
+    | 'openai-line'
     | 'github-copilot-claude'
     | 'antigravity-gemini'
     | 'antigravity-claude';
@@ -78,6 +79,12 @@ const PRESET_MODELS: Record<Preset, Record<Exclude<Tier, 'gemini-3-flash'>, stri
         High: 'openai/claude-sonnet-4.5',
         Docs: 'openai/gpt-5.2-codex-mini',
         Fast: 'openai/claude-haiku-4.5',
+    },
+    'openai-line': {
+        Ultra: 'openai/gpt-5.2',
+        High: 'openai/gpt-5.2-codex',
+        Docs: 'openai/gpt-5.1',
+        Fast: 'openai/gpt-5.1-codex-mini',
     },
     'github-copilot-claude': {
         Ultra: 'github-copilot/claude-sonnet-4.5',

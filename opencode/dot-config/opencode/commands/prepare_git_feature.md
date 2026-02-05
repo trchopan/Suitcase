@@ -6,10 +6,12 @@ model: github-copilot/claude-haiku-4.5
 
 I want to prepare the git branch for the feature with title:
 
-!`grep "^#{1,2}" "$1" | head -n 1 | sed 's/^#{1,2}\s*//'`  
+!`grep "^#{1,2}" "$1" | head -n 1`
 
-Check for the conventions:
+!`if [ -n "$2" ]; then 
+    cat "$2";
+else 
+    cat "GIT_WORKFLOW.md";
+fi`
 
-!`cat ${2:-GIT_WORKFLOW.md}`
-
-Based on the title and conventions, please create a new feature branch following the naming conventions
+Based on the title and conventions, please create a new feature branch following the naming conventions.

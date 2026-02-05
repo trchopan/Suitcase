@@ -2,7 +2,7 @@
 	"$schema": "https://opencode.ai/config.json",
 	"plugin": [
 		"opencode-antigravity-auth@1.4.3",
-		"oh-my-opencode@3.2.2",
+		"oh-my-opencode@3.2.3",
 		"opencode-openai-codex-auth"
 	],
 	"provider": {
@@ -17,6 +17,12 @@
 				"store": false
 			},
 			"models": {
+				"us.anthropic.claude-sonnet-4-5-20250929-v1:0": {
+					"name": "Claude Sonet 4.5 (Line)"
+				},
+				"us.anthropic.claude-haiku-4-5-20251001-v1:0": {
+					"name": "Claude Haiku 4.5 (Line)"
+				},
 				"gpt-5.2": {
 					"name": "GPT 5.2 (OAuth)",
 					"limit": {
