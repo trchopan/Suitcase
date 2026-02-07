@@ -4,14 +4,8 @@ agent: build
 model: github-copilot/claude-haiku-4.5
 ---
 
-I want to prepare the git branch for the feature with title:
+I need to set up a Git branch for the feature titled:
 
-!`grep "^#{1,2}" "$1" | head -n 1`
+!`grep -E "^#{1,2}" "$1" | head -n 1`  
 
-!`if [ -n "$2" ]; then 
-    cat "$2";
-else 
-    cat "GIT_WORKFLOW.md";
-fi`
-
-Based on the title and conventions, please create a new feature branch following the naming conventions.
+Please refer to `GIT_WORKFLOW.md` for our naming conventions. Based on the title and these guidelines, please create a new feature branch.
