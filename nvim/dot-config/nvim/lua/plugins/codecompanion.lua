@@ -39,6 +39,15 @@ return {
   "olimorris/codecompanion.nvim",
   -- version = "v17.33.0",
   opts = {
+    interactions = {
+      chat = {
+        adapter = {
+          name = "opencode",
+          model = "gpt-5.2-codex",
+          -- model = "gpt-5.2-chat-latest",
+        },
+      },
+    },
     strategies = {
       inline = {
         adapter = get_current_adapter(),

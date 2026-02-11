@@ -63,20 +63,20 @@ return {
             desc = "Open with System Application",
           },
           ["<leader>ya"] = "copy_path_to_right_buffer",
+          ["<leader>yd"] = "copy_directory_tree_to_right_buffer",
           ["<leader>ys"] = "copy_file_content_to_scratch",
         },
       },
       filesystem = {
         follow_current_file = {
-          enabled = false, -- This will find and focus the file in the active buffer every time
-          -- the current file is changed while the tree is open.
-          leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          enabled = false,
+          leave_dirs_open = true,
         },
         commands = {
           -- Use functions from the separate module
           copy_path_to_right_buffer = neo_tree_commands.copy_path_to_right_buffer,
-          copy_file_content_to_clipboard = neo_tree_commands.copy_file_content_to_clipboard,
           copy_file_content_to_scratch = neo_tree_commands.copy_file_content_to_scratch,
+          copy_directory_tree_to_right_buffer = neo_tree_commands.copy_directory_tree_to_right_buffer,
         },
       },
       default_component_configs = {
@@ -86,10 +86,6 @@ return {
             info = "",
             warn = "",
             error = "",
-            -- hint = "H",
-            -- info = "I",
-            -- warn = "!",
-            -- error = "X",
           },
           highlights = {
             hint = "DiagnosticSignHint",
@@ -100,12 +96,10 @@ return {
         },
         git_status = {
           symbols = {
-            -- Change type
-            added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = "✖", -- this can only be used in the git_status source
-            renamed = "󰁕", -- this can only be used in the git_status source
-            -- Status type
+            added = "",
+            modified = "",
+            deleted = "✖",
+            renamed = "󰁕",
             untracked = "",
             ignored = "",
             unstaged = "",
