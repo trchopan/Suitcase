@@ -41,6 +41,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
+        "biome", -- js/ts formatter
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
