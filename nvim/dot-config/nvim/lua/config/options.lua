@@ -17,3 +17,5 @@ vim.opt.cmdheight = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = true
+
+vim.g.copilot_enabled = 0

@@ -26,8 +26,11 @@ return {
      -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
      require("luasnip.loaders.from_vscode").lazy_load()
 
-     -- setup copilot_cmp
-     require("copilot_cmp").setup()
+    local copilot_enabled = vim.g.copilot_enabled == 1
+
+    if copilot_enabled then
+      require("copilot_cmp").setup()
+    end
 
      cmp.setup({
       snippet = { -- configure how nvim-cmp interacts with snippet engine
@@ -44,13 +47,15 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
       -- sources for autocompletion
-      sources = cmp.config.sources({
-        { name = "copilot", group_index = 2 },
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "luasnip", group_index = 2 }, -- snippets
-        { name = "buffer", group_index = 2 }, -- text within current buffer
-        { name = "path", group_index = 2 }, -- file system paths
-      }),
+      sources = cmp.config.sources(vim.list_extend(
+        copilot_enabled and { { name = "copilot", group_index = 2 } } or {},
+        {
+          { name = "nvim_lsp", group_index = 2 },
+          { name = "luasnip", group_index = 2 }, -- snippets
+          { name = "buffer", group_index = 2 }, -- text within current buffer
+          { name = "path", group_index = 2 }, -- file system paths
+        }
+      )),
 
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
