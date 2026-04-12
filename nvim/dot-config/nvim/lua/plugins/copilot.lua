@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  enabled = vim.g.copilot_enabled == 1,
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "BufReadPost",

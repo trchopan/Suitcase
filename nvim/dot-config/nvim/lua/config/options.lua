@@ -17,3 +17,6 @@ vim.opt.cmdheight = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = true
+
+local copilot_env = vim.env.NVIM_COPILOT_ENABLED
+vim.g.copilot_enabled = (copilot_env == "1") and 1 or 0
