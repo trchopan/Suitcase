@@ -136,3 +136,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
   end,
 })
+
+-- Disable copilot for markdown and text files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "txt", "tex" },
+  callback = function()
+    vim.cmd.Copilot("disable")
+  end,
+})

@@ -123,3 +123,7 @@ map("n", "<leader>rr", function()
   snacksLocal.bufdelete()
   vim.cmd("normal! `F") -- Go to the global mark 'F' (which will reopen the file at the marked position)
 end, { desc = "Reopen current buffer" })
+
+map("n", "<leader>up", function()
+  vim.cmd.Copilot("toggle")
+end, { desc = "Toggle Copilot" })
