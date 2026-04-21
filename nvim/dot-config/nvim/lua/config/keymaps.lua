@@ -30,6 +30,36 @@ map(
   "<cmd>let&l:fdl=indent('.')/&sw<cr>",
   { desc = "Fold by indent to current position", silent = true, remap = false }
 )
+map({ "n", "v" }, "<leader>cy", function()
+  local file = vim.fn.expand("%:.")
+
+  local mode = vim.fn.mode()
+
+  local start_line, end_line
+
+  if mode == "v" or mode == "V" or mode == "\22" then
+    -- Visual mode (char, line, or block)
+    start_line = vim.fn.line("v")
+    end_line = vim.fn.line(".")
+    if start_line > end_line then
+      start_line, end_line = end_line, start_line
+    end
+  else
+    -- Normal mode
+    start_line = vim.fn.line(".")
+    end_line = start_line
+  end
+
+  local ref
+  if start_line == end_line then
+    ref = string.format("%s:%d", file, start_line)
+  else
+    ref = string.format("%s:%d-%d", file, start_line, end_line)
+  end
+
+  vim.fn.setreg("+", ref)
+  print("Copied: " .. ref)
+end, { desc = "Copy file:line or file:line-line reference" })
 
 -- better indenting
 map("x", "<", "<gv")
