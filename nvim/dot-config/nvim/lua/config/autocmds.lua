@@ -105,6 +105,26 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Adjust conceallevel for Obsidian markdown buffers
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("obsidian_conceal"),
+  pattern = { "markdown" },
+  callback = function(event)
+    local vault = vim.fn.expand("~/Documents/Chop_vault") .. "/"
+    local bufname = vim.api.nvim_buf_get_name(event.buf)
+    if bufname == "" then
+      return
+    end
+
+    local bufpath = vim.fn.fnamemodify(bufname, ":p")
+    if bufpath:sub(1, #vault) == vault then
+      vim.opt_local.conceallevel = 2
+    else
+      vim.opt_local.conceallevel = vim.o.conceallevel
+    end
+  end,
+})
+
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("json_conceal"),
