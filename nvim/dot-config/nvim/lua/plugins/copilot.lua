@@ -1,10 +1,24 @@
 return {
   "zbirenbaum/copilot.lua",
-  enabled = vim.g.copilot_enabled == 1,
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "BufReadPost",
   opts = {
+    should_attach = function(bufnr)
+      if vim.g.copilot_enabled ~= 1 then
+        return false
+      end
+
+      if not vim.bo[bufnr].buflisted then
+        return false
+      end
+
+      if vim.bo[bufnr].buftype ~= "" then
+        return false
+      end
+
+      return true
+    end,
     filetypes = {
       markdown = true,
       help = true,

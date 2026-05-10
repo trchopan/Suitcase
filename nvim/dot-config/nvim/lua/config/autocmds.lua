@@ -157,10 +157,12 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+require("mylua.copilot_provider").setup_command()
+
 -- Disable copilot for markdown and text files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "text", "txt", "tex" },
   callback = function()
-    vim.cmd.Copilot("disable")
+    pcall(vim.cmd.Copilot, "disable")
   end,
 })

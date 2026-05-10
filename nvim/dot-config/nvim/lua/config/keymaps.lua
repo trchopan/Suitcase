@@ -157,3 +157,11 @@ end, { desc = "Reopen current buffer" })
 map("n", "<leader>up", function()
   vim.cmd.Copilot("toggle")
 end, { desc = "Toggle Copilot" })
+
+map("n", "<leader>uc", function()
+  vim.ui.select({ "personal", "work" }, { prompt = "Copilot provider" }, function(choice)
+    if choice then
+      vim.cmd("CopilotProvider " .. choice)
+    end
+  end)
+end, { desc = "Select Copilot provider" })

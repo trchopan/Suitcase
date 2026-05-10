@@ -26,11 +26,9 @@ return {
      -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
      require("luasnip.loaders.from_vscode").lazy_load()
 
-    local copilot_enabled = vim.g.copilot_enabled == 1
+    require("copilot_cmp").setup()
 
-    if copilot_enabled then
-      require("copilot_cmp").setup()
-    end
+    local copilot_enabled = vim.g.copilot_enabled == 1
 
      cmp.setup({
       snippet = { -- configure how nvim-cmp interacts with snippet engine
