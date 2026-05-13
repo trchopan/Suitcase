@@ -157,6 +157,25 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_user_command("CleanupTypography", function(opts)
+  local range = opts.range > 0 and string.format("%d,%d", opts.line1, opts.line2) or "%"
+  local replacements = {
+    { "—", " - " },
+    { "“", '"' },
+    { "”", '"' },
+    { "’", "'" },
+  }
+
+  for _, pair in ipairs(replacements) do
+    local pattern = vim.fn.escape(pair[1], "/\\")
+    local replacement = vim.fn.escape(pair[2], "/\\&")
+    vim.cmd(string.format("silent! %ss/%s/%s/g", range, pattern, replacement))
+  end
+end, {
+  range = true,
+  desc = "Normalize typography quotes and dashes",
+})
+
 require("mylua.copilot_provider").setup_command()
 
 -- Disable copilot for markdown and text files
