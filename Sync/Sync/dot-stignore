@@ -1,87 +1,155 @@
-// DB of projects
-/learn-elixir/yt_chop_dev/db-data/
+// =========================
+// Syncthing folder marker
+// =========================
+.stfolder
 
-// MacOS
-.DS_Store
+// =========================
+// macOS
+// =========================
+(?d).DS_Store
+(?d).AppleDouble
+(?d).LSOverride
+(?d).Spotlight-V100
+(?d).Trashes
 
-// Haskell
-dist
-dist-*
-cabal-dev
-*.o
-*.hi
-*.hie
-*.chi
-*.chs.h
-*.dyn_o
-*.dyn_hi
-.hpc
-.hsenv
-.cabal-sandbox/
-cabal.sandbox.config
-*.prof
-*.aux
-*.hp
-*.eventlog
-.stack-work/
-cabal.project.local
-cabal.project.local~
-.HTF/
-.ghc.environment.*
-// END Haskell
+// =========================
+// JavaScript / TypeScript
+// =========================
+(?d)node_modules
+(?d).next
+(?d).nuxt
+(?d).turbo
+(?d).vercel
+(?d)dist
+(?d)dist-ssr
+(?d)coverage
+(?d)*.tsbuildinfo
+(?d)npm-debug.log*
+(?d)yarn-debug.log*
+(?d)yarn-error.log*
+(?d)pnpm-debug.log*
+(?d).npm
+(?d).pnpm-store
+(?d).yarn/cache
 
-// Javscript + Typescript
-node_modules
-dist
-dist-ssr
-*.local
-.log
+// =========================
+// Python
+// =========================
+(?d).venv
+(?d)venv
+(?d)env
+(?d)__pycache__
+(?d).pytest_cache
+(?d).mypy_cache
+(?d).ruff_cache
+(?d).ipynb_checkpoints
+(?d)*.pyc
+(?d)*.pyo
 
+// =========================
+// Elixir / Phoenix
+// =========================
+(?d)_build
+(?d)deps
+(?d).elixir_ls
+(?d).expert/build
+
+// =========================
 // Rust
-target
+// =========================
+(?d)target
 
+// =========================
+// Go
+// =========================
+(?d)pkg/mod
+
+// =========================
+// Haskell
+// =========================
+(?d)dist
+(?d)dist-*
+(?d)cabal-dev
+(?d)*.o
+(?d)*.hi
+(?d)*.hie
+(?d)*.chi
+(?d)*.chs.h
+(?d)*.dyn_o
+(?d)*.dyn_hi
+(?d).hpc
+(?d).hsenv
+(?d).cabal-sandbox
+(?d)cabal.sandbox.config
+(?d)*.prof
+(?d)*.aux
+(?d)*.hp
+(?d)*.eventlog
+(?d).stack-work
+(?d)cabal.project.local
+(?d)cabal.project.local~
+(?d).HTF
+(?d).ghc.environment.*
+
+// =========================
+// AI / agent / tool caches
+// =========================
+(?d).opencode/node_modules
+(?d).cache/uv
+(?d).cache/huggingface
+(?d).cache/whisper
+(?d).cache/torch
+(?d).cache/pip
+(?d).cache/pypoetry
+(?d).cache/pre-commit
+
+// =========================
+// Local temp/runtime files
+// Keep db-data, *.db, *.sqlite synced for backup.
+// =========================
+(?d)tmp
+(?d).tmp
+(?d)logs
+(?d)*.log
+
+// =========================
+// Hugo / static site generators
+// =========================
+(?d)/public/
+(?d)/resources/_gen/
+(?d)hugo.exe
+(?d)hugo.darwin
+(?d)hugo.linux
+
+// =========================
 // Firebase
-.firebase
-firebase-debug.log
+// =========================
+(?d).firebase
+(?d)firebase-debug.log
 
-// Ignore Editor config
-.vscode
+// =========================
+// Editors / IDEs
+// =========================
+(?d).vscode
+(?d).idea
+(?d)*.iml
+(?d)*.ipr
+(?d)*~
+(?d)*.swp
+(?d).dir-locals.el
+(?d)packer_compiled.lua
 
-// Hugo
-.idea
-*.log
-tmp/
-/public/
-/resources/_gen/
-hugo.exe
-hugo.darwin
-hugo.linux
+// =========================
+// Android / Gradle
+// =========================
+(?d)build
+(?d)local.properties
+(?d)out
+(?d)production
+(?d).gradle
 
-// ### Code ###
-.vscode/*
-
-// Emacs
-.dir-locals.el
-
-// Vim
-packer_compiled.lua
-
-// IntelliJ
-*.iml
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/gradle.xml
-.idea/assetWizardSettings.xml
-.idea/dictionaries
-.idea/libraries
-.idea/caches
-
-// Android Studio
-/*/build/
-/*/local.properties
-/*/out
-/*/*/build
-/*/*/production
-*.ipr
-*~
-*.swp
+// =========================
+// Syncthing conflict files
+// Delete ignored conflict duplicates.
+// =========================
+(?d)*sync-conflict*
