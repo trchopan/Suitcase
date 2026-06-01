@@ -87,3 +87,15 @@ vim.lsp.config("ts_ls", {
 })
 
 vim.lsp.enable("ts_ls")
+
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      diagnostics = {
+        disabled = { "inactive-code" },
+      },
+    },
+  },
+})
+
+vim.lsp.enable("rust_analyzer")
