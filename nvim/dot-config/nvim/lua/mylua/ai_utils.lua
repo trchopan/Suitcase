@@ -15,7 +15,7 @@
 local M = {}
 
 M.config = {
-  model = "gpt-5-nano-2025-08-07", -- override in setup() if desired
+  model = "gpt-5-nano", -- override in setup() if desired
   key_cmd = "secret-key openai personal",
   openai_url = "https://api.openai.com/v1/responses",
 
@@ -39,6 +39,16 @@ local function system(cmd)
   local out = vim.fn.system(cmd)
   local code = vim.v.shell_error
   return out, code
+end
+
+local function system_async(cmd, cb)
+  vim.system({ "sh", "-c", cmd }, { text = true }, function(result)
+    local out = result.stdout or ""
+    local err = result.stderr or ""
+    vim.schedule(function()
+      cb(out, result.code, err)
+    end)
+  end)
 end
 
 local function notify_err(msg)
@@ -66,6 +76,28 @@ local function get_api_key()
     return nil, ("API key command returned empty output: %s"):format(M.config.key_cmd)
   end
   return key, nil
+end
+
+local function get_api_key_async(cb)
+  system_async(M.config.key_cmd, function(out, code, err)
+    if code ~= 0 then
+      local detail = trim(err ~= "" and err or out)
+      if detail ~= "" then
+        cb(nil, ("API key command failed (exit %d): %s\n%s"):format(code, M.config.key_cmd, detail))
+      else
+        cb(nil, ("API key command failed (exit %d): %s"):format(code, M.config.key_cmd))
+      end
+      return
+    end
+
+    local key = trim(out)
+    if key == "" then
+      cb(nil, ("API key command returned empty output: %s"):format(M.config.key_cmd))
+      return
+    end
+
+    cb(key, nil)
+  end)
 end
 
 local function get_project_root()
@@ -176,6 +208,58 @@ local function curl_post_json(url, api_key, payload_tbl)
   return body, nil
 end
 
+local function curl_post_json_async(url, api_key, payload_tbl, cb)
+  local payload = vim.json.encode(payload_tbl)
+
+  vim.system({
+    "curl",
+    "-sS",
+    "--max-time",
+    tostring(math.floor(M.config.timeout_ms / 1000)),
+    "-H",
+    "Authorization: Bearer " .. api_key,
+    "-H",
+    "Content-Type: application/json",
+    "-d",
+    payload,
+    "-w",
+    "\nHTTPSTATUS:%{http_code}",
+    url,
+  }, { text = true }, function(result)
+    local out = result.stdout or ""
+    local err = result.stderr or ""
+    local code = result.code
+
+    if code ~= 0 then
+      local detail = (err ~= "") and err or out
+      vim.schedule(function()
+        cb(nil, ("curl failed (exit %d). Output:\n%s"):format(code, detail))
+      end)
+      return
+    end
+
+    local body, status = out:match("^(.*)\nHTTPSTATUS:(%d%d%d)$")
+    if not body or not status then
+      vim.schedule(function()
+        cb(nil, ("Unexpected curl output (missing HTTPSTATUS). Raw:\n%s"):format(out))
+      end)
+      return
+    end
+
+    status = tonumber(status)
+    if status < 200 or status >= 300 then
+      vim.schedule(function()
+        cb(nil, ("HTTP %d from OpenAI. Body:\n%s"):format(status, body))
+      end)
+      return
+    end
+
+    vim.schedule(function()
+      cb(body, nil)
+    end)
+  end)
+end
+
 -- -------------------------
 -- OpenAI call (Structured Outputs)
 -- -------------------------
@@ -187,6 +271,17 @@ local function build_schema_files_only()
       files = { type = "array", items = { type = "string" } },
     },
     required = { "files" },
+    additionalProperties = false,
+  }
+end
+
+local function build_schema_formatted_code()
+  return {
+    type = "object",
+    properties = {
+      formatted_code = { type = "string" },
+    },
+    required = { "formatted_code" },
     additionalProperties = false,
   }
 end
@@ -205,6 +300,25 @@ local function build_payload(system_msg, user_msg, max_output_tokens)
         name = "file_selection", -- REQUIRED per your API error
         strict = true,
         schema = build_schema_files_only(),
+      },
+    },
+  }
+end
+
+local function build_payload_formatted_code(system_msg, user_msg, max_output_tokens)
+  return {
+    model = M.config.model,
+    input = {
+      { role = "system", content = system_msg },
+      { role = "user", content = user_msg },
+    },
+    max_output_tokens = max_output_tokens,
+    text = {
+      format = {
+        type = "json_schema",
+        name = "formatted_code",
+        strict = true,
+        schema = build_schema_formatted_code(),
       },
     },
   }
@@ -274,6 +388,86 @@ local function call_openai_select_files(api_key, user_prompt, candidates)
   end
 
   return nil, err
+end
+
+local function call_openai_format_code_async(api_key, language, input_code, cb)
+  local system_msg = table.concat({
+    "You are a precise code formatter.",
+    "Format the code according to the language's standard formatter conventions.",
+    "Preserve semantics.",
+    "Do not add commentary.",
+    'Return JSON strictly matching schema: {"formatted_code":"..."}.',
+  }, "\n")
+
+  local user_msg = table.concat({
+    "LANGUAGE:",
+    language,
+    "",
+    "CODE:",
+    input_code,
+  }, "\n")
+
+  local function attempt(max_output_tokens, attempt_cb)
+    local payload_tbl = build_payload_formatted_code(system_msg, user_msg, max_output_tokens)
+    curl_post_json_async(M.config.openai_url, api_key, payload_tbl, function(raw_body, req_err)
+      if not raw_body then
+        attempt_cb(nil, req_err)
+        return
+      end
+
+      local resp, env_err = json_decode_or_err(raw_body, "OpenAI response envelope")
+      if not resp then
+        attempt_cb(nil, env_err)
+        return
+      end
+
+      if resp.status == "incomplete" then
+        local why = resp.incomplete_details and resp.incomplete_details.reason or "unknown"
+        attempt_cb(nil, ("OpenAI response incomplete (reason: %s)."):format(why))
+        return
+      end
+
+      local out_text = get_response_output_text(resp)
+      if not out_text then
+        attempt_cb(nil, ("OpenAI response had no output_text. Envelope:\n%s"):format(raw_body))
+        return
+      end
+
+      local obj, obj_err = json_decode_or_err(out_text, "structured output")
+      if not obj then
+        attempt_cb(nil, obj_err)
+        return
+      end
+
+      if type(obj.formatted_code) ~= "string" then
+        attempt_cb(nil, ("Structured output missing 'formatted_code'. Raw output_text:\n%s"):format(out_text))
+        return
+      end
+
+      attempt_cb(obj.formatted_code, nil)
+    end)
+  end
+
+  attempt(M.config.max_output_tokens, function(formatted, err)
+    if formatted then
+      cb(formatted, nil)
+      return
+    end
+
+    if is_token_truncation(err) then
+      attempt(M.config.max_output_tokens_retry, function(formatted_retry, err_retry)
+        if formatted_retry then
+          cb(formatted_retry, nil)
+          return
+        end
+
+        cb(nil, err_retry or err)
+      end)
+      return
+    end
+
+    cb(nil, err)
+  end)
 end
 
 -- -------------------------
@@ -456,6 +650,37 @@ function M.concat_from_range(line1, line2)
     return
   end
   run_pipeline(text)
+end
+
+function M.format_code_with_llm_async(language, input_code, cb)
+  local done = cb
+  if type(done) ~= "function" then
+    error("format_code_with_llm_async requires a callback", 2)
+  end
+
+  local lang = trim(language or "")
+  if lang == "" then
+    vim.schedule(function()
+      done(nil, "Language is required")
+    end)
+    return
+  end
+
+  local code = input_code or ""
+  get_api_key_async(function(api_key, key_err)
+    if not api_key then
+      vim.schedule(function()
+        done(nil, key_err)
+      end)
+      return
+    end
+
+    call_openai_format_code_async(api_key, lang, code, function(formatted, err)
+      vim.schedule(function()
+        done(formatted, err)
+      end)
+    end)
+  end)
 end
 
 function M.setup(opts)

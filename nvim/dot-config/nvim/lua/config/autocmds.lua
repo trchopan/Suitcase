@@ -176,6 +176,12 @@ end, {
   desc = "Normalize typography quotes and dashes",
 })
 
+vim.api.nvim_create_user_command("FormatCodeBlockLLM", function()
+  require("mylua.markdown_codeblock_formatter").format_code_block_under_cursor_with_llm()
+end, {
+  desc = "Format fenced code block with LLM under cursor",
+})
+
 require("mylua.copilot_provider").setup_command()
 
 -- Disable copilot for markdown and text files

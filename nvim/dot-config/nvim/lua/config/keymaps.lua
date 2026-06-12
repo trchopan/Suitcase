@@ -138,6 +138,10 @@ map("n", "<leader>du", function()
   require("mylua.url_to_markdown").download_at_cursor()
 end, { desc = "Download URL at cursor to markdown" })
 
+map("n", "<leader>cb", function()
+  vim.cmd("FormatCodeBlockLLM")
+end, { desc = "Format code block with LLM" })
+
 map("n", "<leader>dk", function()
   vim.ui.input({ prompt = "Search term: " }, function(search_term)
     if search_term then
