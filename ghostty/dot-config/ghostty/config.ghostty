@@ -1,5 +1,6 @@
-window-decoration = none
 command = /opt/homebrew/bin/fish
+window-decoration = none
+font-size = 13
 term = xterm-ghostty
 
 # ------------------------------------------------------------
