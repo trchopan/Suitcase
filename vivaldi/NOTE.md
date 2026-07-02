@@ -21,3 +21,14 @@ View > Mail Panel                 : <Remove>
 **Note**
 For Bitwarden conflict password autofill
 Change Bitwarden's shortcut to Command + Control + L
+
+## Vimium
+
+Custom key mappings
+
+```vim
+map X removeTab
+unmap x
+map ' Marks.activateGotoMode swap
+map m Marks.activateCreateMode swap
+```
