@@ -24,10 +24,6 @@ return {
         name = "personal",
         path = "~/Documents/Chop_vault",
       },
-      {
-        name = "work",
-        path = "~/Documents/Chop_work_vault",
-      },
     },
     note_id_func = function(title)
       if title and title ~= "" then
