@@ -272,34 +272,6 @@ end
 ]])
 
 -- ------------------------------------------------------------
--- Ghostty-specific remaps
---
--- skhd:
---   ctrl - tab        in Ghostty -> shift - l
---   shift + ctrl - tab in Ghostty -> shift - h
--- ------------------------------------------------------------
-
-local function frontmostAppName()
-  local app = hs.application.frontmostApplication()
-  if app then
-    return app:name()
-  end
-  return ""
-end
-
-hs.hotkey.bind({"ctrl"}, "tab", function()
-  if frontmostAppName() == "Ghostty" then
-    hs.eventtap.keyStroke({"shift"}, "l", 0)
-  end
-end)
-
-hs.hotkey.bind({"shift", "ctrl"}, "tab", function()
-  if frontmostAppName() == "Ghostty" then
-    hs.eventtap.keyStroke({"shift"}, "h", 0)
-  end
-end)
-
--- ------------------------------------------------------------
 -- Manual reload shortcut
 -- ------------------------------------------------------------
 
