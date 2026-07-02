@@ -1,0 +1,42 @@
+window-decoration = none
+command = /opt/homebrew/bin/fish
+term = xterm-ghostty
+
+# ------------------------------------------------------------
+# Tmux bindings
+# ------------------------------------------------------------
+#
+# Ghostty keybind syntax is:
+# keybind = trigger=action
+#
+# The text action sends bytes/text to the PTY. Ghostty documents this
+# as using Zig string literal escape syntax.
+# ------------------------------------------------------------
+
+# Command + number for tmux window switching
+keybind = cmd+digit_1=text:\x021
+keybind = cmd+digit_2=text:\x022
+keybind = cmd+digit_3=text:\x023
+keybind = cmd+digit_4=text:\x024
+keybind = cmd+digit_5=text:\x025
+keybind = cmd+digit_6=text:\x026
+keybind = cmd+digit_7=text:\x027
+keybind = cmd+digit_8=text:\x028
+keybind = cmd+digit_9=text:\x029
+
+# New tmux window
+keybind = cmd+t=text:\x02c
+
+# Move tmux window left / right
+#
+# Your Alacritty config sends:
+#   ' bl'
+#   ' br'
+#
+# That is preserved literally here.
+keybind = ctrl+shift+page_up=text: bl
+keybind = ctrl+shift+page_down=text: br
+
+# Move cursor by Option + Arrow Keys
+keybind = alt+right=text:\x1bF
+keybind = alt+left=text:\x1bB
