@@ -209,35 +209,34 @@ yabai -m window --toggle float
 -- ------------------------------------------------------------
 
 bind(hyper, 44, [[
-set layout (yabai -m query --spaces | grep float)
-if test -z "$layout"
-    yabai -m config layout float
+set layout (yabai -m query --spaces --space | jq -r '.type' 2>/dev/null)
+
+if test "$layout" = "bsp"
+    yabai -m space --layout float
 else
-    yabai -m config layout bsp
+    yabai -m space --layout bsp
 end
-]])
 
--- ------------------------------------------------------------
--- Toggle borders
--- ------------------------------------------------------------
+set layout (yabai -m query --spaces --space | jq -r '.type' 2>/dev/null)
 
-bind(hyper, "n", [[
-set border_pid (pgrep -f borders)
-
-if test -n "$border_pid"
-    killall borders
-    yabai -m config top_padding 0
-    yabai -m config bottom_padding 0
-    yabai -m config left_padding 0
-    yabai -m config right_padding 0
-    yabai -m config window_gap 0
-else
-    borders active_color=0xff00FF31 inactive_color=0x00000000 width=5.0 &
+if test "$layout" = "bsp"
+    if not pgrep -x borders >/dev/null
+        borders active_color=0xff00FF31 inactive_color=0x00000000 width=5.0 &
+    end
     yabai -m config top_padding 5
     yabai -m config bottom_padding 5
     yabai -m config left_padding 5
     yabai -m config right_padding 5
     yabai -m config window_gap 5
+else
+    if pgrep -x borders >/dev/null
+        killall borders
+    end
+    yabai -m config top_padding 0
+    yabai -m config bottom_padding 0
+    yabai -m config left_padding 0
+    yabai -m config right_padding 0
+    yabai -m config window_gap 0
 end
 ]])
 
