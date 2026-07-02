@@ -1,0 +1,58 @@
+{
+  "vivaldi": {
+    "actions": [
+      {
+        "COMMAND_COPY_SELECTION_TO_NOTE": {
+          "shortcuts": [
+            "alt+meta+c"
+          ]
+        },
+        "COMMAND_TAB_MOVE_BACKWARD": {
+          "shortcuts": [
+            "ctrl+shift+pageup"
+          ]
+        },
+        "COMMAND_TAB_MOVE_FORWARD": {
+          "shortcuts": [
+            "ctrl+shift+pagedown"
+          ]
+        },
+        "COMMAND_TAB_STACK_REMOVE": {
+          "shortcuts": [
+            "ctrl+shift+t"
+          ]
+        },
+        "COMMAND_TOGGLE_FLOATING_PANEL": {
+          "shortcuts": [
+            "shift+meta+\\"
+          ]
+        },
+        "COMMAND_SHOW_NOTES_PANEL": {
+          "shortcuts": [
+            "shift+meta+c"
+          ]
+        },
+        "COMMAND_SHOW_NEXT_PANEL": {
+          "shortcuts": [
+            "shift+meta+j"
+          ]
+        },
+        "COMMAND_SHOW_PREVIOUS_PANEL": {
+          "shortcuts": [
+            "shift+meta+k"
+          ]
+        },
+        "COMMAND_FOCUS_ADDRESSFIELD": {
+          "shortcuts": [
+            "shift+meta+l"
+          ]
+        },
+        "COMMAND_TOGGLE_PANEL": {
+          "shortcuts": [
+            "shift+meta+p"
+          ]
+        }
+      }
+    ]
+  }
+}

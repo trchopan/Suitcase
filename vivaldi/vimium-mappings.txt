@@ -1,0 +1,4 @@
+map X removeTab
+unmap x
+map ' Marks.activateGotoMode swap
+map m Marks.activateCreateMode swap
