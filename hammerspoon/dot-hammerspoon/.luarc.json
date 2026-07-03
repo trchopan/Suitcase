@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "diagnostics.globals": [
+    "hs"
+  ],
+  "workspace.library": [
+    "${env:HOME}/.hammerspoon/Spoons/EmmyLua.spoon/annotations"
+  ]
+}

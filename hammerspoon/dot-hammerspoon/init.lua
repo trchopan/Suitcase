@@ -2,6 +2,13 @@
 
 hs.alert.show("Hammerspoon loaded")
 
+local spoonInstallLoaded = hs.loadSpoon("SpoonInstall")
+if spoonInstallLoaded and spoon.SpoonInstall then
+  spoon.SpoonInstall:andUse("EmmyLua")
+else
+  hs.alert.show("SpoonInstall is missing; install SpoonInstall.spoon in ~/.hammerspoon/Spoons")
+end
+
 -- ------------------------------------------------------------
 -- Shell runner
 -- ------------------------------------------------------------
