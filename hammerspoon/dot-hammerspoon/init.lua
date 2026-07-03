@@ -14,7 +14,7 @@ end
 -- ------------------------------------------------------------
 
 local fish = "/opt/homebrew/bin/fish"
-local layoutLog = hs.logger.new("layout", "info")
+local layoutLog = hs.logger.new("layout", "warning")
 
 local function runShell(command, onExit)
   local task = hs.task.new(fish, onExit, {"-lc", command})
