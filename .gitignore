@@ -3,3 +3,5 @@ fish/dot-config/fish/conf.d/opencode-local.fish
 fish/dot-config/fish/config.fish
 fish/dot-config/fish/fish_variables
 vivaldi/backups
+Sync/Sync/*
+!Sync/Sync/dot-stignore
