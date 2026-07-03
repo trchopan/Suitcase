@@ -42,7 +42,7 @@
             "shift+meta+k"
           ]
         },
-        "COMMAND_FOCUS_ADDRESSFIELD": {
+        "COMMAND_MAIN_TOGGLE_ADDRESS_BAR": {
           "shortcuts": [
             "shift+meta+l"
           ]
