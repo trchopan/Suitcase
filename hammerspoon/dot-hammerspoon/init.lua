@@ -7,10 +7,23 @@ hs.alert.show("Hammerspoon loaded")
 -- ------------------------------------------------------------
 
 local fish = "/opt/homebrew/bin/fish"
+local layoutLog = hs.logger.new("layout", "info")
+
+local function runShell(command, onExit)
+  local task = hs.task.new(fish, onExit, {"-lc", command})
+  if task then
+    task:start()
+    return true
+  end
+
+  return false
+end
 
 local function run(command)
   return function()
-    hs.task.new(fish, nil, {"-lc", command}):start()
+    if not runShell(command, nil) then
+      layoutLog.e("failed to start shell task")
+    end
   end
 end
 
@@ -208,7 +221,19 @@ yabai -m window --toggle float
 --   0x2C = 44 = slash on standard macOS ANSI layout
 -- ------------------------------------------------------------
 
-bind(hyper, 44, [[
+local lastLayoutToggleAt = 0
+local layoutToggleDebounceSeconds = 0.2
+
+hs.hotkey.bind(hyper, 44, function()
+  local now = hs.timer.secondsSinceEpoch()
+  if now - lastLayoutToggleAt < layoutToggleDebounceSeconds then
+    return
+  end
+  lastLayoutToggleAt = now
+
+  layoutLog.i("toggle layout/borders")
+
+  local ok = runShell([[
 set layout (yabai -m query --spaces --space | jq -r '.type' 2>/dev/null)
 
 if test "$layout" = "bsp"
@@ -221,7 +246,7 @@ set layout (yabai -m query --spaces --space | jq -r '.type' 2>/dev/null)
 
 if test "$layout" = "bsp"
     if not pgrep -x borders >/dev/null
-        borders active_color=0xff00FF31 inactive_color=0x00000000 width=5.0 &
+        nohup borders active_color=0xff00FF31 inactive_color=0x00000000 width=5.0 >/dev/null 2>&1 &
     end
     yabai -m config top_padding 5
     yabai -m config bottom_padding 5
@@ -230,7 +255,7 @@ if test "$layout" = "bsp"
     yabai -m config window_gap 5
 else
     if pgrep -x borders >/dev/null
-        killall borders
+        killall borders >/dev/null 2>&1
     end
     yabai -m config top_padding 0
     yabai -m config bottom_padding 0
@@ -238,7 +263,14 @@ else
     yabai -m config right_padding 0
     yabai -m config window_gap 0
 end
-]])
+]], function()
+    layoutLog.i("toggle layout/borders done")
+  end)
+
+  if not ok then
+    layoutLog.e("failed to start layout/borders task")
+  end
+end)
 
 -- ------------------------------------------------------------
 -- Automatic put layout to spaces
