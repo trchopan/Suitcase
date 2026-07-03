@@ -45,16 +45,10 @@ brew trust --formula felixkratz/formulae/borders
 brew install borders
 ```
 
-### Optional chat applications
-
-```bash
-brew install --cask telegram slack
-```
-
 ### Optional programming, container and cloud
 
 ```bash
-brew install pyenv pyenv-virtualenv go deno awscli
+brew install pyenv pyenv-virtualenv go deno awscli mise uv bun
 brew install --cask docker google-cloud-sdk
 ```
 
@@ -62,12 +56,4 @@ brew install --cask docker google-cloud-sdk
 
 ```bash
 brew install vips hugo
-```
-
-### Quick verification before stow
-
-```bash
-command -v stow fish jq rg fd eza yabai skhd
-open -a Hammerspoon
-open -a Karabiner-Elements
 ```
