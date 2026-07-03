@@ -10,10 +10,12 @@ usage() {
   cat <<'EOF'
 Usage:
   ./vivaldi/apply.sh --profile "Default"
+  ./vivaldi/apply.sh --check --profile "Default"
   ./vivaldi/apply.sh --list-profiles
 
 Options:
   --profile <name>   Vivaldi profile directory (required unless --list-profiles)
+  --check            Validate inputs/profile only; do not modify Preferences
   --list-profiles    List available profile directories and display names
   -h, --help         Show this help
 
@@ -21,6 +23,70 @@ Environment:
   VIVALDI_DIR        Override Vivaldi data root (default: ~/Library/Application Support/Vivaldi)
   VIVALDI_ALLOW_RUNNING=1  Skip running-process check (use carefully)
 EOF
+}
+
+validate_managed_file() {
+  local managed_file="$1"
+
+  if ! jq empty "$managed_file" >/dev/null 2>&1; then
+    echo "Error: managed settings file is not valid JSON: $managed_file" >&2
+    return 1
+  fi
+
+  if ! jq -e '
+      (.vivaldi? | type == "object") and
+      (.vivaldi.actions? | type == "array") and
+      ((.vivaldi.actions | length) > 0) and
+      (.vivaldi.actions[0] | type == "object")
+    ' "$managed_file" >/dev/null 2>&1; then
+    echo "Error: managed settings file must contain .vivaldi.actions[0] as an object" >&2
+    return 1
+  fi
+
+  if ! jq -e '
+      .vivaldi.actions[0]
+      | to_entries
+      | all(
+          (.value | type == "object") and
+          (.value.shortcuts | type == "array") and
+          (.value.shortcuts | all(type == "string"))
+        )
+    ' "$managed_file" >/dev/null 2>&1; then
+    echo "Error: each managed action must be an object with shortcuts: [string, ...]" >&2
+    return 1
+  fi
+}
+
+validate_profile_preferences() {
+  local preferences_file="$1"
+
+  if ! jq empty "$preferences_file" >/dev/null 2>&1; then
+    echo "Error: Preferences is not valid JSON: $preferences_file" >&2
+    return 1
+  fi
+
+  if ! jq -e '(.vivaldi? | type == "object")' "$preferences_file" >/dev/null 2>&1; then
+    echo "Error: Preferences is missing .vivaldi object: $preferences_file" >&2
+    return 1
+  fi
+
+  if ! jq -e '(.vivaldi.actions? | type == "array")' "$preferences_file" >/dev/null 2>&1; then
+    echo "Error: Preferences is missing .vivaldi.actions array: $preferences_file" >&2
+    echo "Fix: open Vivaldi Keyboard settings once to create a baseline, then run apply again." >&2
+    return 1
+  fi
+
+  if ! jq -e '((.vivaldi.actions | length) > 0) and (.vivaldi.actions[0] | type == "object")' "$preferences_file" >/dev/null 2>&1; then
+    echo "Error: Preferences must contain .vivaldi.actions[0] as an object: $preferences_file" >&2
+    echo "Fix: open Vivaldi Keyboard settings once to create a baseline, then run apply again." >&2
+    return 1
+  fi
+}
+
+run_preflight() {
+  local preferences_file="$1"
+  validate_managed_file "$MANAGED_FILE"
+  validate_profile_preferences "$preferences_file"
 }
 
 list_profiles() {
@@ -59,6 +125,7 @@ PY
 
 PROFILE=""
 LIST_ONLY=0
+CHECK_ONLY=0
 
 while (($# > 0)); do
   case "$1" in
@@ -72,6 +139,10 @@ while (($# > 0)); do
       ;;
     --list-profiles)
       LIST_ONLY=1
+      shift
+      ;;
+    --check)
+      CHECK_ONLY=1
       shift
       ;;
     -h|--help)
@@ -118,6 +189,16 @@ if [[ ! -f "$PREFERENCES_FILE" ]]; then
   exit 1
 fi
 
+if ! run_preflight "$PREFERENCES_FILE"; then
+  exit 1
+fi
+
+if ((CHECK_ONLY == 1)); then
+  echo "Preflight passed for profile: $PROFILE"
+  echo "Preferences and managed settings are valid."
+  exit 0
+fi
+
 BACKUP_DIR="$SCRIPT_DIR/backups/$PROFILE"
 mkdir -p "$BACKUP_DIR"
 STAMP="$(date +"%Y%m%d-%H%M%S")"
@@ -152,10 +233,19 @@ jq --slurpfile managed "$MANAGED_FILE" '
     else
       $patch
     end;
-  deepmerge(.; $managed[0])
+  ($managed[0] | del(.vivaldi.actions)) as $managed_without_actions
+  | deepmerge(.; $managed_without_actions)
+  | .vivaldi.actions[0] = (.vivaldi.actions[0] + ($managed[0].vivaldi.actions[0] // {}))
 ' "$PREFERENCES_FILE" > "$TMP_FILE"
 
 jq empty "$TMP_FILE" >/dev/null
+
+if ! validate_profile_preferences "$TMP_FILE"; then
+  cp "$BACKUP_FILE" "$PREFERENCES_FILE"
+  echo "Error: merged Preferences failed validation. Restored from backup: $BACKUP_FILE" >&2
+  exit 1
+fi
+
 mv "$TMP_FILE" "$PREFERENCES_FILE"
 trap - EXIT
 

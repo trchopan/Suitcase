@@ -12,7 +12,8 @@ Close Vivaldi before applying settings.
 ./vivaldi/apply.sh --list-profiles
 ./vivaldi/inspect-keybinds.sh --list-profiles
 
-# On another machine, apply tracked settings
+# On another machine, validate then apply tracked settings
+./vivaldi/apply.sh --check --profile "Default"
 ./vivaldi/apply.sh --profile "Default"
 ```
 
@@ -26,8 +27,9 @@ When you change a shortcut in Vivaldi and want to sync it to other machines:
 2. Quit Vivaldi fully.
 3. Inspect the action/value from `Preferences`.
 4. Update the matching action in `vivaldi/managed-settings.json`.
-5. Run `./vivaldi/apply.sh --profile "Default"` (or your target profile).
-6. Reopen Vivaldi and verify keyboard shortcuts.
+5. Run `./vivaldi/apply.sh --check --profile "Default"`.
+6. Run `./vivaldi/apply.sh --profile "Default"` (or your target profile).
+7. Reopen Vivaldi and verify keyboard shortcuts.
 
 Useful commands:
 
@@ -43,6 +45,15 @@ Useful commands:
 ```
 
 Keep managed keys minimal: only shortcuts you intentionally sync.
+
+## Safety checks
+
+`./vivaldi/apply.sh --check --profile "Default"` validates both files before any write:
+
+- `managed-settings.json` must contain `vivaldi.actions[0]` as an object of actions with `shortcuts` arrays.
+- `Preferences` must contain existing `vivaldi.actions[0]` baseline (script does not create it).
+
+If `--check` fails with missing `vivaldi.actions`, open Vivaldi Keyboard settings once to create the baseline, quit Vivaldi, then run check/apply again.
 
 ## Keyboard Shortcuts
 
