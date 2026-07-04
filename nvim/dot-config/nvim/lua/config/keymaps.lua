@@ -117,20 +117,33 @@ end, { desc = "Terminal (cwd)" })
 
 map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
--- Buffer jump by tick
-local keymaps = {
-  { key = "'a", buf = 1, desc = "Go to 1st buffer" },
-  { key = "'s", buf = 2, desc = "Go to 2nd buffer" },
-  { key = "'d", buf = 3, desc = "Go to 3rd buffer" },
-  { key = "'f", buf = 4, desc = "Go to 4th buffer" },
-  { key = "'g", buf = 5, desc = "Go to 5th buffer" },
-}
-
-for _, keymap in ipairs(keymaps) do
-  vim.keymap.set("n", keymap.key, function()
-    require("bufferline").go_to(keymap.buf, true)
-  end, { desc = keymap.desc })
+local function global_mark(prefix)
+  local key = vim.fn.getcharstr()
+  if key:match("^[a-z]$") then
+    key = key:upper()
+  end
+  return prefix .. key
 end
+
+map("n", "m", function()
+  return global_mark("m")
+end, { expr = true, desc = "Set Global Mark" })
+
+map("n", "`", function()
+  return global_mark("`")
+end, { expr = true, desc = "Jump to Global Mark" })
+
+map("n", "'", function()
+  return global_mark("'")
+end, { expr = true, desc = "Jump to Global Mark (Line)" })
+
+for i = 1, 9 do
+  map("n", "<leader>" .. i, function()
+    require("bufferline").go_to(i, true)
+  end, { desc = "Go to Buffer " .. i })
+end
+
+map("n", "<leader>0", "<cmd>BufferLineGoToBuffer -1<cr>", { desc = "Go to Last Buffer" })
 
 -- My Scripts
 
