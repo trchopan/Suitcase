@@ -38,7 +38,3 @@ keybind = cmd+t=text:\x02c
 # That is preserved literally here.
 keybind = ctrl+shift+page_up=text: bl
 keybind = ctrl+shift+page_down=text: br
-
-# Move cursor by Option + Arrow Keys
-keybind = alt+right=text:\x1bF
-keybind = alt+left=text:\x1bB
