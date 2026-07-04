@@ -14,7 +14,7 @@ return {
   },
   config = function()
     require("mini.jump2d").setup({
-      labels = "etovxqpdygfblzhckisuran",
+      labels = "arstneiodhclmfuvbwkjxzqpg",
       view = {
         -- Whether to dim lines with at least one jump spot
         dim = true,
