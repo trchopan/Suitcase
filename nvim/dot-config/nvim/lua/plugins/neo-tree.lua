@@ -29,7 +29,32 @@ return {
           end,
           ["/"] = "noop", -- Search by f instead
           ["f"] = function(_)
-            require("hop").hint_lines_skip_whitespace()
+            local jump2d = require("mini.jump2d")
+            local opts = {
+              spotter = function(line_num)
+                local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
+                if not line then
+                  return {}
+                end
+
+                local first_non_space = line:find("%S")
+                if not first_non_space then
+                  return {}
+                end
+
+                local name_col = line:find("[%w%._%-~]", first_non_space)
+                if not name_col then
+                  return {}
+                end
+
+                return { name_col }
+              end,
+              allowed_windows = {
+                current = true,
+                not_current = false,
+              },
+            }
+            jump2d.start(opts)
           end,
           -- ["g/"] = "fuzzy_finder",
           ["<leader>P"] = function(state)
