@@ -1,21 +1,17 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      -- import nvim-treesitter plugin
       local treesitter = require("nvim-treesitter")
 
-      -- configure treesitter
-      treesitter.setup({ -- enable syntax highlighting
-        highlight = {
-          enable = true,
-        },
-        -- enable indentation
-        indent = { enable = true },
-        -- ensure these language parsers are installed
-        ensure_installed = {
+      treesitter.setup({
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
+
+      treesitter
+        .install({
           "json",
           "javascript",
           "typescript",
@@ -37,23 +33,49 @@ return {
           "vimdoc",
           "c",
           "elixir",
+          "fish",
           "python",
           "go",
           "rust",
           "php",
+        })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "bash",
+          "c",
+          "css",
+          "dockerfile",
+          "elixir",
+          "eelixir",
+          "fish",
+          "gitignore",
+          "go",
+          "graphql",
+          "heex",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "php",
+          "prisma",
+          "python",
+          "rust",
+          "svelte",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml",
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = false,
-            node_decremental = "<bs>",
-          },
-        },
+        callback = function()
+          vim.treesitter.start()
+        end,
       })
 
-      -- use bash parser for zsh files
+      -- use bash parser for zsh files only (fish has its own parser)
       vim.treesitter.language.register("bash", "zsh")
     end,
   },
