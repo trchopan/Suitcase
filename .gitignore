@@ -2,6 +2,7 @@
 fish/dot-config/fish/conf.d/opencode-local.fish
 fish/dot-config/fish/config.fish
 fish/dot-config/fish/fish_variables
+fish/dot-config/fish/completions/docker.fish
 vivaldi/backups
 Sync/Sync/*
 !Sync/Sync/dot-stignore
