@@ -55,17 +55,5 @@ return {
     { "<leader>bl", ":BufferLineMovePrev<CR>", desc = "Move Buffer Previous", silent = true },
     { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
     { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-
-    -- Assume there is nomore than 10 buffer. Move first just move it 10 times.
-    {
-      "<leader>bf",
-      function()
-        for _ = 1, 10 do
-          vim.cmd("BufferLineMovePrev")
-        end
-      end,
-      desc = "Move Buffer To First",
-      silent = true,
-    },
   },
 }
