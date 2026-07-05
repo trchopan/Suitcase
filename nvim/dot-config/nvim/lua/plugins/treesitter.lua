@@ -63,6 +63,7 @@ return {
           "prisma",
           "python",
           "rust",
+          "sh",
           "svelte",
           "tsx",
           "typescript",
@@ -75,7 +76,8 @@ return {
         end,
       })
 
-      -- use bash parser for zsh files only (fish has its own parser)
+      -- use bash parser for sh and zsh files only (fish has its own parser)
+      vim.treesitter.language.register("bash", "sh")
       vim.treesitter.language.register("bash", "zsh")
     end,
   },
