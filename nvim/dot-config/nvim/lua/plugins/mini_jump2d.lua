@@ -23,5 +23,22 @@ return {
         n_steps_ahead = 2,
       },
     })
+
+    -- 🎨 Catppuccin colors
+    local palette = require("catppuccin.palettes").get_palette()
+
+    vim.api.nvim_set_hl(0, "MiniJump2dSpot", {
+      fg = palette.flamingo,
+      bold = true,
+    })
+
+    vim.api.nvim_set_hl(0, "MiniJump2dSpotAhead", {
+      fg = palette.blue,
+    })
+
+    vim.api.nvim_set_hl(0, "MiniJump2dSpotUnique", {
+      fg = palette.pink,
+      bold = true,
+    })
   end,
 }
