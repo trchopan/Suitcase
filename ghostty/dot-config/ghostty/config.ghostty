@@ -1,7 +1,7 @@
 command = /opt/homebrew/bin/fish
 window-decoration = none
 theme = Catppuccin Mocha
-font-size = 13
+font-size = 14
 term = xterm-ghostty
 
 # ------------------------------------------------------------
