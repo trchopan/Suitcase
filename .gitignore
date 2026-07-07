@@ -1,6 +1,7 @@
 .DS_Store
 fish/dot-config/fish/*
 !fish/dot-config/fish/conf.d/abbrs.fish
+!fish/dot-config/fish/conf.d/key-bindings.fish
 hammerspoon/dot-hammerspoon/Spoons
 vivaldi/backups
 Sync/Sync/*
