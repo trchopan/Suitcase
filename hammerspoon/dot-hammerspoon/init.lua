@@ -348,6 +348,394 @@ end
 ]])
 
 -- ------------------------------------------------------------
+-- Edit clipboard content in Neovim
+-- ------------------------------------------------------------
+
+local TMUX = "/opt/homebrew/bin/tmux"
+local YABAI = "/opt/homebrew/bin/yabai"
+local FISH = "/opt/homebrew/bin/fish"
+local NVIM = "/opt/homebrew/bin/nvim"
+local NVR = "/opt/homebrew/bin/nvr"
+local EDIT_SESSION = "hs-edit"
+local GHOSTTY_TITLE = "hs_nvim_edit"
+local CLIPBOARD_DIR = home .. "/.local/share/hammerspoon"
+local NVIM_SOCKET = CLIPBOARD_DIR .. "/nvim.sock"
+local MAX_CLIPBOARD_BYTES = 5 * 1024 * 1024
+local MAX_CLIPBOARD_FILES = 100
+local clipboardLog = hs.logger.new("clipboard-edit", "warning")
+
+local function showClipboardError(message)
+  clipboardLog.w(message)
+  hs.alert.show(message, 2)
+end
+
+local function discardClipboardFile(path)
+  if path then
+    os.remove(path)
+  end
+end
+
+local function isPlainTextClipboard()
+  local types = hs.pasteboard.pasteboardTypes()
+  if not types then
+    return true
+  end
+
+  for _, pasteboardType in ipairs(types) do
+    if pasteboardType:match("^public%.image")
+      or pasteboardType:match("^public%.png")
+      or pasteboardType:match("^public%.jpeg")
+      or pasteboardType:match("^public%.tiff")
+      or pasteboardType:match("^com%.apple%.image") then
+      return false
+    end
+  end
+
+  for _, pasteboardType in ipairs(types) do
+    if pasteboardType == "public.utf8-plain-text"
+      or pasteboardType == "public.text"
+      or pasteboardType == "NSStringPboardType" then
+      return true
+    end
+  end
+
+  return false
+end
+
+local function hasBinaryControlCharacters(content)
+  return content:find("[%z\001-\008\011\012\014-\031\127]") ~= nil
+end
+
+local function ensureClipboardDirectory()
+  hs.fs.mkdir(home .. "/.local")
+  hs.fs.mkdir(home .. "/.local/share")
+  return hs.fs.mkdir(CLIPBOARD_DIR) or hs.fs.attributes(CLIPBOARD_DIR) ~= nil
+end
+
+local function pruneClipboardFiles()
+  local files = {}
+  for filename in hs.fs.dir(CLIPBOARD_DIR) do
+    if filename:match("^clipboard_%d+_[%w%-]+%.md$") then
+      local path = CLIPBOARD_DIR .. "/" .. filename
+      local attributes = hs.fs.attributes(path)
+      if attributes and attributes.mode == "file" then
+        files[#files + 1] = {
+          path = path,
+          modification = attributes.modification or 0,
+        }
+      end
+    end
+  end
+
+  table.sort(files, function(left, right)
+    return left.modification > right.modification
+  end)
+
+  for index = MAX_CLIPBOARD_FILES + 1, #files do
+    os.remove(files[index].path)
+  end
+end
+
+local function writeClipboardFile(content)
+  if not ensureClipboardDirectory() then
+    return nil, "Unable to create clipboard directory"
+  end
+
+  local slug = content:sub(1, 50)
+    :lower()
+    :gsub("%s+", "-")
+    :gsub("[^%w%-]", "")
+    :gsub("%-+", "-")
+    :gsub("^%-", "")
+    :gsub("%-$", "")
+  if slug == "" then
+    slug = "untitled"
+  end
+
+  local timestamp = tostring(math.floor(hs.timer.secondsSinceEpoch()))
+  local filename = "clipboard_" .. timestamp .. "_" .. slug .. ".md"
+  local path = CLIPBOARD_DIR .. "/" .. filename
+  local collision = 2
+  while hs.fs.attributes(path) do
+    filename = "clipboard_" .. timestamp .. "_" .. slug .. "-" .. collision .. ".md"
+    path = CLIPBOARD_DIR .. "/" .. filename
+    collision = collision + 1
+  end
+
+  local temporaryPath = path .. ".tmp-" .. tostring(math.floor(hs.timer.secondsSinceEpoch() * 1000))
+  local file = io.open(temporaryPath, "wb")
+  if not file then
+    return nil, "Unable to create clipboard file"
+  end
+
+  file:write(content)
+  file:close()
+  if not os.rename(temporaryPath, path) then
+    os.remove(temporaryPath)
+    return nil, "Unable to finalize clipboard file"
+  end
+
+  pruneClipboardFiles()
+  return path
+end
+
+local function tmuxSessionExists()
+  local result = os.execute(TMUX .. " has-session -t " .. EDIT_SESSION .. " 2>/dev/null")
+  return result == true or result == 0
+end
+
+local function confirmClipboardCleanup(message)
+  local choice = hs.dialog.blockAlert(
+    "Clipboard editor cleanup",
+    message,
+    "Clean up and continue",
+    "Cancel",
+    "warning"
+  )
+  return choice == "Clean up and continue"
+end
+
+local function cleanupExistingEditorState(sessionExists, socketAttributes)
+  local homeAttributes = hs.fs.attributes(home)
+  if socketAttributes and socketAttributes.uid ~= homeAttributes.uid then
+    showClipboardError("Neovim socket belongs to another user")
+    return false
+  end
+
+  local details = {}
+  if sessionExists then
+    details[#details + 1] = "tmux session " .. EDIT_SESSION
+  end
+  if socketAttributes then
+    details[#details + 1] = "Neovim socket " .. NVIM_SOCKET
+  end
+
+  if not confirmClipboardCleanup(
+    "Existing editor state was found ("
+      .. table.concat(details, " and ")
+      .. "). Remove it and start a fresh clipboard editor?"
+  ) then
+    return false
+  end
+
+  if sessionExists then
+    os.execute(TMUX .. " kill-session -t " .. EDIT_SESSION .. " 2>/dev/null")
+  end
+  if socketAttributes and not os.remove(NVIM_SOCKET) then
+    showClipboardError("Unable to remove existing Neovim socket")
+    return false
+  end
+  return true
+end
+
+local function startNvimSession()
+  os.remove(NVIM_SOCKET)
+  local task = hs.task.new(TMUX, nil, {
+    "new-session",
+    "-d",
+    "-s",
+    EDIT_SESSION,
+    "-c",
+    CLIPBOARD_DIR,
+    FISH,
+    "-lic",
+    "exec " .. NVIM .. " --listen " .. NVIM_SOCKET,
+  })
+  return task and task:start()
+end
+
+local function ensureNvimSession()
+  local sessionExists = tmuxSessionExists()
+  local socketAttributes = hs.fs.attributes(NVIM_SOCKET)
+  local homeAttributes = hs.fs.attributes(home)
+  local socketBelongsToUser = socketAttributes and socketAttributes.uid == homeAttributes.uid
+  if sessionExists
+    and socketAttributes
+    and socketAttributes.mode == "socket"
+    and socketBelongsToUser then
+    return true
+  end
+
+  if sessionExists or socketAttributes then
+    if not cleanupExistingEditorState(sessionExists, socketAttributes) then
+      return false
+    end
+  end
+
+  return startNvimSession()
+end
+
+local function ensureEditorWindowFloating(window, attempts)
+  if not window or attempts <= 0 then
+    return
+  end
+
+  local windowID = window:id()
+  if not windowID then
+    return
+  end
+
+  local query = hs.task.new(YABAI, function(exitCode, standardOutput)
+    if exitCode == 0 then
+      local details = hs.json.decode(standardOutput)
+      if details then
+        if not details["is-floating"] then
+          hs.task.new(YABAI, nil, {
+            "-m",
+            "window",
+            tostring(windowID),
+            "--toggle",
+            "float",
+          }):start()
+        end
+        return
+      end
+    end
+
+    hs.timer.doAfter(0.1, function()
+      ensureEditorWindowFloating(window, attempts - 1)
+    end)
+  end, {
+    "-m",
+    "query",
+    "--windows",
+    "--window",
+    tostring(windowID),
+  })
+  if query then
+    query:start()
+  end
+end
+
+local function openGhostty(path)
+  local ghostty = hs.application.get("Ghostty") or hs.application.open("Ghostty", 2, true)
+  if not ghostty then
+    return false
+  end
+
+  os.execute(TMUX .. " set-option -t " .. EDIT_SESSION .. " set-titles on")
+  os.execute(TMUX .. " set-option -t " .. EDIT_SESSION .. " set-titles-string " .. GHOSTTY_TITLE)
+
+  for _, window in ipairs(ghostty:allWindows()) do
+    local title = window:title() or ""
+    if title:find(GHOSTTY_TITLE, 1, true) or title:find(EDIT_SESSION, 1, true) then
+      window:focus()
+      ensureEditorWindowFloating(window, 20)
+      return true
+    end
+  end
+
+  ghostty:activate()
+  if not ghostty:selectMenuItem("New Window") then
+    return false
+  end
+
+  hs.timer.doAfter(0.5, function()
+    local newWindow = ghostty:focusedWindow()
+    if not newWindow then
+      discardClipboardFile(path)
+      showClipboardError("Unable to focus new Ghostty window")
+      return
+    end
+
+    local windowID = newWindow:id()
+    if windowID then
+      os.execute(YABAI .. " -m window " .. tostring(windowID) .. " --toggle float")
+    end
+
+    hs.eventtap.keyStrokes("exec " .. TMUX .. " attach-session -t " .. EDIT_SESSION)
+    hs.eventtap.keyStroke({}, "return")
+    ensureEditorWindowFloating(newWindow, 20)
+  end)
+
+  return true
+end
+
+local function openInNvim(path)
+  local task = hs.task.new(NVR, function(exitCode)
+    if exitCode == 0 then
+      hs.alert.show("Opened clipboard in Neovim")
+    else
+      discardClipboardFile(path)
+      showClipboardError("Unable to open clipboard in Neovim")
+    end
+  end, {
+    "--servername",
+    NVIM_SOCKET,
+    "--nostart",
+    "--remote",
+    path,
+  })
+  return task and task:start()
+end
+
+local function waitForNvim(path, attempts)
+  local socketAttributes = hs.fs.attributes(NVIM_SOCKET)
+  if socketAttributes and socketAttributes.mode == "socket" then
+    if not openInNvim(path) then
+      discardClipboardFile(path)
+      showClipboardError("Unable to open Neovim")
+      return
+    end
+    return
+  end
+
+  if attempts <= 0 then
+    discardClipboardFile(path)
+    showClipboardError("Neovim did not start")
+    return
+  end
+
+  hs.timer.doAfter(0.1, function()
+    waitForNvim(path, attempts - 1)
+  end)
+end
+
+hs.hotkey.bind({"cmd", "alt"}, "E", function()
+  if not hs.fs.attributes(NVR) then
+    showClipboardError("nvr is not installed; install neovim-remote")
+    return
+  end
+
+  if not isPlainTextClipboard() then
+    showClipboardError("Clipboard is not plain text")
+    return
+  end
+
+  local content = hs.pasteboard.getContents()
+  if not content or content == "" then
+    showClipboardError("Clipboard is empty")
+    return
+  end
+  if #content > MAX_CLIPBOARD_BYTES then
+    showClipboardError("Clipboard exceeds 5 MiB")
+    return
+  end
+  if hasBinaryControlCharacters(content) then
+    showClipboardError("Clipboard contains binary data")
+    return
+  end
+
+  local path, errorMessage = writeClipboardFile(content)
+  if not path then
+    showClipboardError(errorMessage)
+    return
+  end
+  if not ensureNvimSession() then
+    discardClipboardFile(path)
+    showClipboardError("Unable to start tmux Neovim session")
+    return
+  end
+  if not openGhostty(path) then
+    discardClipboardFile(path)
+    showClipboardError("Unable to open Ghostty")
+    return
+  end
+
+  waitForNvim(path, 40)
+end)
+
+-- ------------------------------------------------------------
 -- Manual reload shortcut
 -- ------------------------------------------------------------
 

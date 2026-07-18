@@ -25,7 +25,7 @@ brew install zsh fish tree wget fd eza tmux htop ripgrep zoxide jq stow gh fzf g
 These map directly to stow packages in this repository.
 
 ```bash
-brew install neovim lazygit syncthing
+brew install neovim neovim-remote lazygit syncthing
 ```
 
 ### Install required desktop apps for tracked configs
