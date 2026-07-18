@@ -1,4 +1,5 @@
 command = /opt/homebrew/bin/fish
+confirm-close-surface = false
 window-decoration = none
 theme = Catppuccin Mocha
 font-size = 14
