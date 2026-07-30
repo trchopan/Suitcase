@@ -9,8 +9,8 @@ if status is-interactive
     abbr -a tree "tree -I node_modules -I .git"
     abbr -a grep "rg"
 
-    abbr -a ll "eza -l -g --icons=automatic"
-    abbr -a ls "eza --icons=automatic"
+    abbr -a ll "eza -l -g --icons=auto"
+    abbr -a ls "eza --icons=auto"
 
     abbr -a klogs "kubectl logs -f --tail 100"
     abbr -a k "kubectl"
