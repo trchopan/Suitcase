@@ -86,5 +86,6 @@ yabai -m rule --add app="^Google Chrome"                             manage=off
 yabai -m rule --add title="Picture in Picture"                       manage=off
 yabai -m rule --add app="Cloudflare WARP"                            manage=off
 yabai -m rule --add app="RustDesk"                                   manage=off
+yabai -m rule --add app="Disk Utility"                               manage=off
 
 echo "yabai configuration loaded.."
