@@ -42,7 +42,7 @@ function M.setup(config)
   local function prune()
     local files = {}
     for filename in hs.fs.dir(config.clipboardDir) do
-      if filename:match("^clipboard_%d+_[%w%-]+%.md$") then
+      if filename:match("^[%w%-]+%.md$") then
         local path = config.clipboardDir .. "/" .. filename
         local attributes = hs.fs.attributes(path)
         if attributes and attributes.mode == "file" then
@@ -59,12 +59,11 @@ function M.setup(config)
     local slug = content:sub(1, 50):lower():gsub("%s+", "-"):gsub("[^%w%-]", "")
       :gsub("%-+", "-"):gsub("^%-", ""):gsub("%-$", "")
     if slug == "" then slug = "untitled" end
-    local timestamp = tostring(math.floor(hs.timer.secondsSinceEpoch()))
-    local filename = "clipboard_" .. timestamp .. "_" .. slug .. ".md"
+    local filename = slug .. ".md"
     local path = config.clipboardDir .. "/" .. filename
     local collision = 2
     while hs.fs.attributes(path) do
-      filename = "clipboard_" .. timestamp .. "_" .. slug .. "-" .. collision .. ".md"
+      filename = slug .. "-" .. collision .. ".md"
       path = config.clipboardDir .. "/" .. filename
       collision = collision + 1
     end
@@ -197,6 +196,7 @@ function M.setup(config)
   local function waitForNvim(path, attempts)
     local attributes = hs.fs.attributes(config.nvimSocket)
     if attributes and attributes.mode == "socket" then
+      if not path then return end
       if not openInNvim(path) then
         discard(path)
         showError("Unable to open Neovim")
@@ -210,6 +210,15 @@ function M.setup(config)
     end
     hs.timer.doAfter(0.1, function() waitForNvim(path, attempts - 1) end)
   end
+
+  hs.hotkey.bind({"cmd", "alt"}, "w", function()
+    if not ensureSession() then
+      return showError("Unable to start tmux Neovim session")
+    end
+    if not openGhostty() then
+      return showError("Unable to open Ghostty")
+    end
+  end)
 
   hs.hotkey.bind({"cmd", "alt"}, "E", function()
     if not hs.fs.attributes(config.nvr) then return showError("nvr is not installed; install neovim-remote") end

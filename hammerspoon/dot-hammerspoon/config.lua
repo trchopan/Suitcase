@@ -8,7 +8,7 @@ return {
   nvim = "/opt/homebrew/bin/nvim",
   nvr = "/opt/homebrew/bin/nvr",
   spoonsDir = home .. "/.hammerspoon/Spoons",
-  clipboardDir = home .. "/.local/share/hammerspoon",
+  clipboardDir = home .. "/.local/share/hammerspoon/clipboard",
   editSession = "hs-edit",
   ghosttyTitle = "hs_nvim_edit",
   nvimSocket = home .. "/.local/share/hammerspoon/nvim.sock",
