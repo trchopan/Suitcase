@@ -1,5 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+[username]
+disabled = true
+
 [aws]
 symbol = " "
 
@@ -112,6 +115,7 @@ symbol = " "
 
 [hostname]
 ssh_symbol = " "
+disabled = true
 
 [java]
 symbol = " "
